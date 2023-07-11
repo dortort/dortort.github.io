@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ .Site.Data.cv.Name }}'s CV</title>
+    <style>
+        {{ readFile "/static/style.css" | safeCSS }}
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 class="name">{{ .Site.Data.cv.Name }}</h1>
+        <h2 class="title">{{ .Site.Data.cv.Title }}</h2>
+        <ul class="links">
+            {{ range $key, $value := .Site.Data.cv.Links }}
+            <li><a href="{{ $value }}" class="social-link">{{ $key }}</a></li>
+            {{ end }}
+        </ul>
+    </header>
+
+    <section class="background">
+        <h2>Personal Background</h2>
+        <p>{{ .Site.Data.cv.Background }}</p>
+    </section>
+
+    <section class="skills">
+        <h2>Skills & Competencies</h2>
+        <ul>
+            {{ range .Site.Data.cv.Skills }}
+            <li>{{ . }}</li>
+            {{ end }}
+        </ul>
+    </section>
+
+    <section class="languages">
+        <h2>Languages</h2>
+        <ul>
+            {{ range .Site.Data.cv.Languages }}
+            <li>{{ . }}</li>
+            {{ end }}
+        </ul>
+    </section>
+
+    <section class="certifications">
+        <h2>Certifications</h2>
+        <ul>
+            {{ range .Site.Data.cv.Certifications }}
+            <li>{{ . }}</li>
+            {{ end }}
+        </ul>
+    </section>
+
+    <section class="education">
+        <h2>Academic Profile</h2>
+        <ul>
+            {{ range .Site.Data.cv.Academics }}
+            <li>
+                <strong>{{ .College }}</strong>: {{ .Degree }} ({{ .Year }})
+            </li>
+            {{ end }}
+        </ul>
+    </section>
+
+    <section class="experience">
+        <h2>Work Experience</h2>
+        {{ range .Site.Data.cv.Experience }}
+        <article>
+            <h3>{{ .Position }}</h3>
+            <h4>{{ .Company }}</h4>
+            <p>{{ .Duration }}</p>
+            <ul>
+                {{ range .Responsibilities }}
+                <li>{{ . }}</li>
+                {{ end }}
+            </ul>
+        </article>
+        {{ end }}
+    </section>
+</body>
+
+</html>

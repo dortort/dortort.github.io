@@ -1,0 +1,92 @@
+body {
+    font-family: 'Courier New', monospace;
+    color: #A9B7C6;
+    background-color: #282C34;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #1F2430;
+    color: #8ABEB7;
+    padding: 20px 0;
+    text-align: center;
+    max-width: 900px;
+    margin: auto;
+}
+
+.name {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.title {
+    font-size: 1.5em;
+    color: #A9B7C6;
+}
+
+.links {
+    margin-top: 15px;
+    font-size: 1em;
+}
+
+.links a {
+    color: #CC7832;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.links a:hover {
+    color: #FFC66D;
+}
+
+section {
+    padding: 20px;
+    max-width: 900px;
+    margin: auto;
+}
+
+h2 {
+    font-size: 1.5em;
+    color: #6A8759;
+    border-bottom: 1px solid #3C3F41;
+    padding-bottom: 10px;
+}
+
+.skills li {
+    font-size: 0.8em;
+    display: inline-block;
+    margin: 0 5px 5px 0;
+    padding: 5px;
+    border: 1px solid #A9B7C6;
+    border-radius: 5px;
+}
+
+h3 {
+    font-size: 1.3em;
+    color: #6A8759;
+}
+
+h4 {
+    font-size: 1.1em;
+    color: #A9B7C6;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 5px 0;
+}
+
+article {
+    border-bottom: 1px solid #3C3F41;
+    margin-bottom: 20px;
+}
+
+article:last-child {
+    border-bottom: none;
+}
