@@ -1,0 +1,71 @@
+Name: FRANCIS EYTAN DORTORT
+Title: SOFTWARE CRAFTSMAN | TECHNICAL CONSULTANT | STARTUP ADVISOR
+Links:
+  # LinkedIn: linkedin.com/in/dortort
+  Github: github.com/dortort
+Background: Accomplished, motivated and versatile IT professional with 20 years of experience in the industry, known for a personable approach to clients and co-workers as well as for delivering and implementing advanced solutions. Innovative and driven, consistent over-achiever, excellent coordinator and organizer, responsible and efficient project manager.
+Skills:
+  - Product/ Project Management
+  - Full-Stack Development
+  - Application Design/ Architecture
+  - Web Application Security
+  - Continuous Integration (CI) / Continuous Delivery/ Deployment (CD)
+  - Cloud Automation / Orchestration
+  - Software/ Systems Engineering
+  - Site Reliability Engineering (SRE)
+  - Lean / Agile / Scrum
+  - Git / Subversion
+  - Trac / JIRA
+  - Hudson / Jenkins / Bamboo
+  - Ant / Grunt
+  - Linux
+  - Docker / Kubernetes
+  - Terraform
+  - Apache
+  - NGINX
+  - MySQL
+  - MongoDB
+  - Memcached / Redis
+  - Elasticsearch
+  - Node.js
+  - PHP
+  - HTML
+  - JavaScript
+  - CSS
+  - Amazon Web Services (AWS)
+Languages: 
+  - English (fluent)
+  - French (fluent)
+  - Hebrew (excellent)
+Certifications: 
+  - CCSP (Certified Cloud Security Professional)
+Academics:
+  - College: Touro College
+    Degree: Computer Science
+    Year: 2002 - 2006
+  - College: Jerusalem College of Technology (LEV)
+    Degree: Electrical & Electronics Engineering
+    Year: 2000 - 2001
+Experience:
+  - Position: Technical Consultant
+    Duration: Sep 2014 - Current
+    Responsibilities:
+      - Dockerized payments orchestration application across all environments, from dev to production. Automated image testing & vulnerability scanning. Lowered hosting & PCI-DSS compliance costs by 30%.
+      - Audited PHP application for scalability, maintainability & security in anticipation of product launch. Static & dynamic code analysis, penetration testing.
+      - Digital transformation for several small businesses. Migration of on-premise business software to public cloud & deployment of cloud-managed on-premise security hardware.
+      - Built PoC for cloud-managed physical access-control product.
+  - Position: Co-founder & CTO
+    Company: PhoneCall
+    Duration: Jan 2015 - Dec 2019
+    Responsibilities:
+      - Built call center multi-tenant SaaS application from the ground up. Scaled to 3M calls/ week, >$70k MRR. Auto-scaling multi-tier & microservices architecture. ML-backed predictive dialer.
+  - Position: Tech Lead / CTO
+    Company: 3999 SA
+    Duration: Dec 2007 - Apr 2014
+    Responsibilities:
+      - Built MVP for France multi-channel local search engine, accessible online & by SMS. Raised seed round of 2.5M €.
+      - Recruited & led team of 7 DevOps engineers. Search engine rewrite, evolution of NLP & ranking algorithms. VoiceXML application for access by phone. Automated data pipeline for updates & aggregation.
+      - Built CMS for businesses with automatic content generation & SEM campaign setup. Scaled to 18K active users.
+      - Introduced Agile/ SCRUM methodologies, CI & automated deployment.
+      - Business process automation with Salesforce custom developments & various APIs.
+      - Migrations from SVN to Git, Trac to Jira, co-located hosting to AWS.
