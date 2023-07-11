@@ -14,8 +14,8 @@
         <h1 class="name">{{ .Site.Data.cv.Name }}</h1>
         <h2 class="title">{{ .Site.Data.cv.Title }}</h2>
         <ul class="links">
-            {{ range $key, $value := .Site.Data.cv.Links }}
-            <li><a href="{{ $value }}" class="social-link">{{ $key }}</a></li>
+            {{ range .Site.Data.cv.Links }}
+            <li><a href="{{ .Link }}" class="social-link">{{ .Display }}</a></li>
             {{ end }}
         </ul>
     </header>
