@@ -15,7 +15,7 @@
         <h2 class="title">{{ .Site.Data.cv.Title }}</h2>
         <ul class="links">
             {{ range .Site.Data.cv.Links }}
-            <li><a href="{{ .Link }}" class="social-link">{{ .Display }}</a></li>
+            <li><a href="{{ safeURL .Link }}" class="social-link">{{ .Display }}</a></li>
             {{ end }}
         </ul>
     </header>

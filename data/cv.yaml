@@ -2,12 +2,22 @@ Name: FRANCIS EYTAN DORTORT
 Title: SOFTWARE CRAFTSMAN | TECHNICAL CONSULTANT | STARTUP ADVISOR
 Links:
   - Display: francis@dortort.com
-    Link: "mailto:francis@dortort.com"
-  - Display: "(514) 424-4586"
-    Link: "tel:+15144244586"
+    Link: mailto:francis@dortort.com
+  - Display: (514) 424-4586
+    Link: tel:+15144244586
   - Display: GitHub
-    Link: github.com/dortort
-Background: Accomplished, motivated and versatile IT professional with 20 years of experience in the industry, known for a personable approach to clients and co-workers as well as for delivering and implementing advanced solutions. Innovative and driven, consistent over-achiever, excellent coordinator and organizer, responsible and efficient project manager.
+    Link: https://github.com/dortort
+Background: |
+  Francis Eytan Dortort is a highly accomplished IT professional with over two
+  decades of versatile industry experience, recognized for a personable approach
+  and his aptitude in delivering and implementing advanced solutions in
+  full-stack development and cloud automation. An exceptional organizer and
+  responsible project manager, Francis is known for his innovative and driven
+  spirit. Being proficient in Node.js, PHP, Docker, Terraform, and other tools,
+  his commitment to excellence and innovation is displayed in his roles as CTO
+  at PhoneCall and 3999 SA. His multilingual abilities and Certified Cloud
+  Security Professional (CCSP) credential further testify to his comprehensive
+  expertise.
 Skills:
   - Product/ Project Management
   - Full-Stack Development
@@ -37,11 +47,11 @@ Skills:
   - JavaScript
   - CSS
   - Amazon Web Services (AWS)
-Languages: 
+Languages:
   - English (fluent)
   - French (fluent)
   - Hebrew (excellent)
-Certifications: 
+Certifications:
   - CCSP (Certified Cloud Security Professional)
 Academics:
   - College: Touro College
