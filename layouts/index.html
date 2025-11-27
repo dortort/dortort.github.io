@@ -3,81 +3,146 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Site.Data.cv.Name }}'s CV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         {{ readFile "/static/style.css" | safeCSS }}
     </style>
 </head>
 
 <body>
-    <header>
-        <h1 class="name">{{ .Site.Data.cv.Name }}</h1>
-        <h2 class="title">{{ .Site.Data.cv.Title }}</h2>
-        <ul class="links">
-            {{ range .Site.Data.cv.Links }}
-            <li><a href="{{ safeURL .Link }}" class="social-link">{{ .Display }}</a></li>
-            {{ end }}
-        </ul>
-    </header>
+    <div class="noise"></div>
+    <div class="cursor-follower"></div>
+    
+    <main class="content-wrapper">
+        <header>
+            <div class="header-content">
+                <h1 class="name" data-text="{{ .Site.Data.cv.Name }}">{{ .Site.Data.cv.Name }}</h1>
+                <h2 class="title">{{ .Site.Data.cv.Title }}</h2>
+                <ul class="links">
+                    {{ range .Site.Data.cv.Links }}
+                    <li><a href="{{ safeURL .Link }}" class="magnetic-link"><span>{{ .Display }}</span></a></li>
+                    {{ end }}
+                </ul>
+            </div>
+        </header>
 
-    <section class="background">
-        <h2>Personal Background</h2>
-        <p>{{ .Site.Data.cv.Background }}</p>
-    </section>
+        <div class="scroll-container">
+            <section class="background parallax-section">
+                <div class="section-number">01</div>
+                <div class="section-content">
+                    <h2>Background</h2>
+                    <p class="text-reveal">{{ .Site.Data.cv.Background }}</p>
+                </div>
+            </section>
 
-    <section class="skills">
-        <h2>Skills & Competencies</h2>
-        <ul>
-            {{ range .Site.Data.cv.Skills }}
-            <li>{{ . }}</li>
-            {{ end }}
-        </ul>
-    </section>
+            <section class="skills parallax-section">
+                <div class="section-number">02</div>
+                <div class="section-content">
+                    <h2>Skills</h2>
+                    <div class="skills-container">
+                        {{ range .Site.Data.cv.Skills }}
+                        <div class="skill-category">
+                            <h3 class="skill-category-title">{{ .Category }}</h3>
+                            <ul class="tag-cloud">
+                                {{ range .Items }}
+                                <li class="tag">{{ . }}</li>
+                                {{ end }}
+                            </ul>
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+            </section>
 
-    <section class="languages">
-        <h2>Languages</h2>
-        <ul>
-            {{ range .Site.Data.cv.Languages }}
-            <li>{{ . }}</li>
-            {{ end }}
-        </ul>
-    </section>
+            <section class="experience parallax-section">
+                <div class="section-number">03</div>
+                <div class="section-content">
+                    <h2>Experience</h2>
+                    <div class="timeline">
+                        {{ range .Site.Data.cv.Experience }}
+                        <article class="timeline-item">
+                            <div class="timeline-meta">
+                                <span class="duration">{{ .Duration }}</span>
+                                <span class="company">{{ .Company }}</span>
+                            </div>
+                            <div class="timeline-body">
+                                <h3>{{ .Position }}</h3>
+                                <ul>
+                                    {{ range .Responsibilities }}
+                                    <li>{{ . }}</li>
+                                    {{ end }}
+                                </ul>
+                            </div>
+                        </article>
+                        {{ end }}
+                    </div>
+                </div>
+            </section>
+            
+            <div class="grid-2-col">
+                <section class="languages parallax-section">
+                    <div class="section-number">04</div>
+                    <div class="section-content">
+                        <h2>Languages</h2>
+                        <ul class="minimal-list">
+                            {{ range .Site.Data.cv.Languages }}
+                            <li>{{ . }}</li>
+                            {{ end }}
+                        </ul>
+                    </div>
+                </section>
 
-    <section class="certifications">
-        <h2>Certifications</h2>
-        <ul>
-            {{ range .Site.Data.cv.Certifications }}
-            <li>{{ . }}</li>
-            {{ end }}
-        </ul>
-    </section>
+                <section class="certifications parallax-section">
+                    <div class="section-number">05</div>
+                    <div class="section-content">
+                        <h2>Certifications</h2>
+                        <ul class="minimal-list">
+                            {{ range .Site.Data.cv.Certifications }}
+                            <li>{{ . }}</li>
+                            {{ end }}
+                        </ul>
+                    </div>
+                </section>
+            </div>
 
-    <section class="education">
-        <h2>Academic Profile</h2>
-        <ul>
-            {{ range .Site.Data.cv.Academics }}
-            <li>
-                <strong>{{ .College }}</strong>: {{ .Degree }} ({{ .Year }})
-            </li>
-            {{ end }}
-        </ul>
-    </section>
+            <section class="education parallax-section">
+                <div class="section-number">06</div>
+                <div class="section-content">
+                    <h2>Academic Profile</h2>
+                    <ul class="education-list">
+                        {{ range .Site.Data.cv.Academics }}
+                        <li>
+                            <span class="year">{{ .Year }}</span>
+                            <div class="edu-details">
+                                <strong>{{ .College }}</strong>
+                                <span>{{ .Degree }}</span>
+                            </div>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
 
-    <section class="experience">
-        <h2>Work Experience</h2>
-        {{ range .Site.Data.cv.Experience }}
-        <article>
-            <h3>{{ .Position }}</h3>
-            <h4>{{ .Company }}</h4>
-            <p>{{ .Duration }}</p>
-            <ul>
-                {{ range .Responsibilities }}
-                <li>{{ . }}</li>
-                {{ end }}
-            </ul>
-        </article>
-        {{ end }}
-    </section>
+    <script>
+        // Simple custom cursor script for "mouse effects"
+        const cursor = document.querySelector('.cursor-follower');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, .tag, article').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+        });
+    </script>
 </body>
 
 </html>

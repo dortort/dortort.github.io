@@ -1,5 +1,5 @@
 Name: FRANCIS EYTAN DORTORT
-Title: SOFTWARE CRAFTSMAN | TECHNICAL CONSULTANT | STARTUP ADVISOR
+Title: SENIOR DEVSECOPS ENGINEER | CLOUD SOLUTIONS ARCHITECT
 Links:
   - Display: francis@dortort.com
     Link: mailto:francis@dortort.com
@@ -8,78 +8,138 @@ Links:
   - Display: GitHub
     Link: https://github.com/dortort
 Background: |
-  Francis Eytan Dortort is a highly accomplished IT professional with over two
-  decades of versatile industry experience, recognized for a personable approach
-  and his aptitude in delivering and implementing advanced solutions in
-  full-stack development and cloud automation. An exceptional organizer and
-  responsible project manager, Francis is known for his innovative and driven
-  spirit. Being proficient in Node.js, PHP, Docker, Terraform, and other tools,
-  his commitment to excellence and innovation is displayed in his roles as CTO
-  at PhoneCall and 3999 SA. His multilingual abilities and Certified Cloud
-  Security Professional (CCSP) credential further testify to his comprehensive
-  expertise.
+  A highly accomplished IT professional and Certified Cloud Security Professional (CCSP)
+  with 20+ years of experience driving digital transformation, building secure and scalable
+  cloud infrastructure, and leading high-performing DevOps teams. Proven ability to deliver
+  innovative solutions that enhance security, optimize performance, and reduce operational
+  costs. Expertise in AWS, Containerization, Infrastructure as Code (IaC), and implementing
+  CI/CD pipelines. Seeking a challenging role where I can leverage my expertise to contribute
+  to the growth and success of a forward-thinking organization.
 Skills:
-  - Product/ Project Management
-  - Full-Stack Development
-  - Application Design/ Architecture
-  - Web Application Security
-  - Continuous Integration (CI) / Continuous Delivery/ Deployment (CD)
-  - Cloud Automation / Orchestration
-  - Software/ Systems Engineering
-  - Site Reliability Engineering (SRE)
-  - Lean / Agile / Scrum
-  - Git / Subversion
-  - Trac / JIRA
-  - Hudson / Jenkins / Bamboo
-  - Ant / Grunt
-  - Linux
-  - Docker / Kubernetes
-  - Terraform
-  - Apache
-  - NGINX
-  - MySQL
-  - MongoDB
-  - Memcached / Redis
-  - Elasticsearch
-  - Node.js
-  - PHP
-  - HTML
-  - JavaScript
-  - CSS
-  - Amazon Web Services (AWS)
+  - Category: Cloud Platforms
+    Items:
+      - AWS (EC2, S3, ECS, EKS, RDS, VPC, IAM, Route 53, CloudFront, CloudWatch, Lambda)
+      - Azure
+      - Cloudflare
+      - OVH
+  - Category: DevSecOps
+    Items:
+      - CI/CD Pipelines
+      - Infrastructure as Code (Terraform, CloudFormation)
+      - Containerization (Docker, Kubernetes)
+      - Configuration Management (Chef)
+  - Category: Security
+    Items:
+      - CCSP
+      - Static & Dynamic Code Analysis
+      - Security Hardening
+      - Compliance (PCI-DSS, SOC2)
+      - OWASP
+  - Category: Programming Languages
+    Items:
+      - PHP (Symfony, CakePHP, Silex, Zend)
+      - JavaScript (Node.js, Vue, Ember.js)
+      - Bash
+      - Lua
+      - Python
+      - Java
+  - Category: Databases
+    Items:
+      - MySQL
+      - Percona
+      - Aurora
+      - MongoDB
+      - Redis
+      - Elasticsearch
+      - Memcached
+  - Category: Tools & Technologies
+    Items:
+      - Git
+      - Jira
+      - Confluence
+      - Jenkins
+      - Hudson
+      - GitHub Actions
+      - Nginx
+      - Apache
+      - ELK Stack
+      - Datadog
+      - Sentry
+      - Nagios
+      - New Relic
+      - Twilio
+      - Mandrill
+      - Salesforce (Visualforce/APEX)
+  - Category: Methodologies
+    Items:
+      - Agile
+      - Scrum
+      - Lean
+      - Site Reliability Engineering (SRE)
 Languages:
-  - English (fluent)
-  - French (fluent)
-  - Hebrew (excellent)
+  - English (Fluent)
+  - French (Fluent)
 Certifications:
   - CCSP (Certified Cloud Security Professional)
 Academics:
   - College: Touro College
     Degree: Computer Science
     Year: 2002 - 2006
-  - College: Jerusalem College of Technology (LEV)
-    Degree: Electrical & Electronics Engineering
-    Year: 2000 - 2001
 Experience:
-  - Position: Technical Consultant
+  - Position: Consultant - DevSecOps & Full-stack Engineer
     Duration: Sep 2014 - Current
     Responsibilities:
-      - Dockerized payments orchestration application across all environments, from dev to production. Automated image testing & vulnerability scanning. Lowered hosting & PCI-DSS compliance costs by 30%.
-      - Audited PHP application for scalability, maintainability & security in anticipation of product launch. Static & dynamic code analysis, penetration testing.
-      - Digital transformation for several small businesses. Migration of on-premise business software to public cloud & deployment of cloud-managed on-premise security hardware.
-      - Built PoC for cloud-managed physical access-control product.
+      - |
+        Elevated DevOps Maturity: Led the training and mentorship of a DevOps team, resulting
+        in the implementation of robust CI/CD pipelines and improved deployment frequency by
+        40%. Established incident response SOPs, reducing MTTR by 30%.
+      - |
+        Enhanced Security & Compliance: Dockerized a payments orchestration application,
+        improving portability and security. Implemented automated image testing and
+        vulnerability scanning, lowering hosting and PCI-DSS/SOC2 compliance costs by 30%.
+      - |
+        Cloud Migration & Optimization: Spearheaded the migration of on-premise infrastructure
+        to AWS for multiple clients, achieving significant cost savings and improved scalability.
+      - |
+        Security Audits: Conducted thorough security audits of PHP applications, identifying
+        and remediating critical vulnerabilities in anticipation of product launches. Utilized
+        tools like phploc, phpcpd, PHP_Depend, PHPMD, and OWASP ZAP.
+      - |
+        Full-Stack Development: Developed and maintained various web applications and APIs
+        using PHP frameworks (Symfony, CakePHP, Silex, Zend), JavaScript, and various
+        database technologies.
   - Position: Co-founder & CTO
     Company: PhoneCall
     Duration: Jan 2015 - Dec 2019
     Responsibilities:
-      - Built call center multi-tenant SaaS application from the ground up. Scaled to 3M calls/ week, >$70k MRR. Auto-scaling multi-tier & microservices architecture. ML-backed predictive dialer.
+      - |
+        Built and Scaled a SaaS Platform: Led the development of a multi-tenant call center
+        SaaS application from the ground up, scaling it to handle 3 million calls per week
+        and generating $70K+ MRR.
+      - |
+        Architected for High Availability: Designed and implemented an auto-scaling, multi-tier,
+        microservices-based architecture using AWS Elastic Beanstalk, SQS, ECS, and CloudFront,
+        ensuring high availability and resilience.
+      - |
+        Leveraged Machine Learning: Integrated a machine learning-backed predictive dialer to
+        optimize call center efficiency.
   - Position: Tech Lead / CTO
     Company: 3999 SA
     Duration: Dec 2007 - Apr 2014
     Responsibilities:
-      - Built MVP for France multi-channel local search engine, accessible online & by SMS. Raised seed round of 2.5M €.
-      - Recruited & led team of 7 DevOps engineers. Search engine rewrite, evolution of NLP & ranking algorithms. VoiceXML application for access by phone. Automated data pipeline for updates & aggregation.
-      - Built CMS for businesses with automatic content generation & SEM campaign setup. Scaled to 18K active users.
-      - Introduced Agile/ SCRUM methodologies, CI & automated deployment.
-      - Business process automation with Salesforce custom developments & various APIs.
-      - Migrations from SVN to Git, Trac to Jira, co-located hosting to AWS.
+      - |
+        Delivered MVP & Secured Funding: Developed a Minimum Viable Product (MVP) for a
+        multi-channel local search engine (web and SMS), securing a 2.5M € seed funding round.
+      - |
+        Built & Led a High-Performing Team: Recruited, mentored, and led a team of 7 DevOps
+        engineers, fostering a culture of collaboration and innovation.
+      - |
+        Improved Search & Ranking: Led the rewrite of the core search engine, resulting in
+        significant improvements to search relevance and performance.
+      - |
+        Automated Data Pipeline: Built an automated data pipeline for updates and aggregation
+        using VoiceXML and custom scripts, ensuring data accuracy and freshness.
+      - |
+        Introduced Agile and Automation: Implemented Agile/SCRUM methodologies and CI/CD
+        pipelines, streamlining the development process and reducing time to market. Scaled a
+        content management system (CMS) to 18K active users.
