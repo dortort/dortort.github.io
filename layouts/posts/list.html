@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - {{ .Site.Title }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        {{ readFile "/static/style.css" | safeCSS }}
+    </style>
+</head>
+
+<body>
+    <div class="noise"></div>
+    <div class="cursor-follower"></div>
+    
+    <main class="content-wrapper">
+        <header>
+            <div class="header-content">
+                <h1 class="name" data-text="BLOG">BLOG</h1>
+                <h2 class="title">Thoughts & Insights</h2>
+                <ul class="links">
+                    <li><a href="/" class="magnetic-link"><span>Home</span></a></li>
+                    <li><a href="/posts/" class="magnetic-link"><span>Blog</span></a></li>
+                </ul>
+            </div>
+        </header>
+
+        <div class="scroll-container">
+            <section class="blog-list parallax-section">
+                <div class="section-number">01</div>
+                <div class="section-content">
+                    <h2>Posts</h2>
+                    <div class="posts-container">
+                        {{ range .Pages }}
+                        <article class="blog-post-preview">
+                            <div class="post-meta">
+                                <time class="post-date">{{ .Date.Format "January 2, 2006" }}</time>
+                                {{ if .Params.tags }}
+                                <ul class="post-tags">
+                                    {{ range .Params.tags }}
+                                    <li class="tag">{{ . }}</li>
+                                    {{ end }}
+                                </ul>
+                                {{ end }}
+                            </div>
+                            <h3 class="post-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+                            {{ if .Params.description }}
+                            <p class="post-excerpt">{{ .Params.description }}</p>
+                            {{ else }}
+                            <p class="post-excerpt">{{ .Summary | truncate 200 }}</p>
+                            {{ end }}
+                            <a href="{{ .Permalink }}" class="read-more">Read more →</a>
+                        </article>
+                        {{ end }}
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        const cursor = document.querySelector('.cursor-follower');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, .tag, article').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+        });
+    </script>
+</body>
+
+</html>

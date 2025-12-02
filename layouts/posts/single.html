@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} - {{ .Site.Title }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        {{ readFile "/static/style.css" | safeCSS }}
+    </style>
+</head>
+
+<body>
+    <div class="noise"></div>
+    <div class="cursor-follower"></div>
+    
+    <main class="content-wrapper">
+        <header>
+            <div class="header-content">
+                <h1 class="name" data-text="BLOG">BLOG</h1>
+                <h2 class="title">{{ .Title }}</h2>
+                <ul class="links">
+                    <li><a href="/" class="magnetic-link"><span>Home</span></a></li>
+                    <li><a href="/posts/" class="magnetic-link"><span>Blog</span></a></li>
+                </ul>
+            </div>
+        </header>
+
+        <div class="scroll-container">
+            <section class="blog-post parallax-section">
+                <div class="section-number">01</div>
+                <div class="section-content">
+                    <article class="post-content">
+                        <div class="post-header">
+                            <time class="post-date">{{ .Date.Format "January 2, 2006" }}</time>
+                            {{ if .Params.tags }}
+                            <ul class="post-tags">
+                                {{ range .Params.tags }}
+                                <li class="tag">{{ . }}</li>
+                                {{ end }}
+                            </ul>
+                            {{ end }}
+                        </div>
+                        <div class="post-body">
+                            {{ .Content }}
+                        </div>
+                        <div class="post-footer">
+                            <a href="/posts/" class="back-link">← Back to Blog</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        const cursor = document.querySelector('.cursor-follower');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, .tag, article').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+        });
+    </script>
+</body>
+
+</html>

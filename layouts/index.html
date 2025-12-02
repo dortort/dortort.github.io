@@ -23,6 +23,7 @@
                 <h1 class="name" data-text="{{ .Site.Data.cv.Name }}">{{ .Site.Data.cv.Name }}</h1>
                 <h2 class="title">{{ .Site.Data.cv.Title }}</h2>
                 <ul class="links">
+                    <li><a href="/posts/" class="magnetic-link"><span>Blog</span></a></li>
                     {{ range .Site.Data.cv.Links }}
                     <li><a href="{{ safeURL .Link }}" class="magnetic-link"><span>{{ .Display }}</span></a></li>
                     {{ end }}

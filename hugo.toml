@@ -1,3 +1,20 @@
 baseURL = 'http://dortort.com/'
 languageCode = 'en-us'
 title = 'Francis Eytan Dortort'
+
+[params]
+  description = "Senior DevSecOps Engineer | Cloud Solutions Architect"
+
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = 1
+
+[[menu.main]]
+  name = "Blog"
+  url = "/posts/"
+  weight = 2
+
+[pagination]
+  enabled = true
+  pageSize = 10
