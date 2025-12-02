@@ -1,0 +1,38 @@
+name: Build Check
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.110.0"
+          # extended: true
+
+      - name: Build
+        run: hugo --minify
+
+      - name: Verify build output
+        run: |
+          if [ ! -d "public" ]; then
+            echo "Build failed: public directory not found"
+            exit 1
+          fi
+          if [ ! -f "public/index.html" ]; then
+            echo "Build failed: index.html not found"
+            exit 1
+          fi
+          echo "Build successful: Hugo site generated correctly"
