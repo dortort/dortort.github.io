@@ -17,7 +17,17 @@ function getCanonicalUrl(filename) {
 
 function normalizeUrl(url) {
     if (!url) return "";
-    return url.replace(/^https?:\/\//, '').replace(/\/$/, '').toLowerCase();
+    try {
+        // Remove protocol
+        let u = url.replace(/^https?:\/\//, '');
+        // Remove trailing slash
+        if (u.endsWith('/')) u = u.slice(0, -1);
+        // Remove www.
+        u = u.replace(/^www\./, '');
+        return u.toLowerCase();
+    } catch (e) {
+        return "";
+    }
 }
 
 async function postToDevto(article, canonicalUrl, publishDate) {
@@ -160,6 +170,10 @@ async function postToHashnode(article, canonicalUrl, publishDate) {
     }
 
     // Check for existing post
+    console.log(`Checking for duplicates in Hashnode publication ${pubId}...`);
+    console.log(`Target Canonical URL: ${canonicalUrl}`);
+    console.log(`Target Title: ${article.data.title}`);
+
     let existingPostId = null;
     let hasNextPage = true;
     let afterCursor = null;
@@ -193,6 +207,12 @@ async function postToHashnode(article, canonicalUrl, publishDate) {
                     after: afterCursor
                 }
             }, { headers });
+            
+            if (response.data.errors) {
+                 console.error(`Hashnode API Errors during duplicate check: ${JSON.stringify(response.data.errors)}`);
+                 // If we can't check, it's safer to stop than to duplicate
+                 return;
+            }
 
             if (response.data.data && response.data.data.publication) {
                 const postsData = response.data.data.publication.posts;
@@ -200,8 +220,12 @@ async function postToHashnode(article, canonicalUrl, publishDate) {
                 
                 for (const p of posts) {
                     const node = p.node;
+                    // Debug logging (verbose but necessary for troubleshooting)
+                    // console.log(`Checking against: [${node.id}] "${node.title}" (${node.originalArticleURL})`);
+
                     if (normalizeUrl(node.originalArticleURL) === normalizeUrl(canonicalUrl) || 
                         node.title === article.data.title) {
+                        console.log(`Found existing post: ${node.id}`);
                         existingPostId = node.id;
                         break;
                     }
@@ -212,11 +236,13 @@ async function postToHashnode(article, canonicalUrl, publishDate) {
                 hasNextPage = postsData.pageInfo.hasNextPage;
                 afterCursor = postsData.pageInfo.endCursor;
             } else {
+                console.log("No publication data returned from Hashnode.");
                 break;
             }
         } catch (error) {
             console.error(`Error checking existing Hashnode posts: ${error.message}`);
-            break;
+            // Stop processing to avoid duplicates on error
+            return;
         }
     }
 
