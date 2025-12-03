@@ -36,17 +36,31 @@ async function postToDevto(article, canonicalUrl, publishDate) {
             existing = articles.find(a => a.title === article.data.title);
         }
 
+        // Dev.to requires tags to be alphanumeric (only ASCII letters, numbers, and underscores).
+        // We'll replace non-alphanumeric characters with nothing or map known ones.
+        const cleanTags = (article.data.tags || []).map(t => t.replace(/[^a-zA-Z0-9]/g, '').toLowerCase());
+
         const payload = {
             article: {
                 title: article.data.title,
                 body_markdown: article.content,
-                tags: article.data.tags || [],
+                tags: cleanTags,
                 canonical_url: canonicalUrl,
                 published: true,
-                published_at: publishDate,
                 description: article.data.description || ""
             }
         };
+
+        // Dev.to only allows future or current dates for published_at
+        if (publishDate) {
+             const dateObj = new Date(publishDate);
+             const now = new Date();
+             // If date is in the future, we can schedule it.
+             // If it's in the past, we omit it (defaults to now).
+             if (dateObj > now) {
+                  payload.article.published_at = publishDate;
+             }
+        }
 
         if (existing) {
             console.log(`Updating existing Dev.to article: ${existing.title}`);
@@ -72,7 +86,8 @@ async function postToDevto(article, canonicalUrl, publishDate) {
 async function getHashnodeTagIds(tags, headers) {
     const tagIds = [];
     for (const tagName of tags) {
-        const slug = tagName.toLowerCase().replace(/ /g, "-");
+        // Hashnode slugs should be lowercase and use dashes for spaces/special chars
+        const slug = tagName.toLowerCase().replace(/[^a-z0-9]/g, "-");
         const query = `
         query GetTag($slug: String!) {
             tag(slug: $slug) {
