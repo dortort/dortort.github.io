@@ -31,7 +31,7 @@
 
         <div class="scroll-container">
             <section class="blog-post parallax-section">
-                <div class="section-number">01</div>
+                <div></div>
                 <div class="section-content">
                     <article class="post-content">
                         <div class="post-header">
@@ -69,6 +69,13 @@
             el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
         });
     </script>
+
+    {{ if .Store.Get "hasMermaid" }}
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+    </script>
+    {{ end }}
 </body>
 
 </html>

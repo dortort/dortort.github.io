@@ -514,7 +514,7 @@ h2 {
     font-size: 1.2rem;
     line-height: 1.8;
     margin: 0 0 20px 0;
-    color: rgba(225, 225, 225, 0.8);
+    color: rgba(225, 225, 225, 0.9);
 }
 
 .read-more {
@@ -623,7 +623,7 @@ h2 {
     padding-left: 20px;
     margin: 20px 0;
     font-style: italic;
-    color: rgba(225, 225, 225, 0.7);
+    color: rgba(225, 225, 225, 0.9);
 }
 
 .post-body img {
@@ -675,4 +675,11 @@ h2 {
     .post-body h3 {
         font-size: 1.3rem;
     }
+}
+
+/* Disable reveal animation for blog posts to ensure full contrast immediately */
+.blog-post .section-content {
+    animation: none;
+    opacity: 1;
+    transform: none;
 }
