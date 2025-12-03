@@ -15,6 +15,11 @@ function getCanonicalUrl(filename) {
     return `${BASE_URL}/posts/${baseName}/`;
 }
 
+function normalizeUrl(url) {
+    if (!url) return "";
+    return url.replace(/^https?:\/\//, '').replace(/\/$/, '').toLowerCase();
+}
+
 async function postToDevto(article, canonicalUrl, publishDate) {
     if (!DEVTO_API_KEY) {
         console.log("Skipping Dev.to: DEVTO_API_KEY not set");
@@ -28,10 +33,10 @@ async function postToDevto(article, canonicalUrl, publishDate) {
 
     try {
         // Check if article exists
-        const response = await axios.get("https://dev.to/api/articles/me/all", { headers });
+        const response = await axios.get("https://dev.to/api/articles/me/all?per_page=1000", { headers });
         const articles = response.data;
         
-        let existing = articles.find(a => a.canonical_url === canonicalUrl);
+        let existing = articles.find(a => normalizeUrl(a.canonical_url) === normalizeUrl(canonicalUrl));
         if (!existing) {
             existing = articles.find(a => a.title === article.data.title);
         }
@@ -156,40 +161,63 @@ async function postToHashnode(article, canonicalUrl, publishDate) {
 
     // Check for existing post
     let existingPostId = null;
-    const queryPosts = `
-    query GetPosts($publicationId: ObjectId!) {
-        publication(id: $publicationId) {
-            posts(first: 20) {
-                edges {
-                    node {
-                        id
-                        title
-                        originalArticleURL
+    let hasNextPage = true;
+    let afterCursor = null;
+
+    while (hasNextPage) {
+        const queryPosts = `
+        query GetPosts($publicationId: ObjectId!, $after: String) {
+            publication(id: $publicationId) {
+                posts(first: 20, after: $after) {
+                    edges {
+                        node {
+                            id
+                            title
+                            originalArticleURL
+                        }
+                    }
+                    pageInfo {
+                        hasNextPage
+                        endCursor
                     }
                 }
             }
         }
-    }
-    `;
-    
-    try {
-        const response = await axios.post("https://gql.hashnode.com", {
-            query: queryPosts,
-            variables: { publicationId: pubId }
-        }, { headers });
-
-        if (response.data.data && response.data.data.publication) {
-            const posts = response.data.data.publication.posts.edges;
-            for (const p of posts) {
-                const node = p.node;
-                if (node.originalArticleURL === canonicalUrl || node.title === article.data.title) {
-                    existingPostId = node.id;
-                    break;
+        `;
+        
+        try {
+            const response = await axios.post("https://gql.hashnode.com", {
+                query: queryPosts,
+                variables: { 
+                    publicationId: pubId,
+                    after: afterCursor
                 }
+            }, { headers });
+
+            if (response.data.data && response.data.data.publication) {
+                const postsData = response.data.data.publication.posts;
+                const posts = postsData.edges;
+                
+                for (const p of posts) {
+                    const node = p.node;
+                    if (normalizeUrl(node.originalArticleURL) === normalizeUrl(canonicalUrl) || 
+                        node.title === article.data.title) {
+                        existingPostId = node.id;
+                        break;
+                    }
+                }
+
+                if (existingPostId) break;
+
+                hasNextPage = postsData.pageInfo.hasNextPage;
+                afterCursor = postsData.pageInfo.endCursor;
+            } else {
+                break;
             }
+        } catch (error) {
+            console.error(`Error checking existing Hashnode posts: ${error.message}`);
+            break;
         }
-    } catch (error) {
-        console.error(`Error checking existing Hashnode posts: ${error.message}`);
     }
 
     const tags = article.data.tags || [];
