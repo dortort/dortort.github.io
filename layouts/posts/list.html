@@ -6,35 +6,38 @@
 </head>
 
 <body>
-    <div class="noise"></div>
-    <div class="cursor-follower"></div>
-    
     <main class="content-wrapper">
-        <header>
+        <!-- Changed height to min-height and added padding for responsiveness -->
+        <header style="min-height: 50vh; height: auto; padding: 120px 20px;">
             <div class="header-content">
-                <h1 class="name" data-text="BLOG">BLOG</h1>
-                <h2 class="title">Thoughts & Insights</h2>
-                <ul class="links">
-                    <li><a href="/" class="magnetic-link"><span>Home</span></a></li>
-                    <li><a href="/posts/" class="magnetic-link"><span>Blog</span></a></li>
-                </ul>
+                <div class="hero-grid">
+                    <div class="hero-label">Thoughts & Insights</div>
+                    <h1 class="name" style="font-size: clamp(3rem, 8vw, 6rem);">Blog</h1>
+                    <div class="hero-divider"></div>
+                    <nav class="hero-nav">
+                        <ul class="links">
+                            <li><a href="/"><span>Home</span></a></li>
+                            <li><a href="/posts/"><span>Blog</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </header>
 
         <div class="scroll-container">
-            <section class="blog-list parallax-section">
-                <div></div>
+            <section class="blog-list">
+                <div class="section-label">Latest</div>
                 <div class="section-content">
-                    <h2>Posts</h2>
                     <div class="posts-container">
                         {{ range .Pages }}
                         <article class="blog-post-preview">
                             <div class="post-meta">
                                 <time class="post-date">{{ .Date.Format "January 2, 2006" }}</time>
                                 {{ if .Params.tags }}
-                                <ul class="post-tags">
+                                <span class="separator">|</span>
+                                <ul class="tag-list" style="display: inline-flex; flex-wrap: wrap; gap: 10px; padding: 0;">
                                     {{ range .Params.tags }}
-                                    <li class="tag">{{ . }}</li>
+                                    <li style="font-weight: 600; color: var(--accent);">{{ . }}</li>
                                     {{ end }}
                                 </ul>
                                 {{ end }}
@@ -45,7 +48,7 @@
                             {{ else }}
                             <p class="post-excerpt">{{ .Summary | truncate 200 }}</p>
                             {{ end }}
-                            <a href="{{ .Permalink }}" class="read-more">Read more →</a>
+                            <a href="{{ .Permalink }}" class="read-more">Read more</a>
                         </article>
                         {{ end }}
                     </div>
@@ -53,20 +56,6 @@
             </section>
         </div>
     </main>
-
-    <script>
-        const cursor = document.querySelector('.cursor-follower');
-        
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        document.querySelectorAll('a, .tag, article').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('active'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-        });
-    </script>
 </body>
 
 </html>

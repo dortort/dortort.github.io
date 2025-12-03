@@ -215,7 +215,7 @@ Layer 1 and 2 matter universally. Layer 3 matters only in specialized contexts. 
 
 ---
 
-## References (URLs)
+## References
 
 - https://docs.docker.com/build/building/best-practices/
 - https://codefresh.io/blog/docker-anti-patterns/

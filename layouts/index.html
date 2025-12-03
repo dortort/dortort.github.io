@@ -6,41 +6,48 @@
 </head>
 
 <body>
-    <div class="noise"></div>
-    <div class="cursor-follower"></div>
+    <!-- Removed noise and custom cursor for a cleaner, stable experience -->
     
     <main class="content-wrapper">
         <header>
             <div class="header-content">
-                <h1 class="name" data-text="{{ .Site.Data.cv.Name }}">{{ .Site.Data.cv.Name }}</h1>
-                <h2 class="title">{{ .Site.Data.cv.Title }}</h2>
-                <ul class="links">
-                    <li><a href="/posts/" class="magnetic-link"><span>Blog</span></a></li>
-                    {{ range .Site.Data.cv.Links }}
-                    <li><a href="{{ safeURL .Link }}" class="magnetic-link"><span>{{ .Display }}</span></a></li>
-                    {{ end }}
-                </ul>
+                <div class="hero-grid">
+                    <div class="hero-label">Portfolio</div>
+                    <h1 class="name">{{ .Site.Data.cv.Name }}</h1>
+                    <h2 class="title">{{ .Site.Data.cv.Title }}</h2>
+                    <div class="hero-divider"></div>
+                    <nav class="hero-nav">
+                        <ul class="links">
+                            <li><a href="/posts/"><span>Blog</span></a></li>
+                            {{ range .Site.Data.cv.Links }}
+                            <li><a href="{{ safeURL .Link }}"><span>{{ .Display }}</span></a></li>
+                            {{ end }}
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </header>
 
         <div class="scroll-container">
-            <section class="background parallax-section">
-                <div class="section-number">01</div>
+            <section class="background">
+                <div class="section-label">01 — Intro</div>
                 <div class="section-content">
                     <h2>Background</h2>
-                    <p class="text-reveal">{{ .Site.Data.cv.Background }}</p>
+                    <div class="text-block">
+                        <p>{{ .Site.Data.cv.Background }}</p>
+                    </div>
                 </div>
             </section>
 
-            <section class="skills parallax-section">
-                <div class="section-number">02</div>
+            <section class="skills">
+                <div class="section-label">02 — Expertise</div>
                 <div class="section-content">
                     <h2>Skills</h2>
-                    <div class="skills-container">
+                    <div class="skills-grid">
                         {{ range .Site.Data.cv.Skills }}
                         <div class="skill-category">
                             <h3 class="skill-category-title">{{ .Category }}</h3>
-                            <ul class="tag-cloud">
+                            <ul class="tag-list">
                                 {{ range .Items }}
                                 <li class="tag">{{ . }}</li>
                                 {{ end }}
@@ -51,18 +58,18 @@
                 </div>
             </section>
 
-            <section class="experience parallax-section">
-                <div class="section-number">03</div>
+            <section class="experience">
+                <div class="section-label">03 — History</div>
                 <div class="section-content">
                     <h2>Experience</h2>
                     <div class="timeline">
                         {{ range .Site.Data.cv.Experience }}
                         <article class="timeline-item">
-                            <div class="timeline-meta">
+                            <div class="timeline-left">
                                 <span class="duration">{{ .Duration }}</span>
                                 <span class="company">{{ .Company }}</span>
                             </div>
-                            <div class="timeline-body">
+                            <div class="timeline-right">
                                 <h3>{{ .Position }}</h3>
                                 <ul>
                                     {{ range .Responsibilities }}
@@ -77,8 +84,8 @@
             </section>
             
             <div class="grid-2-col">
-                <section class="languages parallax-section">
-                    <div class="section-number">04</div>
+                <section class="languages">
+                    <div class="section-label">04 — Comms</div>
                     <div class="section-content">
                         <h2>Languages</h2>
                         <ul class="minimal-list">
@@ -89,8 +96,8 @@
                     </div>
                 </section>
 
-                <section class="certifications parallax-section">
-                    <div class="section-number">05</div>
+                <section class="certifications">
+                    <div class="section-label">05 — Credential</div>
                     <div class="section-content">
                         <h2>Certifications</h2>
                         <ul class="minimal-list">
@@ -102,8 +109,8 @@
                 </section>
             </div>
 
-            <section class="education parallax-section">
-                <div class="section-number">06</div>
+            <section class="education">
+                <div class="section-label">06 — Academic</div>
                 <div class="section-content">
                     <h2>Academic Profile</h2>
                     <ul class="education-list">
@@ -122,20 +129,7 @@
         </div>
     </main>
 
-    <script>
-        // Simple custom cursor script for "mouse effects"
-        const cursor = document.querySelector('.cursor-follower');
-        
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        document.querySelectorAll('a, .tag, article').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('active'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-        });
-    </script>
+    <!-- Removed custom cursor script -->
 </body>
 
 </html>
