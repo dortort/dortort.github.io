@@ -18,26 +18,32 @@ jobs:
 
       - name: Get changed files
         id: changed-files
+        if: github.event_name == 'push'
         uses: tj-actions/changed-files@v44
         with:
           files: content/posts/**.md
 
       - name: Set up Node.js
-        if: steps.changed-files.outputs.any_changed == 'true'
+        if: steps.changed-files.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'yarn'
 
       - name: Install dependencies
-        if: steps.changed-files.outputs.any_changed == 'true'
+        if: steps.changed-files.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
         run: yarn install --frozen-lockfile
 
       - name: Run Cross-Post Script
-        if: steps.changed-files.outputs.any_changed == 'true'
+        if: steps.changed-files.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
         env:
           DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
           HASHNODE_ACCESS_TOKEN: ${{ secrets.HASHNODE_ACCESS_TOKEN }}
           HASHNODE_PUBLICATION_ID: ${{ secrets.HASHNODE_PUBLICATION_ID }}
         run: |
-          node .github/scripts/cross-post.js ${{ steps.changed-files.outputs.all_changed_files }}
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            FILES=$(find content/posts -name "*.md" | tr '\n' ' ')
+          else
+            FILES="${{ steps.changed-files.outputs.all_changed_files }}"
+          fi
+          node .github/scripts/cross-post.js $FILES
