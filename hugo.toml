@@ -4,6 +4,7 @@ title = 'Francis Eytan Dortort'
 
 [params]
   description = "Senior DevSecOps Engineer | Cloud Solutions Architect"
+  gtm_id = "GTM-XXXXXXX"
 
 [[menu.main]]
   name = "Home"
