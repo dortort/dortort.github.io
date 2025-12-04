@@ -67,7 +67,7 @@ async function postToDevto(article, canonicalUrl, publishDate) {
                 const encoded = compressed.toString('base64')
                     .replace(/\+/g, '-')
                     .replace(/\//g, '_');
-                return `![Mermaid Diagram](https://kroki.io/mermaid/svg/${encoded})`;
+                return `![Mermaid Diagram](https://kroki.io/mermaid/png/${encoded})`;
             } catch (e) {
                 console.error("Failed to encode mermaid diagram for Dev.to:", e);
                 return match; // Fallback to original code block
