@@ -55,10 +55,24 @@ async function postToDevto(article, canonicalUrl, publishDate) {
         // We'll replace non-alphanumeric characters with nothing or map known ones.
         const cleanTags = (article.data.tags || []).map(t => t.replace(/[^a-zA-Z0-9]/g, '').toLowerCase());
 
+        // Process content to replace Mermaid blocks with Kroki images for Dev.to
+        let content = article.content;
+        const mermaidRegex = /```mermaid\n([\s\S]*?)```/g;
+        
+        content = content.replace(mermaidRegex, (match, code) => {
+            try {
+                const encoded = Buffer.from(code.trim()).toString('base64');
+                return `![Mermaid Diagram](https://kroki.io/mermaid/svg/${encoded})`;
+            } catch (e) {
+                console.error("Failed to encode mermaid diagram for Dev.to:", e);
+                return match; // Fallback to original code block
+            }
+        });
+
         const payload = {
             article: {
                 title: article.data.title,
-                body_markdown: article.content,
+                body_markdown: content,
                 tags: cleanTags,
                 canonical_url: canonicalUrl,
                 published: true,
