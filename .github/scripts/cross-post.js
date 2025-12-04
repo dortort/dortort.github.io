@@ -52,9 +52,8 @@ async function postToDevto(article, canonicalUrl, publishDate) {
             existing = articles.find(a => a.title === article.data.title);
         }
 
-        // Dev.to requires tags to be alphanumeric (only ASCII letters, numbers, and underscores).
-        // We'll replace non-alphanumeric characters with nothing or map known ones.
-        const cleanTags = (article.data.tags || []).map(t => t.replace(/[^a-zA-Z0-9]/g, '').toLowerCase());
+        // For Dev.to: tags must be alphanumeric (ASCII letters, numbers, and underscores only), and a maximum of 4 tags is allowed. We replace non-alphanumeric characters and trim the list accordingly.
+        const cleanTags = (article.data.tags || []).slice(0, 4).map(t => t.replace(/[^a-zA-Z0-9]/g, '').toLowerCase());
 
         // Process content to replace Mermaid blocks with Kroki images for Dev.to
         let content = article.content;
@@ -199,7 +198,7 @@ async function postToHashnode(article, canonicalUrl, publishDate) {
 
     while (hasNextPage) {
         const queryPosts = `
-        query GetPosts($publicationId: ObjectId!, $after: String) {
+        query GetPosts($publicationId: ID!, $after: String) {
             publication(id: $publicationId) {
                 posts(first: 20, after: $after) {
                     edges {
