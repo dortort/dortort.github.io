@@ -18,8 +18,6 @@ tags:
 
 ---
 
-## Kubernetes vs. Proprietary Container Services: A Technical and Pragmatic Comparison
-
 Containerization solves application packaging and portability; running containers in production is the harder question. Two models dominate modern infrastructure:
 
 1.  **Kubernetes** — an extensible, programmable orchestration layer designed for heterogeneous environments and complex workloads.
