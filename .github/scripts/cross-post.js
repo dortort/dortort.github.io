@@ -198,7 +198,7 @@ async function postToHashnode(article, canonicalUrl, publishDate) {
 
     while (hasNextPage) {
         const queryPosts = `
-        query GetPosts($publicationId: ObjectId!, $after: String) {
+        query GetPosts($publicationId: ID!, $after: String) {
             publication(id: $publicationId) {
                 posts(first: 20, after: $after) {
                     edges {
@@ -259,6 +259,9 @@ async function postToHashnode(article, canonicalUrl, publishDate) {
             }
         } catch (error) {
             console.error(`Error checking existing Hashnode posts: ${error.message}`);
+            if (error.response && error.response.data) {
+                console.error('Error details:', JSON.stringify(error.response.data, null, 2));
+            }
             // Stop processing to avoid duplicates on error
             return;
         }
