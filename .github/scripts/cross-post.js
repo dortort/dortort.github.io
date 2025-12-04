@@ -198,14 +198,14 @@ async function postToHashnode(article, canonicalUrl, publishDate) {
 
     while (hasNextPage) {
         const queryPosts = `
-        query GetPosts($publicationId: ID!, $after: String) {
+        query GetPosts($publicationId: ObjectId!, $after: String) {
             publication(id: $publicationId) {
                 posts(first: 20, after: $after) {
                     edges {
                         node {
                             id
                             title
-                            originalArticleURL
+                            canonicalUrl
                         }
                     }
                     pageInfo {
@@ -241,7 +241,7 @@ async function postToHashnode(article, canonicalUrl, publishDate) {
                     // Debug logging (verbose but necessary for troubleshooting)
                     // console.log(`Checking against: [${node.id}] "${node.title}" (${node.originalArticleURL})`);
 
-                    if (normalizeUrl(node.originalArticleURL) === normalizeUrl(canonicalUrl) || 
+                    if (normalizeUrl(node.canonicalUrl) === normalizeUrl(canonicalUrl) || 
                         node.title === article.data.title) {
                         console.log(`Found existing post: ${node.id}`);
                         existingPostId = node.id;
