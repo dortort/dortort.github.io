@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
 const matter = require('gray-matter');
+const zlib = require('zlib');
 
 // Configuration
 const DEVTO_API_KEY = process.env.DEVTO_API_KEY;
@@ -61,7 +62,11 @@ async function postToDevto(article, canonicalUrl, publishDate) {
         
         content = content.replace(mermaidRegex, (match, code) => {
             try {
-                const encoded = Buffer.from(code.trim()).toString('base64');
+                const data = Buffer.from(code.trim(), 'utf8');
+                const compressed = zlib.deflateSync(data, { level: 9 });
+                const encoded = compressed.toString('base64')
+                    .replace(/\+/g, '-')
+                    .replace(/\//g, '_');
                 return `![Mermaid Diagram](https://kroki.io/mermaid/svg/${encoded})`;
             } catch (e) {
                 console.error("Failed to encode mermaid diagram for Dev.to:", e);
