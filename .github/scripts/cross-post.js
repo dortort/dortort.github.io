@@ -198,7 +198,7 @@ async function postToHashnode(article, canonicalUrl, publishDate) {
 
     while (hasNextPage) {
         const queryPosts = `
-        query GetPosts($publicationId: ID!, $after: String) {
+        query GetPosts($publicationId: ObjectId!, $after: String) {
             publication(id: $publicationId) {
                 posts(first: 20, after: $after) {
                     edges {
