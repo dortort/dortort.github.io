@@ -1,5 +1,5 @@
 ---
-title: "Structuring Terraform for Multi-Environment, Microservice Architectures"
+title: "Terraform at Scale: Folders, Workspaces, or Services?"
 date: 2025-03-04
 description: "A sustainable Terraform architecture balances environment parity, isolation, and autonomy. This guide evaluates patterns like folder-per-environment, workspaces, and per-service roots to help you choose the right structure."
 tags:
@@ -34,31 +34,31 @@ Choosing the right pattern is primarily about understanding the nature of your e
 
 ---
 
-## 1. Best Practices
+## Best Practices
 
-### 1. Strong State Isolation
+### Strong State Isolation
 Dev operations must be structurally incapable of impacting prod.
 
-### 2. Minimize Blast Radius
+### Minimize Blast Radius
 Decompose monolithic state files. Smaller root modules ensure that a bad `apply` in one service cannot accidentally destroy resources in another.
 
-### 3. DRY Logic Through Modules
+### DRY Logic Through Modules
 All environment logic should live in modules to prevent drift.
 
-### 4. Maintain Environment Parity Where Required
+### Maintain Environment Parity Where Required
 Staging and prod should behave equivalently except for intended differences.
 
-### 5. Support Intentional Divergence
+### Support Intentional Divergence
 Differences must be expressed cleanly, either as variables or structural changes.
 
-### 6. Predictable Promotion Workflows
+### Predictable Promotion Workflows
 Promotion paths should be deterministic and low risk.
 
 These practices drive the evaluation of the Terraform patterns below.
 
 ---
 
-## 2. Value Divergence vs. Structural Divergence
+## Value Divergence vs. Structural Divergence
 
 A critical distinction for choosing a pattern:
 
@@ -76,9 +76,9 @@ This distinction explains why patterns differ more than expressiveness alone wou
 
 ---
 
-## 3. Terraform Architectural Patterns
+## Terraform Architectural Patterns
 
-### A. Folder-per-Environment
+### Folder-per-Environment
 
 ```text
 infra/
@@ -125,7 +125,7 @@ module "app" {
 
 ---
 
-### B. Single Root Module + Workspaces
+### Single Root Module + Workspaces
 
 ```text
 infra/
@@ -156,7 +156,7 @@ terraform apply -var-file=prod.tfvars
 
 ---
 
-### C. Per-Service Root Modules
+### Per-Service Root Modules
 
 ```text
 infra/
@@ -196,7 +196,7 @@ infra/
 
 ---
 
-### D. Service-Aligned Workspaces (The Hybrid)
+### Service-Aligned Workspaces (The Hybrid)
 
 ```text
 services/
@@ -224,7 +224,7 @@ services/
 
 ---
 
-### E. Environment Generators & Wrappers (Terragrunt / CDKTF)
+### Environment Generators & Wrappers (Terragrunt / CDKTF)
 
 ```text
 live/
@@ -261,7 +261,7 @@ modules/
 
 ---
 
-## 4. Best Practice Alignment Matrix
+## Best Practice Alignment Matrix
 
 | Best Practice                         | Folder-per-Env | Workspaces | Per-Service Roots | Service Workspaces | Env Generator |
 |--------------------------------------|----------------|------------|--------------------|---------------------|---------------|
@@ -276,7 +276,7 @@ modules/
 
 ---
 
-## 5. Decision Tree
+## Decision Tree
 
 ```mermaid
 flowchart TD
@@ -291,7 +291,7 @@ flowchart TD
 
 ---
 
-## 6. Takeaways
+## Takeaways
 
 *   **Folder-per-environment** remains a safe and understandable pattern for teams that prioritize isolation, especially when environments diverge structurally.
 *   **Workspaces** are best for simple, uniform, or ephemeral environments—not for structurally divergent or strongly isolated ones.
@@ -302,7 +302,7 @@ flowchart TD
 
 ---
 
-## 7. Further Reading
+## Further Reading
 
 ### Terraform Documentation & Official Guidance
 
