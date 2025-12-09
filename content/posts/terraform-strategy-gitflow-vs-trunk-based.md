@@ -168,17 +168,17 @@ terraform apply tfplan
 2.  **State Isolation:** Dev and Prod have completely separate state files (defined by the backend config). They never touch.
 3.  **Fast Feedback:** If a commit breaks Dev, the pipeline stops. It never reaches Prod.
 
-## The Exception: When to use GitFlow?
+## The Exception: Shared Modules
 
-There is one specific area in Terraform where GitFlow (Versioning) is required: **Shared Modules.**
+There is one specific area in Terraform where **Semantic Versioning** is critical: **Shared Modules.**
 
-If you are the "Platform Team" writing a VPC module used by 50 other application teams, you cannot use Trunk-Based Development for the consumers. If you push a breaking change to `main` on your VPC module, you break 50 teams instantly.
+If you are the "Platform Team" writing a VPC module used by 50 other application teams, you cannot rely on the "always latest" nature of Trunk-Based Development for your consumers. If you push a breaking change to `main` on your VPC module, you break 50 teams instantly.
 
 **Strategy for Modules:**
 
-1.  Develop the module using TBD internally.
+1.  Develop the module using TBD internally (merge to `main`).
 2.  When stable, tag the release using Semantic Versioning (e.g., `v1.2.0`).
-3.  Consumers reference the **tag**, not the branch.
+3.  Consumers reference the **tag**, never the branch.
 
 ```hcl
 module "vpc" {
