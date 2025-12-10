@@ -327,7 +327,7 @@ section {
 }
 
 .minimal-list li::before {
-    content: 'â†’';
+    content: '→';
     margin-right: 20px;
     color: var(--accent);
     opacity: 0;
@@ -535,6 +535,17 @@ section {
 
 .post-body tr:nth-child(even) {
     background-color: rgba(112, 128, 144, 0.02);
+}
+
+/* Custom Table Helpers */
+.no-wrap-col-1 td:nth-child(1),
+.no-wrap-col-1 th:nth-child(1) {
+    white-space: nowrap;
+}
+
+.no-wrap-col-2 td:nth-child(2),
+.no-wrap-col-2 th:nth-child(2) {
+    white-space: nowrap;
 }
 
 /* ANIMATIONS */

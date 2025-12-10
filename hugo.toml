@@ -19,3 +19,7 @@ title = 'Francis Eytan Dortort'
 [pagination]
   enabled = true
   pageSize = 10
+
+[markup.goldmark.parser.attribute]
+  block = true
+  title = true
