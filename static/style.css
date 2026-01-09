@@ -482,6 +482,24 @@ section {
     border-radius: 0 4px 4px 0;
 }
 
+/* Subtle "aside" callouts for footnote-like context */
+.post-body blockquote.aside {
+    border-left-color: rgba(112, 128, 144, 0.45);
+    background: transparent;
+    font-style: normal;
+    font-size: 0.95em;
+    padding: 12px 16px;
+    margin: 16px 0 24px 0;
+}
+
+.post-body blockquote.aside p {
+    margin: 0 0 10px 0;
+}
+
+.post-body blockquote.aside p:last-child {
+    margin-bottom: 0;
+}
+
 .post-body code {
     font-family: 'Courier New', Courier, monospace;
     background-color: #f4f6f8;

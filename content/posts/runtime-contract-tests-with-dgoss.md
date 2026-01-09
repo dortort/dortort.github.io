@@ -53,8 +53,8 @@ Think of validation as moving from **specification → artifact → running syst
 - **Hadolint**: Dockerfile linter (AST-based) with ShellCheck integration for `RUN` shell. See [Hadolint](https://github.com/hadolint/hadolint).
 - **Policy-as-code (Conftest/OPA)**: codifies organizational rules (e.g., “no `latest` tags”, “must set `USER`”, “no `apt-get upgrade`”). Powerful for governance, but it validates inputs and metadata—not runtime behavior.
 
-**What this layer proves:** “The recipe looks sane and compliant.”
-**What it cannot prove:** “The resulting image runs correctly.”
+**What this layer proves:** The recipe looks sane and compliant.\
+**What it cannot prove:** The resulting image runs correctly.
 
 ---
 
@@ -68,8 +68,8 @@ Think of validation as moving from **specification → artifact → running syst
   - **Anchore Engine**: centralized inspection/analysis/certification service. See [Anchore Engine](https://github.com/anchore/anchore-engine).
   - **Dockle**: lints images for security best practices. See [Dockle](https://github.com/goodwithtech/dockle).
 
-**What this layer proves:** “The artifact is not obviously unsafe or non-compliant.”
-**What it cannot prove:** “The container actually starts and serves traffic.”
+**What this layer proves:** The artifact is not obviously unsafe or non-compliant.\
+**What it cannot prove:** The container actually starts and serves traffic.
 
 ---
 
@@ -77,8 +77,8 @@ Think of validation as moving from **specification → artifact → running syst
 
 - **Container Structure Test (CST)**: validates filesystem contents, image metadata, and command output; explicitly positioned as structure validation. See [Container Structure Test](https://github.com/GoogleContainerTools/container-structure-test) (currently in maintenance mode).
 
-**What this layer proves:** “The image contains expected files/labels/entrypoint/command outputs.”
-**Where it can still miss:** lifecycle-dependent behavior (startup ordering, readiness timing, transient failure modes).
+**What this layer proves:** The image contains expected files/labels/entrypoint/command outputs.\
+**What it can still miss:** Lifecycle-dependent behavior (startup ordering, readiness timing, transient failure modes).
 
 ---
 
@@ -148,6 +148,7 @@ file:
     contains:
       - "Hello from image-under-test"
 
+# Security hardening: assert the container isn't running as root (uid 0).
 command:
   "sh -c 'test \"$(id -u)\" -ne 0'":
     exit-status: 0
@@ -242,9 +243,10 @@ docker run --rm \
   praqma/dgoss dgoss run image-under-test:local
 ```
 
-`GOSS_FILES_STRATEGY=cp` corresponds to a “copy files into container” strategy (implemented via `docker cp`). It’s a practical default in CI, but be aware you’re granting the container access to the Docker daemon via the socket mount.
-
-Security note: mounting `/var/run/docker.sock` effectively grants the container **root-equivalent control** of the host’s Docker daemon. If you use this pattern, prefer isolated/ephemeral CI runners, pin the dgoss image by digest, and treat the job as highly privileged. If you can, prefer Option A (install dgoss in the runner) to avoid Docker socket mounting entirely.
+> `GOSS_FILES_STRATEGY=cp` corresponds to a “copy files into container” strategy (implemented via `docker cp`). It’s a practical default in CI, but be aware you’re granting the container access to the Docker daemon via the socket mount.
+>
+> Mounting `/var/run/docker.sock` effectively grants the container **root-equivalent control** of the host’s Docker daemon. If you use this pattern, prefer isolated/ephemeral CI runners, pin the dgoss image by digest, and treat the job as highly privileged. If you can, prefer Option A (install dgoss in the runner) to avoid Docker socket mounting entirely.
+{.aside}
 
 ---
 
