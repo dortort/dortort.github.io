@@ -566,6 +566,83 @@ section {
     white-space: nowrap;
 }
 
+/* RELATED ARTICLES */
+.related-articles {
+    padding: var(--spacing-section) 0;
+    border-top: 1px solid rgba(112, 128, 144, 0.15);
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 60px;
+}
+
+.related-articles .section-content h2 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin: 0 0 40px 0;
+    color: var(--primary);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.related-articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
+
+.related-article-card {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    background-color: rgba(112, 128, 144, 0.03);
+    border: 1px solid rgba(112, 128, 144, 0.1);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.related-article-card:hover {
+    background-color: rgba(112, 128, 144, 0.06);
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    color: inherit;
+}
+
+.related-article-date {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    color: var(--secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.related-article-title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin: 0 0 15px 0;
+    line-height: 1.3;
+    transition: color 0.2s ease;
+}
+
+.related-article-card:hover .related-article-title {
+    color: var(--accent);
+}
+
+.related-article-description {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--secondary);
+    line-height: 1.6;
+    margin: 0 0 20px 0;
+    flex-grow: 1;
+}
+
+.related-article-card .read-more {
+    align-self: flex-start;
+}
+
 /* ANIMATIONS */
 @keyframes heroFadeIn {
     from {
@@ -617,6 +694,16 @@ section {
         grid-template-columns: 1fr;
         gap: 10px;
     }
+    
+    .related-articles {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 80px 0;
+    }
+    
+    .related-articles-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 480px) {
@@ -643,5 +730,17 @@ section {
     
     .minimal-list li {
         font-size: 1rem;
+    }
+    
+    .related-articles {
+        padding: 60px 0;
+    }
+    
+    .related-article-card {
+        padding: 20px;
+    }
+    
+    .related-article-title {
+        font-size: 1.1rem;
     }
 }
