@@ -1,0 +1,51 @@
+{{- $currentPage := . -}}
+{{- $currentTags := .Params.tags -}}
+{{- $relatedPages := slice -}}
+
+{{- if $currentTags -}}
+    {{/* Get all posts except the current one */}}
+    {{- $allPosts := where (where site.RegularPages "Section" "posts") ".Permalink" "!=" $currentPage.Permalink -}}
+    
+    {{/* Score each post by number of matching tags */}}
+    {{- range $allPosts -}}
+        {{- $postTags := .Params.tags -}}
+        {{- $matchCount := 0 -}}
+        {{- if $postTags -}}
+            {{- range $postTags -}}
+                {{- if in $currentTags . -}}
+                    {{- $matchCount = add $matchCount 1 -}}
+                {{- end -}}
+            {{- end -}}
+        {{- end -}}
+        {{- if gt $matchCount 0 -}}
+            {{- $relatedPages = $relatedPages | append (dict "page" . "score" $matchCount) -}}
+        {{- end -}}
+    {{- end -}}
+    
+    {{/* Sort by score (descending) and take top 2 */}}
+    {{- $relatedPages = sort $relatedPages "score" "desc" -}}
+    {{- $relatedPages = first 2 $relatedPages -}}
+{{- end -}}
+
+{{- if gt (len $relatedPages) 0 -}}
+<section class="related-articles">
+    <div class="section-label">
+        <span>Related</span>
+    </div>
+    <div class="section-content">
+        <h2>Related Articles</h2>
+        <div class="related-articles-grid">
+            {{- range $relatedPages -}}
+            <a href="{{ .page.Permalink }}" class="related-article-card">
+                <time class="related-article-date">{{ .page.Date.Format "January 2, 2006" }}</time>
+                <h3 class="related-article-title">{{ .page.Title }}</h3>
+                {{- if .page.Params.description -}}
+                <p class="related-article-description">{{ .page.Params.description | truncate 120 }}</p>
+                {{- end -}}
+                <span class="read-more">Read Article →</span>
+            </a>
+            {{- end -}}
+        </div>
+    </div>
+</section>
+{{- end -}}
