@@ -23,6 +23,37 @@ html {
     box-sizing: border-box;
 }
 
+/* Skip to Content (Accessibility) */
+.skip-to-content {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 999;
+    padding: 12px 24px;
+    background-color: var(--accent);
+    color: var(--primary);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.skip-to-content:focus {
+    left: 0;
+}
+
+/* Focus Styles (Accessibility) */
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
 body {
     margin: 0;
     background-color: var(--bg);
@@ -126,24 +157,53 @@ header {
     font-size: 0.9rem;
     letter-spacing: 2px;
     position: relative;
-    padding-bottom: 5px;
+    padding: 10px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
-.hero-nav .links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: var(--accent);
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform 0.3s ease;
+.hero-nav .links a:hover {
+    border-color: var(--accent);
+    background-color: rgba(197, 179, 88, 0.1);
+    color: var(--accent);
 }
 
-.hero-nav .links a:hover::after {
-    transform: scaleX(1);
+.hero-nav .links a.nav-active {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* Blog Header Variant */
+.header-blog {
+    min-height: 50vh;
+    height: auto;
+    padding: 120px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary);
+    color: var(--text-light);
+    position: relative;
+}
+
+.name--post {
+    font-size: clamp(1.8rem, 5vw, 4rem);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+/* Blog Tag Variants */
+.tag-list--inline {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0;
+}
+
+.tag-meta {
+    font-weight: 600;
+    color: var(--accent);
 }
 
 /* MAIN LAYOUT */
@@ -384,7 +444,13 @@ section {
 .blog-post-preview {
     display: block;
     text-decoration: none;
-    group: hover;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(112, 128, 144, 0.15);
+}
+
+.blog-post-preview:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 .blog-post-preview h3 {
@@ -643,6 +709,49 @@ section {
     align-self: flex-start;
 }
 
+/* SITE FOOTER */
+.site-footer {
+    background-color: var(--primary);
+    color: var(--text-light);
+    padding: 60px 40px;
+    margin-top: var(--spacing-section);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 30px;
+}
+
+.footer-nav a {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+    color: var(--accent);
+}
+
+.footer-copyright {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+    letter-spacing: 1px;
+}
+
 /* ANIMATIONS */
 @keyframes heroFadeIn {
     from {
@@ -684,6 +793,8 @@ section {
     .timeline-item {
         grid-template-columns: 1fr;
         gap: 10px;
+        padding-top: 20px;
+        border-top: 2px solid var(--accent);
     }
 
     .timeline-item::before {
@@ -742,5 +853,63 @@ section {
     
     .related-article-title {
         font-size: 1.1rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .footer-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* Print Styles */
+@media print {
+    header {
+        min-height: auto;
+        padding: 40px 20px;
+        background-color: #fff;
+        color: var(--primary);
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .hero-divider,
+    .hero-nav,
+    .skip-to-content,
+    .site-footer {
+        display: none;
+    }
+
+    .name {
+        font-size: 2.5rem;
+        color: var(--primary);
+    }
+
+    .title {
+        color: var(--secondary);
+    }
+
+    .scroll-container {
+        padding: 0;
+    }
+
+    section {
+        padding: 30px 0;
+        page-break-inside: avoid;
+    }
+
+    .tag:hover {
+        background-color: rgba(112, 128, 144, 0.05);
+        color: var(--primary);
+        transform: none;
+    }
+
+    a::after {
+        content: none !important;
     }
 }
