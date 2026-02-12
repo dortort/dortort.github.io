@@ -7,18 +7,18 @@
 
 <body>
     {{ partial "gtm-noscript.html" . }}
-    <main class="content-wrapper">
-        <!-- Changed height to min-height and added padding for responsiveness -->
-        <header style="min-height: 50vh; height: auto; padding: 120px 20px;">
+    <a href="#main-content" class="skip-to-content">Skip to content</a>
+    <main class="content-wrapper" id="main-content">
+        <header class="header-blog">
             <div class="header-content">
                 <div class="hero-grid">
                     <div class="hero-label">Thoughts & Insights</div>
-                    <h1 class="name" style="font-size: clamp(3rem, 8vw, 6rem);">Blog</h1>
+                    <h1 class="name">Blog</h1>
                     <div class="hero-divider"></div>
                     <nav class="hero-nav">
                         <ul class="links">
                             <li><a href="/"><span>Home</span></a></li>
-                            <li><a href="/posts/"><span>Blog</span></a></li>
+                            <li><a href="/posts/" class="nav-active"><span>Blog</span></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -36,9 +36,9 @@
                                 <time class="post-date">{{ .Date.Format "January 2, 2006" }}</time>
                                 {{ if .Params.tags }}
                                 <span class="separator">|</span>
-                                <ul class="tag-list" style="display: inline-flex; flex-wrap: wrap; gap: 10px; padding: 0;">
+                                <ul class="tag-list tag-list--inline">
                                     {{ range .Params.tags }}
-                                    <li style="font-weight: 600; color: var(--accent);">{{ . }}</li>
+                                    <li class="tag-meta">{{ . }}</li>
                                     {{ end }}
                                 </ul>
                                 {{ end }}
@@ -57,6 +57,16 @@
             </section>
         </div>
     </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="/">Home</a>
+                <a href="/posts/">Blog</a>
+            </nav>
+            <p class="footer-copyright">&copy; {{ now.Year }} {{ .Site.Data.cv.Name }}</p>
+        </div>
+    </footer>
 </body>
 
 </html>

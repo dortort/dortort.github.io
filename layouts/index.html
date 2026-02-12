@@ -7,9 +7,9 @@
 
 <body>
     {{ partial "gtm-noscript.html" . }}
-    <!-- Removed noise and custom cursor for a cleaner, stable experience -->
-    
-    <main class="content-wrapper">
+    <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+    <main class="content-wrapper" id="main-content">
         <header>
             <div class="header-content">
                 <div class="hero-grid">
@@ -130,7 +130,18 @@
         </div>
     </main>
 
-    <!-- Removed custom cursor script -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="/">Home</a>
+                <a href="/posts/">Blog</a>
+                {{ range .Site.Data.cv.Links }}
+                <a href="{{ safeURL .Link }}">{{ .Display }}</a>
+                {{ end }}
+            </nav>
+            <p class="footer-copyright">&copy; {{ now.Year }} {{ .Site.Data.cv.Name }}</p>
+        </div>
+    </footer>
 </body>
 
 </html>

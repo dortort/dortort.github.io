@@ -7,19 +7,18 @@
 
 <body>
     {{ partial "gtm-noscript.html" . }}
-    <main class="content-wrapper">
-        <!-- Changed height to min-height and added padding for responsiveness -->
-        <header style="min-height: 50vh; height: auto; padding: 120px 20px;">
+    <a href="#main-content" class="skip-to-content">Skip to content</a>
+    <main class="content-wrapper" id="main-content">
+        <header class="header-blog">
             <div class="header-content">
                 <div class="hero-grid">
                     <div class="hero-label">Blog Post</div>
-                    <!-- Adjusted clamp for better mobile scaling -->
-                    <h1 class="name" style="font-size: clamp(1.8rem, 5vw, 4rem); line-height: 1.2; margin-bottom: 20px;">{{ .Title }}</h1>
+                    <h1 class="name name--post">{{ .Title }}</h1>
                     <div class="hero-divider"></div>
                     <nav class="hero-nav">
                         <ul class="links">
                             <li><a href="/"><span>Home</span></a></li>
-                            <li><a href="/posts/"><span>Blog</span></a></li>
+                            <li><a href="/posts/" class="nav-active"><span>Blog</span></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -55,6 +54,16 @@
             {{ partial "related-articles.html" . }}
         </div>
     </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="/">Home</a>
+                <a href="/posts/">Blog</a>
+            </nav>
+            <p class="footer-copyright">&copy; {{ now.Year }} {{ .Site.Data.cv.Name }}</p>
+        </div>
+    </footer>
 
     {{ if .Store.Get "hasMermaid" }}
     <script type="module">
