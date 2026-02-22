@@ -5,7 +5,7 @@ description: "Why idempotent or fully reproducible Dockerfiles are frequently pr
 tags:
   - DevSecOps
   - Docker
-  - CI/CD
+  - CI-CD
   - Containers
 ---
 

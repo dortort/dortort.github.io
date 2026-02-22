@@ -4,7 +4,7 @@ date: 2026-01-08
 description: "Static scanners validate composition and risk, but often miss whether a built image actually behaves like the runtime you intend to ship. dgoss (Goss + Docker wrapper) turns images into testable runtime contracts for CI/CD."
 tags:
   - Docker
-  - CI/CD
+  - CI-CD
   - DevSecOps
   - Containers
   - Testing
