@@ -17,29 +17,52 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {{- else -}}
   {{- $title = printf "%s - %s" .Title .Site.Title -}}
 {{- end -}}
+{{- $summary := .Summary | plainify | truncate 160 -}}
+{{- $description := .Params.description | default .Description | default $summary | default .Site.Params.description -}}
+{{- $socialImage := "" -}}
+{{- if .Params.images -}}
+  {{- $socialImage = index .Params.images 0 | absURL -}}
+{{- else if .Site.Params.default_social_image -}}
+  {{- $socialImage = .Site.Params.default_social_image | absURL -}}
+{{- end -}}
 <title>{{ $title }}</title>
 
-<meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Summary }}{{ end }}">
+<meta name="description" content="{{ $description }}">
 <link rel="canonical" href="{{ .Permalink }}">
 
 <!-- Open Graph -->
 <meta property="og:title" content="{{ $title }}">
-<meta property="og:description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Summary }}{{ end }}">
-<meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
-{{- with .Params.images -}}
-<meta property="og:image" content="{{ index . 0 | absURL }}">
-{{- end -}}
+<meta property="og:image" content="{{ $socialImage }}">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ $title }}">
-<meta name="twitter:description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Summary }}{{ end }}">
-{{- with .Params.images -}}
-<meta name="twitter:image" content="{{ index . 0 | absURL }}">
-{{- end -}}
+<meta name="twitter:description" content="{{ $description }}">
+<meta name="twitter:image" content="{{ $socialImage }}">
 
 <!-- JSON-LD -->
+{{- if .IsHome -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ .Site.Title }}",
+  "url": "{{ .Site.BaseURL }}",
+  "description": "{{ .Site.Params.description | plainify }}"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ .Site.Data.cv.Name }}",
+  "url": "{{ .Site.BaseURL }}"
+}
+</script>
+{{- end -}}
 {{- if .IsPage -}}
 <script type="application/ld+json">
 {

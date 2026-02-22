@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Francis Eytan Dortort</title>
+  <desc id="desc">Senior DevSecOps Engineer and Cloud Solutions Architect</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1f5c"/>
+      <stop offset="100%" stop-color="#173f8f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="72" y="72" width="1056" height="486" fill="none" stroke="#c5b358" stroke-width="3"/>
+  <text x="100" y="250" fill="#ffffff" font-family="Montserrat, Arial, sans-serif" font-size="68" font-weight="700" letter-spacing="1">Francis Eytan Dortort</text>
+  <text x="100" y="325" fill="#dbe5ff" font-family="Merriweather, Georgia, serif" font-size="38">Senior DevSecOps Engineer</text>
+  <text x="100" y="380" fill="#dbe5ff" font-family="Merriweather, Georgia, serif" font-size="38">Cloud Solutions Architect</text>
+  <text x="100" y="495" fill="#c5b358" font-family="Montserrat, Arial, sans-serif" font-size="30" letter-spacing="2">dortort.com</text>
+</svg>
