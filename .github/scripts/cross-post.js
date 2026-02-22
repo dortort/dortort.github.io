@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const axios = require('axios');
 const matter = require('gray-matter');
 const zlib = require('zlib');
@@ -8,6 +9,10 @@ const zlib = require('zlib');
 const DEVTO_API_KEY = process.env.DEVTO_API_KEY;
 const HASHNODE_ACCESS_TOKEN = process.env.HASHNODE_ACCESS_TOKEN;
 const HASHNODE_PUBLICATION_ID = process.env.HASHNODE_PUBLICATION_ID;
+const TWITTER_API_KEY = process.env.TWITTER_API_KEY;
+const TWITTER_API_KEY_SECRET = process.env.TWITTER_API_KEY_SECRET;
+const TWITTER_ACCESS_TOKEN = process.env.TWITTER_ACCESS_TOKEN;
+const TWITTER_ACCESS_TOKEN_SECRET = process.env.TWITTER_ACCESS_TOKEN_SECRET;
 const BASE_URL = "http://dortort.com";
 
 function getCanonicalUrl(filename) {
@@ -336,6 +341,87 @@ async function postToHashnode(article, canonicalUrl, publishDate) {
     }
 }
 
+function percentEncode(str) {
+    return encodeURIComponent(str)
+        .replace(/!/g, '%21')
+        .replace(/\*/g, '%2A')
+        .replace(/'/g, '%27')
+        .replace(/\(/g, '%28')
+        .replace(/\)/g, '%29');
+}
+
+function generateOAuthHeader(method, url) {
+    const oauthParams = {
+        oauth_consumer_key: TWITTER_API_KEY,
+        oauth_nonce: crypto.randomBytes(16).toString('hex'),
+        oauth_signature_method: 'HMAC-SHA1',
+        oauth_timestamp: Math.floor(Date.now() / 1000).toString(),
+        oauth_token: TWITTER_ACCESS_TOKEN,
+        oauth_version: '1.0'
+    };
+
+    // Build signature base string (JSON body is NOT included per OAuth 1.0a spec)
+    const sortedParams = Object.keys(oauthParams).sort()
+        .map(k => `${percentEncode(k)}=${percentEncode(oauthParams[k])}`)
+        .join('&');
+    const baseString = `${method}&${percentEncode(url)}&${percentEncode(sortedParams)}`;
+    const signingKey = `${percentEncode(TWITTER_API_KEY_SECRET)}&${percentEncode(TWITTER_ACCESS_TOKEN_SECRET)}`;
+    const signature = crypto.createHmac('sha1', signingKey).update(baseString).digest('base64');
+
+    oauthParams.oauth_signature = signature;
+
+    const header = Object.keys(oauthParams).sort()
+        .map(k => `${percentEncode(k)}="${percentEncode(oauthParams[k])}"`)
+        .join(', ');
+    return `OAuth ${header}`;
+}
+
+async function postToTwitter(article, canonicalUrl) {
+    if (!TWITTER_API_KEY || !TWITTER_API_KEY_SECRET || !TWITTER_ACCESS_TOKEN || !TWITTER_ACCESS_TOKEN_SECRET) {
+        console.log("Skipping Twitter: Twitter credentials not set");
+        return;
+    }
+
+    const title = article.data.title;
+    const tags = (article.data.tags || []).slice(0, 3);
+    const hashtags = tags.map(t => `#${t.replace(/[^a-zA-Z0-9]/g, '')}`).join(' ');
+
+    // Build tweet: title + URL + hashtags (if they fit within 280 chars)
+    // URLs count as 23 chars on Twitter (t.co wrapping)
+    let tweetText = `${title}\n\n${canonicalUrl}`;
+    if (hashtags && (tweetText.length + 2 + hashtags.length) <= 280) {
+        tweetText += `\n\n${hashtags}`;
+    }
+
+    if (tweetText.length > 280) {
+        // Truncate title to fit
+        const maxTitleLen = 280 - canonicalUrl.length - 5; // \n\n + ...
+        tweetText = `${title.substring(0, maxTitleLen)}...\n\n${canonicalUrl}`;
+    }
+
+    const url = 'https://api.twitter.com/2/tweets';
+    const authHeader = generateOAuthHeader('POST', url);
+
+    try {
+        console.log(`Posting tweet for: ${title}`);
+        const response = await axios.post(url, { text: tweetText }, {
+            headers: {
+                'Authorization': authHeader,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (response.status === 201) {
+            console.log(`Successfully posted tweet: https://x.com/i/status/${response.data.data.id}`);
+        }
+    } catch (error) {
+        console.error(`Failed to post to Twitter: ${error.message}`);
+        if (error.response) {
+            console.error(error.response.data);
+        }
+    }
+}
+
 async function main() {
     const files = process.argv.slice(2);
     if (files.length === 0) {
@@ -366,6 +452,14 @@ async function main() {
             
             await postToDevto(article, canonicalUrl, publishDate);
             await postToHashnode(article, canonicalUrl, publishDate);
+
+            // Only tweet for newly added articles (not updates) to avoid duplicates
+            const newFiles = (process.env.TWITTER_NEW_FILES || '').split(' ').filter(Boolean);
+            if (newFiles.length === 0 || newFiles.includes(file)) {
+                await postToTwitter(article, canonicalUrl);
+            } else {
+                console.log(`Skipping Twitter for updated article: ${file}`);
+            }
 
         } catch (error) {
             console.error(`Error processing ${file}: ${error.message}`);
