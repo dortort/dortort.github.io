@@ -1,10 +1,12 @@
-baseURL = 'http://dortort.com/'
+baseURL = 'https://dortort.com/'
 languageCode = 'en-us'
 title = 'Francis Eytan Dortort'
+enableRobotsTXT = true
 
 [params]
   description = "Senior DevSecOps Engineer | Cloud Solutions Architect"
   gtm_id = "GTM-MG75GRFF"
+  default_social_image = "/images/og-default.svg"
 
 [[menu.main]]
   name = "Home"
