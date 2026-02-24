@@ -382,7 +382,9 @@ async function postToTwitter(article, canonicalUrl) {
         return;
     }
 
-    const title = article.data.title;
+    // Insert a zero-width space before file extensions that match real TLDs,
+    // preventing Twitter from auto-linking them (e.g. .md = Moldova, .io = BIOT, .sh = St Helena)
+    const title = article.data.title.replace(/(\w)\.(md|io|sh|do|so|ai|rs|py|cc|to)\b/gi, '$1.\u200B$2');
     const tags = (article.data.tags || []).slice(0, 3);
     const hashtags = tags.map(t => `#${t.replace(/[^a-zA-Z0-9]/g, '')}`).join(' ');
 
