@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="500" viewBox="0 0 1500 500">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1f5c"/>
+      <stop offset="100%" stop-color="#173f8f"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1500" height="500" fill="url(#bg)"/>
+
+  <!-- Gold border frame - tighter to edges -->
+  <rect x="24" y="24" width="1452" height="452" fill="none" stroke="#c5b358" stroke-width="2"/>
+
+  <!-- Corner accents - top left -->
+  <rect x="18" y="56" width="18" height="3" fill="#c5b358"/>
+  <rect x="56" y="18" width="3" height="18" fill="#c5b358"/>
+
+  <!-- Corner accents - top right -->
+  <rect x="1464" y="56" width="18" height="3" fill="#c5b358"/>
+  <rect x="1441" y="18" width="3" height="18" fill="#c5b358"/>
+
+  <!-- Corner accents - bottom left -->
+  <rect x="18" y="441" width="18" height="3" fill="#c5b358"/>
+  <rect x="56" y="460" width="3" height="18" fill="#c5b358"/>
+
+  <!-- Corner accents - bottom right -->
+  <rect x="1464" y="441" width="18" height="3" fill="#c5b358"/>
+  <rect x="1441" y="460" width="3" height="18" fill="#c5b358"/>
+
+  <!-- Name -->
+  <text x="750" y="195" fill="#ffffff" font-family="Montserrat, Arial, Helvetica, sans-serif" font-size="56" font-weight="700" letter-spacing="1" text-anchor="middle">FRANCIS EYTAN DORTORT</text>
+
+  <!-- Gold divider -->
+  <rect x="680" y="218" width="140" height="2" fill="#c5b358"/>
+
+  <!-- Title lines -->
+  <text x="750" y="270" fill="#dbe5ff" font-family="Merriweather, Georgia, Times, serif" font-size="32" font-style="italic" text-anchor="middle">Senior DevSecOps Engineer</text>
+  <text x="750" y="314" fill="#dbe5ff" font-family="Merriweather, Georgia, Times, serif" font-size="32" font-style="italic" text-anchor="middle">Cloud Solutions Architect</text>
+
+  <!-- Domain -->
+  <text x="750" y="400" fill="#c5b358" font-family="Montserrat, Arial, Helvetica, sans-serif" font-size="24" font-weight="600" letter-spacing="5" text-anchor="middle">DORTORT.COM</text>
+</svg>

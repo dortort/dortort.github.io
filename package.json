@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "banner": "rsvg-convert -w 1500 -h 500 static/images/twitter-banner.svg -o static/images/twitter-banner.png"
+  },
   "devDependencies": {
     "axios": "^1.13.2",
     "gray-matter": "^4.0.3",
