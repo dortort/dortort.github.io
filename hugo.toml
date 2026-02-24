@@ -6,7 +6,7 @@ enableRobotsTXT = true
 [params]
   description = "Senior DevSecOps Engineer | Cloud Solutions Architect"
   gtm_id = "GTM-MG75GRFF"
-  default_social_image = "/images/og-default.svg"
+  default_social_image = "/images/og-default.png"
 
 [[menu.main]]
   name = "Home"
