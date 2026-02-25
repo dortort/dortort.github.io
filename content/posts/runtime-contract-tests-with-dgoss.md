@@ -95,7 +95,7 @@ A particularly useful dgoss behavior: if `goss_wait.yaml` exists, dgoss will wai
 
 ### Why dgoss belongs in CI/CD
 
-- It tests the **built image** (not your repo checkout) as a black-box runtime.
+- It tests the **built image** (not your repo checkout) as a black-box runtime. Whether you deploy to [Kubernetes or a proprietary container service](/posts/kubernetes-vs-proprietary-container-services) like ECS/Fargate, dgoss validates that your image meets its runtime contract before any orchestration platform runs it.
 - Assertions are **declarative**, versionable, and reviewable.
 - It fails fast on issues that otherwise show up only **after deploy**.
 

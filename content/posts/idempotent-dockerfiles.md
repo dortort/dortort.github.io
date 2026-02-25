@@ -201,7 +201,7 @@ Think of container build correctness across three layers:
 2. **Artifact immutability:** The registry stores immutable digests with provenance.
 3. **Build reproducibility:** Rebuilding the Dockerfile yields identical output.
 
-Layer 1 and 2 matter universally. Layer 3 matters only in specialized contexts. Optimizing for artifact immutability and regular updates often delivers far more value than enforcing strict idempotency.
+Layer 1 and 2 matter universally. Layer 3 matters only in specialized contexts. Optimizing for artifact immutability and regular updates often delivers far more value than enforcing strict idempotency. [Runtime contract tests with dgoss](/posts/runtime-contract-tests-with-dgoss) bridge the gap between static Dockerfile validation and actual running container behavior, ensuring Layer 1 is validated in CI before deployment.
 
 ---
 

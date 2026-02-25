@@ -57,7 +57,7 @@ Avoiding lock-in can matter for regulated industries, enterprises deploying to c
 
 Running Kubernetes always means operating a platform, even when using a managed control plane. You still own node groups, upgrades, networking layers, ingress, autoscaling stacks, and policy enforcement.
 
-Proprietary systems eliminate this entirely: deploy a container and the provider handles the rest.
+Proprietary systems eliminate this entirely: deploy a container and the provider handles the rest. When container images are your primary artifact, focusing on [immutability and regular rebuilds rather than idempotent reproducibility](/posts/idempotent-dockerfiles) becomes the right operational strategy.
 
 ### 2. Lower Total Cost of Ownership
 
