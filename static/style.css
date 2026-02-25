@@ -588,9 +588,8 @@ section {
     padding: 20px;
     border-radius: 5px;
     overflow-x: auto;
-    max-width: 100%; /* Prevent code blocks from expanding parent */
-    white-space: pre-wrap; /* Optional: wraps long lines instead of scrolling */
-    word-break: break-all;
+    max-width: 100%;
+    white-space: pre;
 }
 
 .post-body pre code {
@@ -607,6 +606,9 @@ section {
     border-collapse: collapse;
     margin: 30px 0;
     font-size: 1rem;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .post-body th,
@@ -844,7 +846,15 @@ section {
     .post-title {
         font-size: 2rem;
     }
-    
+
+    .posts-container {
+        gap: 40px;
+    }
+
+    .blog-post-preview {
+        padding-bottom: 30px;
+    }
+
     .minimal-list li {
         font-size: 1rem;
     }
