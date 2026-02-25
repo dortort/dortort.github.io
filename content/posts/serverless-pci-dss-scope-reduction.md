@@ -191,7 +191,7 @@ Serverless simplifies compliance, but introduces different engineering considera
 
 **Mitigations**
 
-- Use X-Ray + structured logging (Lambda Powertools)
+- Use X-Ray + structured logging (Lambda Powertools). For scheduled workloads, [serverless cron patterns with EventBridge and Lambda](/posts/building-serverless-cron-on-aws) further reduce operational scope compared to EC2-based cron while maintaining the security benefits serverless provides.
 - Use AWS Config + Security Hub PCI rules for continuous checks
 - Enable read-only filesystems in Fargate
 - Use ECR image scanning and dependency scanning (Inspector)

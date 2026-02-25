@@ -68,7 +68,7 @@ High-value cached information tends to fall into a few categories:
 - **Code generation triggers**: "Modifying `schemas/*` requires running `make generate`"
 - **Authoritative examples**: "Payment flow reference implementation: `src/payments/processor_v2.py`"
 
-None of these are impossible to discover, but the discovery cost recurs on every task.
+None of these are impossible to discover, but the discovery cost recurs on every task. In Infrastructure as Code specifically, documenting [OOP-style module design patterns](/posts/stop-scripting-start-architecting-terraform-oop) helps agents understand which implementations are canonical versus legacy, reducing exploration cost significantly.
 
 ## What does not belong
 

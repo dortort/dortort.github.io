@@ -295,7 +295,7 @@ The shift from EC2 cron to serverless designs is driven by concrete engineering 
 
 **Operational load decreases significantly:** there is no OS to patch, no cron daemon to monitor, and no hardware lifecycle concerns. AWS handles availability of the scheduler and compute layer. This improves reliability by removing entire failure classes—machine failure, disk full, cron misconfiguration, or drifted environments.
 
-**Scalability improves dramatically:** serverless functions and container tasks scale horizontally with demand. When a schedule generates multiple units of work, fan-out patterns allow thousands of concurrent workers without provisioning servers. Workloads that once required bespoke coordination or clusters become straightforward event-driven systems.
+**Scalability improves dramatically:** serverless functions and container tasks scale horizontally with demand. When a schedule generates multiple units of work, fan-out patterns allow thousands of concurrent workers without provisioning servers. Workloads that once required bespoke coordination or clusters become straightforward event-driven systems. This horizontal scaling can also be triggered safely by automated systems without requiring direct infrastructure mutations — a key principle when [AI agents interact with production infrastructure](/posts/agentic-operations-clickops).
 
 **Cost shifts from standing capacity to active usage:** Unlike EC2, which bills for idle time between jobs, serverless architectures bill only for the milliseconds of compute actually used. While a high-frequency loop running 24/7 might favor reserved instances, the vast majority of cron jobs—running hourly, daily, or sporadically—see costs drop by orders of magnitude.
 

@@ -117,7 +117,7 @@ The fix is straightforward: let agents observe and propose, but don't let them e
 2. Agent generates a declarative change — a Terraform plan, a Kubernetes manifest update, a Pulumi diff.
 3. Agent opens a pull request with the proposed change.
 4. A human reviews the PR.
-5. The standard CI/CD pipeline applies the change.
+5. The standard CI/CD pipeline applies the change. This aligns with [trunk-based development for Terraform](/posts/terraform-strategy-gitflow-vs-trunk-based), where every committed change flows through a single promotion pipeline.
 
 ```bash
 # Agent generates a plan
@@ -132,7 +132,7 @@ terraform apply agent-proposed.tfplan
 
 The agent's value — pattern recognition across telemetry signals, rapid triage, proposed remediation — is fully preserved. What changes is that every mutation flows through the same version-controlled, peer-reviewed, auditable pipeline that IaC established.
 
-The agent becomes a planner, not an executor. It writes the code; it doesn't run the code.
+The agent becomes a planner, not an executor. It writes the code; it doesn't run the code. This principle applies equally to Infrastructure as Code: agents can propose [well-structured Terraform modules](/posts/stop-scripting-start-architecting-terraform-oop) as pull requests, but infrastructure mutations should flow through version control and peer review, not direct API calls.
 
 ## When agents must act directly
 
