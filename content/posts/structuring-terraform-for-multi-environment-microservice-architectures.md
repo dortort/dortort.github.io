@@ -52,7 +52,7 @@ Staging and prod should behave equivalently except for intended differences.
 Differences must be expressed cleanly, either as variables or structural changes.
 
 ### Predictable Promotion Workflows
-Promotion paths should be deterministic and low risk.
+Promotion paths should be deterministic and low risk. [Trunk-Based Development strategies](/posts/terraform-strategy-gitflow-vs-trunk-based) are particularly effective here, ensuring that the same code runs across environments with only variable changes rather than merging divergent branches.
 
 These practices drive the evaluation of the Terraform patterns below.
 

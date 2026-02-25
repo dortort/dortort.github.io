@@ -18,7 +18,7 @@ tags:
 
 ---
 
-Specify a version constraint, run `terraform init`, done—except that **providers and modules follow different resolution and persistence rules**. Providers are locked; modules are not. That asymmetry is why teams get surprised by "nothing changed" configurations producing different results across machines or CI runs.
+Specify a version constraint, run `terraform init`, done—except that **providers and modules follow different resolution and persistence rules**. Providers are locked; modules are not. That asymmetry is why teams get surprised by "nothing changed" configurations producing different results across machines or CI runs. Understanding these mechanics is especially important when [structuring configurations across multiple environments and microservice architectures](/posts/structuring-terraform-for-multi-environment-microservice-architectures), where shared module versions must work across many consumers.
 
 In this article, a **root module** means the top-level Terraform configuration you run (the directory you `init/plan/apply`). A **reusable module** means a library-style module consumed by other configurations. We'll build from the mechanics to a practical, testable policy for each.
 

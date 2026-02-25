@@ -227,7 +227,7 @@ Treating Terraform through the lens of OOP moves you from "writing config" to "e
 3.  **Inject Dependencies:** Pass IDs down; don't look them up laterally.
 4.  **Compose, Don't Inherit:** Build large infrastructure by wiring together small, focused modules.
 
-By respecting these boundaries, your Terraform code becomes testable, reusable, and significantly easier to refactor.
+By respecting these boundaries, your Terraform code becomes testable, reusable, and significantly easier to refactor. When scaling these module-based architectures across multiple environments and teams, the [structural patterns for multi-environment configurations](/posts/structuring-terraform-for-multi-environment-microservice-architectures) become critical for maintaining consistency.
 
 ## Further Reading
 

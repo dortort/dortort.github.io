@@ -88,7 +88,7 @@ When Alice or Bob finally merges back to `develop`, they are only merging text f
 
 ## The Solution: Trunk-Based Development
 
-In Trunk-Based Development (TBD), every commit to `main` is potentially deployable. You do not maintain long-lived branches.
+In Trunk-Based Development (TBD), every commit to `main` is potentially deployable. You do not maintain long-lived branches. This workflow pairs naturally with [OOP-style module design](/posts/stop-scripting-start-architecting-terraform-oop), where reusable, well-encapsulated modules are composed across environments via dependency injection rather than environment-specific conditionals.
 
 ### The Workflow
 
