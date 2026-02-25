@@ -479,6 +479,10 @@ section {
     flex-wrap: wrap;
 }
 
+.reading-time {
+    font-weight: 500;
+}
+
 .post-excerpt {
     font-family: var(--font-body);
     font-size: 1.1rem;
