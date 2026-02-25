@@ -33,14 +33,15 @@
                         {{ range .Pages }}
                         <article class="blog-post-preview">
                             <div class="post-meta">
-                                <time class="post-date">{{ .Date.Format "January 2, 2006" }}</time>
-                                <span class="separator">|</span>
-                                <span class="reading-time">{{ .ReadingTime }} min read</span>
+                                <div class="post-meta__byline">
+                                    <time class="post-date">{{ .Date.Format "January 2, 2006" }}</time>
+                                    <span class="separator">|</span>
+                                    <span class="reading-time">{{ .ReadingTime }} min read</span>
+                                </div>
                                 {{ if .Params.tags }}
-                                <span class="separator">|</span>
-                                <ul class="tag-list tag-list--inline">
+                                <ul class="tag-list tag-list--chips">
                                     {{ range .Params.tags }}
-                                    <li class="tag-meta">{{ . }}</li>
+                                    <li class="tag-chip">{{ . }}</li>
                                     {{ end }}
                                 </ul>
                                 {{ end }}
