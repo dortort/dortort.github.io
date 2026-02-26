@@ -8,6 +8,8 @@ tags:
   - Context Engineering
   - Developer Experience
   - Agentic AI
+aliases:
+  - /posts/agents-md-ambiguity-resolver-cost-cache/
 ---
 
 A recent study evaluated whether repository-level context files actually help coding agents solve tasks. The findings are counterintuitive: both LLM-generated and developer-authored context files tend to reduce success rates while increasing cost.

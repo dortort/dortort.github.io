@@ -8,6 +8,8 @@ tags:
   - DevOps
   - Architecture
   - Containers
+aliases:
+  - /kubernetes-vs-proprietary-container-services-a-technical-and-pragmatic-comparison
 ---
 
 **TL;DR**

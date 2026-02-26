@@ -7,6 +7,8 @@ tags:
   - Docker
   - CI-CD
   - Containers
+aliases:
+  - /idempotent-dockerfiles-desirable-ideal-or-misplaced-objective
 ---
 
 **TL;DR**

@@ -9,6 +9,8 @@ tags:
   - Security
   - Terraform
   - Kubernetes
+aliases:
+  - /agentic-ai-is-reintroducing-clickops
 ---
 
 We spent the better part of a decade eliminating ClickOps. We replaced console dashboards with Terraform modules, SSH sessions with CI/CD pipelines, and ad hoc patches with peer-reviewed pull requests. Infrastructure as Code became the standard because the alternative — humans making undocumented changes to production — broke things in ways that were expensive and hard to diagnose.
