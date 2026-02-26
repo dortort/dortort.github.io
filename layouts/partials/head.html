@@ -76,7 +76,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     "@type": "Person",
     "name": "{{ .Site.Data.cv.Name }}"
   },
-  "description": "{{ .Summary }}"
+  "description": "{{ .Params.description | default .Summary }}"
 }
 </script>
 {{- end -}}
