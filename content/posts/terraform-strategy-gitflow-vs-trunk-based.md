@@ -6,8 +6,6 @@ tags:
   - Terraform
   - DevOps
   - Infrastructure as Code
-  - GitFlow
-  - Trunk-Based Development
 ---
 
 **TL;DR**

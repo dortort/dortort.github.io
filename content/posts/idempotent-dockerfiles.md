@@ -3,8 +3,7 @@ title: "Idempotent Dockerfiles: Desirable Ideal or Misplaced Objective?"
 date: 2025-01-15
 description: "Why idempotent or fully reproducible Dockerfiles are frequently promoted but often misplaced objectives compared to immutable artifacts and regular CI rebuilds."
 tags:
-  - DevSecOps
-  - Docker
+  - Security
   - CI-CD
   - Containers
 aliases:

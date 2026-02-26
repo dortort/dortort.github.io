@@ -6,7 +6,6 @@ tags:
   - Terraform
   - Infrastructure as Code
   - DevOps
-  - OOP
   - Architecture
   - AWS
 ---

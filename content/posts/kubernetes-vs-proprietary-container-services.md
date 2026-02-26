@@ -4,7 +4,6 @@ date: 2025-02-10
 description: "Most containerized workloads run more efficiently on proprietary cloud container services. Kubernetes is justified only when you need cross-environment portability or deep extensibility."
 tags:
   - Kubernetes
-  - Cloud
   - DevOps
   - Architecture
   - Containers
