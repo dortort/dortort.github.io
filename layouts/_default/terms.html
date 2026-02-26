@@ -26,18 +26,53 @@
         </header>
 
         <div class="scroll-container">
-            <section class="blog-list">
-                <div class="section-label">Index</div>
+            <section class="tags-section">
+                <div class="section-label">Taxonomy</div>
                 <div class="section-content">
                     <h2>{{ .Title }}</h2>
-                    <div class="posts-container">
-                        {{ range .Data.Terms.ByCount }}
-                        <article class="blog-post-preview">
-                            <h3 class="post-title"><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></h3>
-                            <p class="post-excerpt">{{ .Count }} article{{ if ne .Count 1 }}s{{ end }}</p>
-                            <a href="{{ .Page.RelPermalink }}" class="read-more">Browse</a>
-                        </article>
+                    {{- $totalArticles := 0 -}}
+                    {{- range .Data.Terms.ByCount -}}
+                        {{- $totalArticles = add $totalArticles .Count -}}
+                    {{- end -}}
+                    <div class="tag-cloud-meta">
+                        <span>{{ len .Data.Terms }} topics</span>
+                        <span class="tag-cloud-meta-divider"></span>
+                        <span>{{ $totalArticles }} articles</span>
+                        <span class="tag-cloud-meta-divider"></span>
+                        <span>Size reflects article count</span>
+                    </div>
+                    <div class="tag-cloud">
+                        {{ range $i, $term := .Data.Terms.ByCount }}
+                        <a href="{{ $term.Page.RelPermalink }}"
+                           class="tag-cloud-item{{ if ge $term.Count 6 }} tag-cloud-item--xl{{ else if ge $term.Count 4 }} tag-cloud-item--lg{{ else if ge $term.Count 2 }} tag-cloud-item--md{{ else }} tag-cloud-item--sm{{ end }}"
+                           style="animation-delay: {{ mul $i 45 }}ms"
+                           aria-label="{{ $term.Page.Title }}: {{ $term.Count }} article{{ if ne $term.Count 1 }}s{{ end }}">
+                            <span class="tag-cloud-name">{{ $term.Page.Title }}</span>
+                            <span class="tag-cloud-count">{{ $term.Count }}</span>
+                        </a>
                         {{ end }}
+                    </div>
+                    <div class="tag-cloud-legend">
+                        <span class="tag-cloud-legend-label">Scale —</span>
+                        <span class="tag-cloud-legend-item">
+                            <span class="tag-cloud-legend-swatch tag-cloud-legend-swatch--xl">Core</span>
+                            <span>6+ articles</span>
+                        </span>
+                        <span class="tag-cloud-meta-divider"></span>
+                        <span class="tag-cloud-legend-item">
+                            <span class="tag-cloud-legend-swatch">Deep</span>
+                            <span>4–5 articles</span>
+                        </span>
+                        <span class="tag-cloud-meta-divider"></span>
+                        <span class="tag-cloud-legend-item">
+                            <span class="tag-cloud-legend-swatch">Active</span>
+                            <span>2–3 articles</span>
+                        </span>
+                        <span class="tag-cloud-meta-divider"></span>
+                        <span class="tag-cloud-legend-item">
+                            <span class="tag-cloud-legend-swatch tag-cloud-legend-swatch--sm">Emerging</span>
+                            <span>1 article</span>
+                        </span>
                     </div>
                 </div>
             </section>
