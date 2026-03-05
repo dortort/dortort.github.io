@@ -1,10 +1,13 @@
 {
   "scripts": {
-    "banner": "rsvg-convert -w 1500 -h 500 static/images/twitter-banner.svg -o static/images/twitter-banner.png"
+    "banner": "rsvg-convert -w 1500 -h 500 static/images/twitter-banner.svg -o static/images/twitter-banner.png",
+    "pdf": "hugo --minify && node scripts/generate-pdf.mjs",
+    "pdf:only": "node scripts/generate-pdf.mjs"
   },
   "devDependencies": {
     "axios": "^1.13.2",
     "gray-matter": "^4.0.3",
-    "hugo": "^0.0.3"
+    "hugo": "^0.0.3",
+    "puppeteer": "^24.38.0"
   }
 }
