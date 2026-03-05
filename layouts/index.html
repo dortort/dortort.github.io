@@ -20,6 +20,7 @@
                     <nav class="hero-nav">
                         <ul class="links">
                             <li><a href="/posts/"><span>Blog</span></a></li>
+                            <li><a href="/Francis_Eytan_Dortort_CV.pdf" download><span>Download CV</span></a></li>
                             {{ range .Site.Data.cv.Links }}
                             <li><a href="{{ safeURL .Link }}"><span>{{ .Display }}</span></a></li>
                             {{ end }}
