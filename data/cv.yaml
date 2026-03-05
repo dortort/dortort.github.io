@@ -10,74 +10,75 @@ Links:
   - Display: Stack Overflow
     Link: https://stackoverflow.com/users/5459413/francis-eytan-dortort
 Background: |
-  A highly accomplished IT professional and Certified Cloud Security Professional (CCSP)
-  with 20+ years of experience driving digital transformation, building secure and scalable
-  cloud infrastructure, and leading high-performing DevOps teams. Proven ability to deliver
-  innovative solutions that enhance security, optimize performance, and reduce operational
-  costs. Expertise in AWS, Containerization, Infrastructure as Code (IaC), and implementing
-  CI/CD pipelines. Seeking a challenging role where I can leverage my expertise to contribute
-  to the growth and success of a forward-thinking organization.
+  Started as a full-stack developer, evolved into a cloud architect and DevSecOps lead
+  over 20 years. Co-founded and scaled a SaaS platform to $70K MRR on AWS. Now focused
+  on secure infrastructure at scale: Terraform, Kubernetes, CI/CD, and PCI-DSS/SOC2
+  compliance. CCSP certified. Equally comfortable writing TypeScript microservices and
+  designing multi-account AWS architectures.
 Skills:
   - Category: Cloud Platforms
     Items:
-      - AWS (EC2, S3, ECS, EKS, RDS, VPC, IAM, Route 53, CloudFront, CloudWatch, Lambda)
+      - AWS (EC2, S3, ECS, EKS, RDS, VPC, IAM, Lambda, CloudFront, Kinesis, EventBridge, X-Ray, Security Hub, GuardDuty)
       - Azure
       - Cloudflare
-      - OVH
-  - Category: DevSecOps
+  - Category: DevOps & Infrastructure as Code
     Items:
-      - CI/CD Pipelines
-      - Infrastructure as Code (Terraform, CloudFormation)
-      - Containerization (Docker, Kubernetes)
-      - Configuration Management (Chef)
-  - Category: Security
+      - Docker
+      - Kubernetes
+      - Terraform
+      - Terragrunt
+      - CloudFormation
+      - CDK
+      - Ansible
+      - ArgoCD
+      - Helm
+      - GitHub Actions
+      - Jenkins
+  - Category: Security & Compliance
     Items:
       - CCSP
+      - Trivy
+      - Snyk
       - Static & Dynamic Code Analysis
       - Security Hardening
       - Compliance (PCI-DSS, SOC2)
       - OWASP
-  - Category: Programming Languages
+  - Category: Observability
     Items:
-      - PHP (Symfony, CakePHP, Silex, Zend)
-      - JavaScript (Node.js, Vue, Ember.js)
-      - Bash
-      - Lua
+      - Datadog
+      - ELK Stack
+      - Prometheus
+      - Grafana
+      - OpenTelemetry
+      - Sentry
+      - New Relic
+      - Dynatrace
+      - PagerDuty
+  - Category: Programming & Scripting
+    Items:
+      - Go
+      - TypeScript
       - Python
-      - Java
-  - Category: Databases
+      - Rust
+      - Bash
+      - PHP (Symfony)
+      - JavaScript (Node.js, React, Next.js, Vue)
+      - Linux
+  - Category: Data Stores
     Items:
-      - MySQL
-      - Percona
       - Aurora
+      - RDS
       - MongoDB
+      - PostgreSQL
       - Redis
       - Elasticsearch
-      - Memcached
-  - Category: Tools & Technologies
-    Items:
-      - Git
-      - Jira
-      - Confluence
-      - Jenkins
-      - Hudson
-      - GitHub Actions
-      - Nginx
-      - Apache
-      - ELK Stack
-      - Datadog
-      - Sentry
-      - Nagios
-      - New Relic
-      - Twilio
-      - Mandrill
-      - Salesforce (Visualforce/APEX)
+      - Percona
   - Category: Methodologies
     Items:
-      - Agile
-      - Scrum
-      - Lean
       - Site Reliability Engineering (SRE)
+      - GitOps
+      - Platform Engineering
+      - Agile / Scrum
 Languages:
   - English (Fluent)
   - French (Fluent)
@@ -85,31 +86,34 @@ Certifications:
   - CCSP (Certified Cloud Security Professional)
 Academics:
   - College: Touro College
-    Degree: Computer Science
+    Degree: B.S. Computer Science
     Year: 2002 - 2006
 Experience:
   - Position: Consultant - DevSecOps & Full-stack Engineer
-    Duration: Sep 2014 - Current
+    Company: Independent Practice
+    Duration: Sep 2014 - Present
     Responsibilities:
       - |
-        Elevated DevOps Maturity: Led the training and mentorship of a DevOps team, resulting
-        in the implementation of robust CI/CD pipelines and improved deployment frequency by
-        40%. Established incident response SOPs, reducing MTTR by 30%.
+        Elevated DevOps Maturity: Led the training and mentorship of a DevOps team, implementing
+        CI/CD pipeline automation and monitoring. Improved deployment frequency by 40%.
+        Established incident response SOPs, reducing MTTR by 30%.
       - |
         Enhanced Security & Compliance: Dockerized a payments orchestration application,
-        improving portability and security. Implemented automated image testing and
-        vulnerability scanning, lowering hosting and PCI-DSS/SOC2 compliance costs by 30%.
+        improving portability and security. Implemented vulnerability management with automated
+        image scanning, lowering hosting and PCI-DSS/SOC2 compliance costs by 30%.
       - |
-        Cloud Migration & Optimization: Spearheaded the migration of on-premise infrastructure
-        to AWS for multiple clients, achieving significant cost savings and improved scalability.
+        Cloud Migration & Cost Optimization: Migrated on-premise infrastructure to AWS across
+        multi-region, multi-account architectures. Designed VPC topologies, IAM policies,
+        auto-scaling, and disaster recovery configurations using serverless and containerized
+        workloads.
       - |
-        Security Audits: Conducted thorough security audits of PHP applications, identifying
-        and remediating critical vulnerabilities in anticipation of product launches. Utilized
-        tools like phploc, phpcpd, PHP_Depend, PHPMD, and OWASP ZAP.
+        Application Security: Conducted pre-launch security assessments across web applications,
+        identifying and remediating critical vulnerabilities. Integrated SAST/DAST tooling
+        and OWASP ZAP into CI pipelines for continuous security validation.
       - |
-        Full-Stack Development: Developed and maintained various web applications and APIs
-        using PHP frameworks (Symfony, CakePHP, Silex, Zend), JavaScript, and various
-        database technologies.
+        Platform Development: Designed and built internal APIs and services using TypeScript,
+        Node.js, and PHP (Symfony), backed by PostgreSQL, Redis, and Elasticsearch.
+        Established deployment workflows and containerized development environments.
   - Position: Co-founder & CTO
     Company: PhoneCall
     Duration: Jan 2015 - Dec 2019
@@ -122,9 +126,6 @@ Experience:
         Architected for High Availability: Designed and implemented an auto-scaling, multi-tier,
         microservices-based architecture using AWS Elastic Beanstalk, SQS, ECS, and CloudFront,
         ensuring high availability and resilience.
-      - |
-        Leveraged Machine Learning: Integrated a machine learning-backed predictive dialer to
-        optimize call center efficiency.
   - Position: Tech Lead / CTO
     Company: 3999 SA
     Duration: Dec 2007 - Apr 2014
@@ -133,15 +134,14 @@ Experience:
         Delivered MVP & Secured Funding: Developed a Minimum Viable Product (MVP) for a
         multi-channel local search engine (web and SMS), securing a 2.5M € seed funding round.
       - |
-        Built & Led a High-Performing Team: Recruited, mentored, and led a team of 7 DevOps
-        engineers, fostering a culture of collaboration and innovation.
+        Built & Led Engineering Team: Recruited, mentored, and managed a team of 7 engineers
+        across development and operations.
       - |
-        Improved Search & Ranking: Led the rewrite of the core search engine, resulting in
-        significant improvements to search relevance and performance.
+        Improved Search & Ranking: Led the rewrite of the core search engine, improving
+        query relevance and reducing response latency.
       - |
-        Automated Data Pipeline: Built an automated data pipeline for updates and aggregation
-        using VoiceXML and custom scripts, ensuring data accuracy and freshness.
+        Automated Data Pipeline: Built an automated data ingestion and aggregation pipeline,
+        processing multi-channel inputs (web, SMS, voice) to maintain data freshness.
       - |
-        Introduced Agile and Automation: Implemented Agile/SCRUM methodologies and CI/CD
-        pipelines, streamlining the development process and reducing time to market. Scaled a
-        content management system (CMS) to 18K active users.
+        Introduced Agile and Automation: Implemented Agile/Scrum and CI/CD pipelines,
+        accelerating release cadence. Scaled a CMS to 18K active users.
