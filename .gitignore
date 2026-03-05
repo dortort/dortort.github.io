@@ -159,4 +159,5 @@ dist
 # OAuth credentials
 ga-oauth-client.json
 
-# End of https://www.toptal.com/developers/gitignore/api/node,hugo
+# End of https://www.toptal.com/developers/gitignore/api/node,hugostatic/Francis_Eytan_Dortort_CV.pdf
+static/Francis_Eytan_Dortort_CV.pdf
