@@ -109,7 +109,7 @@ async function autoFit(page, targetHeightPx) {
 
     console.log(`  iter ${i + 1}: density=${mid.toFixed(4)}, content=${contentHeight}px, target=${targetHeightPx}px, diff=${diff.toFixed(0)}px (${(ratio * 100).toFixed(1)}%)`);
 
-    if (ratio < TOLERANCE) {
+    if (ratio < TOLERANCE && contentHeight <= targetHeightPx) {
       bestDensity = mid;
       break;
     }
