@@ -99,22 +99,31 @@ Experience:
     Duration: Sep 2014 - Present
     Responsibilities:
       - |
-        Elevated DevOps Maturity: Led the training and mentorship of a DevOps team, implementing
+        DevOps Mentorship & CI/CD: Led the training and mentorship of a DevOps team, implementing
         CI/CD pipeline automation and monitoring. Improved deployment frequency by 40%.
         Established incident response SOPs, reducing MTTR by 30%.
       - |
-        Enhanced Security & Compliance: Dockerized a payments orchestration application,
+        Containerization & Compliance: Dockerized a payments orchestration application,
         improving portability and security. Implemented vulnerability management with automated
         image scanning, lowering hosting and PCI-DSS/SOC2 compliance costs by 30%.
       - |
-        Cloud Migration & Cost Optimization: Migrated on-premise infrastructure to AWS across
-        multi-region, multi-account architectures. Designed VPC topologies, IAM policies,
-        auto-scaling, and disaster recovery configurations using serverless and containerized
-        workloads.
+        Cloud Migration: Migrated on-premise infrastructure to AWS across multi-region,
+        multi-account architectures. Designed VPC topologies, IAM policies, auto-scaling,
+        and disaster recovery configurations using serverless and containerized workloads.
       - |
-        Application Security: Conducted pre-launch security assessments across web applications,
-        identifying and remediating critical vulnerabilities. Integrated SAST/DAST tooling
-        and OWASP ZAP into CI pipelines for continuous security validation.
+        Observability & Cost Optimization: Conducted comparative analyses of monitoring
+        platforms (Datadog, New Relic) to identify best-fit solutions per client requirements.
+        Reduced observability costs by auditing and tuning telemetry data pipelines,
+        eliminating low-value metric and log ingestion without sacrificing coverage.
+      - |
+        Infrastructure as Code: Refactored Terraform codebases for modularity and reusability,
+        enforcing compliance requirements and ensuring parity across environments. Led
+        end-to-end AWS re-architecture engagements — from analysis and design through
+        hands-on implementation — to improve scalability, performance, and reliability.
+      - |
+        Application Security Testing: Conducted pre-launch security assessments across web
+        applications, identifying and remediating critical vulnerabilities. Integrated
+        SAST/DAST tooling and OWASP ZAP into CI pipelines for continuous security validation.
       - |
         Platform Development: Designed and built internal APIs and services using TypeScript,
         Node.js, and PHP (Symfony), backed by PostgreSQL, Redis, and Elasticsearch.
