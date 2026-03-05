@@ -34,6 +34,9 @@ Skills:
       - Helm
       - GitHub Actions
       - Jenkins
+      - Bamboo
+      - Bitbucket Pipelines
+      - GitLab CI
   - Category: Security & Compliance
     Items:
       - CCSP
