@@ -2,6 +2,7 @@
 title: "CV PDF"
 type: "cv-pdf"
 layout: "single"
-sitemap:
-  exclude: true
+_build:
+  list: never
+  publishResources: false
 ---
