@@ -23,49 +23,51 @@ Skills:
       - Cloudflare
   - Category: DevOps & Infrastructure as Code
     Items:
-      - Docker
       - Kubernetes
       - Terraform
-      - Terragrunt
+      - Docker
       - CloudFormation
+      - Helm
       - CDK
+      - Terragrunt
       - Ansible
       - ArgoCD
-      - Helm
       - GitHub Actions
       - Jenkins
-      - Bamboo
       - Bitbucket Pipelines
+      - Bamboo
       - GitLab CI
   - Category: Security & Compliance
     Items:
+      - Static & Dynamic Code Analysis
+      - Compliance (PCI-DSS, SOC2)
+      - Security Hardening
       - CCSP
       - Trivy
       - Snyk
-      - Static & Dynamic Code Analysis
-      - Security Hardening
-      - Compliance (PCI-DSS, SOC2)
       - OWASP
+      - Lacework
+      - Vanta
   - Category: Observability
     Items:
+      - OpenTelemetry
       - Datadog
-      - ELK Stack
       - Prometheus
       - Grafana
-      - OpenTelemetry
+      - ELK Stack
       - Sentry
       - New Relic
       - Dynatrace
       - PagerDuty
   - Category: Programming & Scripting
     Items:
-      - Go
+      - JavaScript (Node.js, React, Next.js, Vue)
       - TypeScript
       - Python
+      - Go
       - Rust
       - Bash
       - PHP (Symfony)
-      - JavaScript (Node.js, React, Next.js, Vue)
       - Linux
   - Category: Data Stores
     Items:
