@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <title>{{ .Site.Data.cv.Name }} - CV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FFFFFF;
+            --primary: #000080;
+            --accent: #C5B358;
+            --secondary: #708090;
+            --text-light: #FFFFFF;
+            --font-display: 'Montserrat', sans-serif;
+            --font-body: 'Merriweather', serif;
+
+            /* Auto-fit tunable properties */
+            --pdf-section-gap: 12px;
+            --pdf-item-gap: 6px;
+            --pdf-line-height: 1.3;
+            --pdf-font-size: 8.5pt;
+            --pdf-h1-size: 18pt;
+            --pdf-h2-size: 10pt;
+            --pdf-h3-size: 9pt;
+            --pdf-tag-padding: 3px 8px;
+            --pdf-tag-gap: 4px;
+            --pdf-resp-gap: 3px;
+        }
+
+        @page {
+            size: A4;
+            margin: 12mm 15mm;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: var(--pdf-font-size);
+            line-height: var(--pdf-line-height);
+            color: #1a1a2e;
+            background: var(--bg);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .cv-pdf-content {
+            width: 100%;
+        }
+
+        /* --- HEADER --- */
+        .pdf-header {
+            text-align: center;
+            padding-bottom: var(--pdf-section-gap);
+            border-bottom: 2px solid var(--primary);
+            margin-bottom: var(--pdf-section-gap);
+        }
+
+        .pdf-name {
+            font-family: var(--font-display);
+            font-size: var(--pdf-h1-size);
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 2px;
+        }
+
+        .pdf-title {
+            font-family: var(--font-body);
+            font-size: var(--pdf-h2-size);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--secondary);
+            margin-bottom: 6px;
+        }
+
+        .pdf-contact {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px 18px;
+            font-family: var(--font-display);
+            font-size: 7.5pt;
+            color: var(--primary);
+        }
+
+        .pdf-contact a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .pdf-contact span.sep {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* --- BACKGROUND --- */
+        .pdf-background {
+            margin-bottom: var(--pdf-section-gap);
+            font-size: var(--pdf-font-size);
+            color: #2c3e50;
+            text-align: center;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: var(--pdf-section-gap);
+            border-bottom: 1px solid rgba(112, 128, 144, 0.2);
+        }
+
+        /* --- SECTION HEADINGS --- */
+        .pdf-section-title {
+            font-family: var(--font-display);
+            font-size: var(--pdf-h2-size);
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--pdf-item-gap);
+            padding-bottom: 3px;
+            border-bottom: 1px solid var(--accent);
+        }
+
+        /* --- TWO-COLUMN BODY --- */
+        .pdf-body {
+            display: grid;
+            grid-template-columns: 35% 1fr;
+            gap: 0 24px;
+        }
+
+        .pdf-left,
+        .pdf-right {
+            display: flex;
+            flex-direction: column;
+            gap: var(--pdf-section-gap);
+        }
+
+        /* --- SKILLS --- */
+        .pdf-skill-category {
+            margin-bottom: var(--pdf-item-gap);
+        }
+
+        .pdf-skill-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .pdf-skill-category-title {
+            font-family: var(--font-display);
+            font-size: 7.5pt;
+            font-weight: 600;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 3px;
+        }
+
+        .pdf-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--pdf-tag-gap);
+            list-style: none;
+        }
+
+        .pdf-tag {
+            font-family: var(--font-display);
+            font-size: 7pt;
+            font-weight: 500;
+            padding: var(--pdf-tag-padding);
+            background: rgba(0, 0, 128, 0.04);
+            color: var(--primary);
+            border: 1px solid rgba(0, 0, 128, 0.1);
+        }
+
+        /* --- EXPERIENCE --- */
+        .pdf-job {
+            margin-bottom: var(--pdf-item-gap);
+        }
+
+        .pdf-job:last-child {
+            margin-bottom: 0;
+        }
+
+        .pdf-job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2px;
+        }
+
+        .pdf-job-title {
+            font-family: var(--font-display);
+            font-size: var(--pdf-h3-size);
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .pdf-job-duration {
+            font-family: var(--font-display);
+            font-size: 7pt;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        .pdf-job-company {
+            font-family: var(--font-display);
+            font-size: 7.5pt;
+            font-weight: 500;
+            color: var(--secondary);
+            margin-bottom: 3px;
+        }
+
+        .pdf-responsibilities {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pdf-responsibilities li {
+            position: relative;
+            padding-left: 10px;
+            margin-bottom: var(--pdf-resp-gap);
+            font-size: var(--pdf-font-size);
+            color: #2c3e50;
+        }
+
+        .pdf-responsibilities li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.55em;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .pdf-responsibilities li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* --- FOOTER ROW --- */
+        .pdf-footer {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+            margin-top: var(--pdf-section-gap);
+            padding-top: var(--pdf-section-gap);
+            border-top: 2px solid var(--primary);
+        }
+
+        .pdf-footer-section {
+            text-align: center;
+        }
+
+        .pdf-footer-list {
+            list-style: none;
+            font-family: var(--font-display);
+            font-size: 8pt;
+        }
+
+        .pdf-footer-list li {
+            margin-bottom: 2px;
+        }
+
+        .pdf-edu-year {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .pdf-edu-college {
+            font-weight: 600;
+            color: var(--primary);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cv-pdf-content">
+        <!-- Header -->
+        <div class="pdf-header">
+            <div class="pdf-name">{{ .Site.Data.cv.Name }}</div>
+            <div class="pdf-title">{{ .Site.Data.cv.Title }}</div>
+            <div class="pdf-contact">
+                {{ range $i, $link := .Site.Data.cv.Links }}
+                {{ if $i }}<span class="sep">|</span>{{ end }}
+                <a href="{{ safeURL $link.Link }}">{{ $link.Display }}</a>
+                {{ end }}
+            </div>
+        </div>
+
+        <!-- Background -->
+        <div class="pdf-background">
+            {{ .Site.Data.cv.Background }}
+        </div>
+
+        <!-- Two-column body -->
+        <div class="pdf-body">
+            <!-- Left column: Skills -->
+            <div class="pdf-left">
+                <div>
+                    <div class="pdf-section-title">Skills</div>
+                    {{ range .Site.Data.cv.Skills }}
+                    <div class="pdf-skill-category">
+                        <div class="pdf-skill-category-title">{{ .Category }}</div>
+                        <ul class="pdf-tags">
+                            {{ range .Items }}
+                            <li class="pdf-tag">{{ . }}</li>
+                            {{ end }}
+                        </ul>
+                    </div>
+                    {{ end }}
+                </div>
+
+                <div>
+                    <div class="pdf-section-title">Languages</div>
+                    <ul class="pdf-footer-list">
+                        {{ range .Site.Data.cv.Languages }}
+                        <li>{{ . }}</li>
+                        {{ end }}
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="pdf-section-title">Certifications</div>
+                    <ul class="pdf-footer-list">
+                        {{ range .Site.Data.cv.Certifications }}
+                        <li>{{ . }}</li>
+                        {{ end }}
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="pdf-section-title">Education</div>
+                    {{ range .Site.Data.cv.Academics }}
+                    <div>
+                        <span class="pdf-edu-college">{{ .College }}</span>
+                        — <span>{{ .Degree }}</span>
+                        <br><span class="pdf-edu-year">{{ .Year }}</span>
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+
+            <!-- Right column: Experience -->
+            <div class="pdf-right">
+                <div>
+                    <div class="pdf-section-title">Experience</div>
+                    {{ range .Site.Data.cv.Experience }}
+                    <div class="pdf-job">
+                        <div class="pdf-job-header">
+                            <div class="pdf-job-title">{{ .Position }}</div>
+                            <div class="pdf-job-duration">{{ .Duration }}</div>
+                        </div>
+                        {{ with .Company }}<div class="pdf-job-company">{{ . }}</div>{{ end }}
+                        <ul class="pdf-responsibilities">
+                            {{ range .Responsibilities }}
+                            <li>{{ . }}</li>
+                            {{ end }}
+                        </ul>
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
