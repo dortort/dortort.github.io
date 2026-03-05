@@ -21,9 +21,9 @@
                         <ul class="links">
                             <li><a href="/posts/"><span>Blog</span></a></li>
                             <li><a href="/Francis_Eytan_Dortort_CV.pdf" download><span>Download CV</span></a></li>
-                            {{ range .Site.Data.cv.Links }}
+                            {{ range .Site.Data.cv.Links }}{{ if ne .Display "Blog" }}
                             <li><a href="{{ safeURL .Link }}"><span>{{ .Display }}</span></a></li>
-                            {{ end }}
+                            {{ end }}{{ end }}
                         </ul>
                     </nav>
                 </div>
@@ -136,9 +136,9 @@
             <nav class="footer-nav" aria-label="Footer navigation">
                 <a href="/">Home</a>
                 <a href="/posts/">Blog</a>
-                {{ range .Site.Data.cv.Links }}
+                {{ range .Site.Data.cv.Links }}{{ if ne .Display "Blog" }}
                 <a href="{{ safeURL .Link }}">{{ .Display }}</a>
-                {{ end }}
+                {{ end }}{{ end }}
             </nav>
             <p class="footer-copyright">&copy; {{ now.Year }} {{ .Site.Data.cv.Name }}</p>
         </div>
