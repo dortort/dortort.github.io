@@ -1,5 +1,10 @@
 # Francis Eytan Dortort
 
+[![GitHub Pages](https://github.com/dortort/dortort.github.io/actions/workflows/hugo.yaml/badge.svg)](https://github.com/dortort/dortort.github.io/actions/workflows/hugo.yaml)
+[![Build Check](https://github.com/dortort/dortort.github.io/actions/workflows/build-check.yaml/badge.svg)](https://github.com/dortort/dortort.github.io/actions/workflows/build-check.yaml)
+[![Hugo](https://img.shields.io/badge/Hugo-0.110.0-ff4088?logo=hugo)](https://gohugo.io/)
+[![GitHub Pages](https://img.shields.io/badge/Hosted_on-GitHub_Pages-222?logo=githubpages)](https://dortort.com/)
+
 This repository contains the source code for my personal website and blog, built with [Hugo](https://gohugo.io/).
 
 ## Overview
