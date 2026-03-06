@@ -37,6 +37,8 @@ Skills:
       - Bitbucket Pipelines
       - Bamboo
       - GitLab CI
+      - Puppeteer
+      - Playwright
   - Category: Security & Compliance
     Items:
       - Static & Dynamic Code Analysis
