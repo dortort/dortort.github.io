@@ -79,6 +79,7 @@ Skills:
       - PostgreSQL
       - Redis
       - Elasticsearch
+      - Kafka
       - Percona
   - Category: Methodologies
     Items:
