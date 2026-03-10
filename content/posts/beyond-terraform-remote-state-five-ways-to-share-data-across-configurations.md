@@ -1,7 +1,9 @@
 ---
-title: "The Terraform data-sharing problem, and why naming conventions solve most of it"
+title: "Beyond terraform_remote_state: five ways to share data across Terraform configurations"
 date: 2026-03-09
 description: "Most teams start with terraform_remote_state, hit its limits, then layer on intermediary stores. The simplest answer is to stop sharing data entirely and share naming rules instead."
+aliases:
+  - /posts/terraform-workspace-sharing/
 tags:
   - Terraform
   - Infrastructure as Code
