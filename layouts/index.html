@@ -84,47 +84,42 @@
                 </div>
             </section>
             
-            <div class="grid-2-col">
-                <section class="languages">
-                    <div class="section-label">04 — Comms</div>
-                    <div class="section-content">
-                        <h2>Languages</h2>
-                        <ul class="minimal-list">
-                            {{ range .Site.Data.cv.Languages }}
-                            <li>{{ . }}</li>
-                            {{ end }}
-                        </ul>
-                    </div>
-                </section>
-
-                <section class="certifications">
-                    <div class="section-label">05 — Credential</div>
-                    <div class="section-content">
-                        <h2>Certifications</h2>
-                        <ul class="minimal-list">
-                            {{ range .Site.Data.cv.Certifications }}
-                            <li>{{ . }}</li>
-                            {{ end }}
-                        </ul>
-                    </div>
-                </section>
-            </div>
-
-            <section class="education">
-                <div class="section-label">06 — Academic</div>
+            <section class="credentials">
+                <div class="section-label">04 — Credentials</div>
                 <div class="section-content">
-                    <h2>Academic Profile</h2>
-                    <ul class="education-list">
-                        {{ range .Site.Data.cv.Academics }}
-                        <li>
-                            <span class="year">{{ .Year }}</span>
-                            <div class="edu-details">
-                                <strong>{{ .College }}</strong>
-                                <span>{{ .Degree }}</span>
-                            </div>
-                        </li>
-                        {{ end }}
-                    </ul>
+                    <h2>Credentials</h2>
+                    <div class="credentials-grid">
+                        <div class="credentials-subsection">
+                            <h3>Languages</h3>
+                            <ul class="minimal-list">
+                                {{ range .Site.Data.cv.Languages }}
+                                <li>{{ . }}</li>
+                                {{ end }}
+                            </ul>
+                        </div>
+                        <div class="credentials-subsection">
+                            <h3>Certifications</h3>
+                            <ul class="minimal-list">
+                                {{ range .Site.Data.cv.Certifications }}
+                                <li>{{ . }}</li>
+                                {{ end }}
+                            </ul>
+                        </div>
+                        <div class="credentials-subsection">
+                            <h3>Education</h3>
+                            <ul class="education-list">
+                                {{ range .Site.Data.cv.Academics }}
+                                <li>
+                                    <span class="year">{{ .Year }}</span>
+                                    <div class="edu-details">
+                                        <strong>{{ .College }}</strong>
+                                        <span>{{ .Degree }}</span>
+                                    </div>
+                                </li>
+                                {{ end }}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
