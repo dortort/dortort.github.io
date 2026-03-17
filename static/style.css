@@ -5,7 +5,8 @@
     --accent: #C5B358; /* Muted Gold */
     --secondary: #708090; /* Slate Grey */
     --primary: #000080; /* Navy Blue */
-    
+    --text-body: #2c3e50;
+
     /* Typography */
     --font-display: 'Montserrat', sans-serif;
     --font-body: 'Merriweather', serif;
@@ -224,6 +225,13 @@ section {
     gap: 40px;
 }
 
+section:nth-child(even) {
+    background-color: rgba(112, 128, 144, 0.02);
+    margin: 0 -40px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
 /* Section Labels (Left Column) */
 .section-label {
     font-family: var(--font-display);
@@ -255,7 +263,7 @@ section {
 .text-block p {
     font-size: 1.25rem;
     max-width: 800px;
-    color: var(--text);
+    color: var(--text-body);
 }
 
 /* Skills */
@@ -359,7 +367,7 @@ section {
 
 .timeline-right ul {
     padding-left: 20px;
-    color: var(--secondary);
+    color: var(--text-body);
 }
 
 .timeline-right li {
