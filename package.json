@@ -1,6 +1,8 @@
 {
   "scripts": {
     "banner": "rsvg-convert -w 1500 -h 500 static/images/twitter-banner.svg -o static/images/twitter-banner.png",
+    "og": "node scripts/generate-og-images.mjs",
+    "build": "node scripts/generate-og-images.mjs && hugo --minify && node scripts/generate-pdf.mjs",
     "pdf": "hugo --minify && node scripts/generate-pdf.mjs",
     "pdf:only": "node scripts/generate-pdf.mjs"
   },
