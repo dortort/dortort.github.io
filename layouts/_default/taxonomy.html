@@ -30,7 +30,7 @@
             <section class="blog-list">
                 <div class="section-label">Latest</div>
                 <div class="section-content">
-                    <h2>{{ .Title }}</h2>
+                    {{ with .Params.description }}<p class="taxonomy-description">{{ . }}</p>{{ end }}
                     <div class="posts-container">
                         {{ range .Pages }}
                         <article class="blog-post-preview">
