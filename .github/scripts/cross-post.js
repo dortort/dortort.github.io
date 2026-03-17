@@ -350,7 +350,7 @@ function percentEncode(str) {
         .replace(/\)/g, '%29');
 }
 
-function generateOAuthHeader(method, url) {
+function generateOAuthHeader(method, url, queryParams = {}) {
     const oauthParams = {
         oauth_consumer_key: TWITTER_API_KEY,
         oauth_nonce: crypto.randomBytes(16).toString('hex'),
@@ -361,8 +361,10 @@ function generateOAuthHeader(method, url) {
     };
 
     // Build signature base string (JSON body is NOT included per OAuth 1.0a spec)
-    const sortedParams = Object.keys(oauthParams).sort()
-        .map(k => `${percentEncode(k)}=${percentEncode(oauthParams[k])}`)
+    // Query params must be included in the signature for GET requests
+    const allParams = { ...oauthParams, ...queryParams };
+    const sortedParams = Object.keys(allParams).sort()
+        .map(k => `${percentEncode(k)}=${percentEncode(allParams[k])}`)
         .join('&');
     const baseString = `${method}&${percentEncode(url)}&${percentEncode(sortedParams)}`;
     const signingKey = `${percentEncode(TWITTER_API_KEY_SECRET)}&${percentEncode(TWITTER_ACCESS_TOKEN_SECRET)}`;
@@ -374,6 +376,62 @@ function generateOAuthHeader(method, url) {
         .map(k => `${percentEncode(k)}="${percentEncode(oauthParams[k])}"`)
         .join(', ');
     return `OAuth ${header}`;
+}
+
+let _twitterUserId = null;
+async function getTwitterUserId() {
+    if (_twitterUserId) return _twitterUserId;
+    const url = 'https://api.twitter.com/2/users/me';
+    const authHeader = generateOAuthHeader('GET', url);
+    const response = await axios.get(url, {
+        headers: { 'Authorization': authHeader }
+    });
+    _twitterUserId = response.data.data.id;
+    return _twitterUserId;
+}
+
+let _cachedTweets = null;
+async function fetchRecentTweets() {
+    if (_cachedTweets !== null) return _cachedTweets;
+    const userId = await getTwitterUserId();
+    const baseUrl = `https://api.twitter.com/2/users/${userId}/tweets`;
+    const queryParams = {
+        max_results: '100',
+        'tweet.fields': 'entities'
+    };
+    const authHeader = generateOAuthHeader('GET', baseUrl, queryParams);
+    const response = await axios.get(baseUrl, {
+        params: queryParams,
+        headers: { 'Authorization': authHeader }
+    });
+    _cachedTweets = response.data.data || [];
+    return _cachedTweets;
+}
+
+async function hasExistingTweet(canonicalUrl) {
+    try {
+        const tweets = await fetchRecentTweets();
+        const normalizedCanonical = normalizeUrl(canonicalUrl);
+
+        for (const tweet of tweets) {
+            // Check expanded URLs in entities (real URLs behind t.co)
+            const urls = (tweet.entities && tweet.entities.urls) || [];
+            for (const urlEntity of urls) {
+                if (normalizeUrl(urlEntity.expanded_url) === normalizedCanonical ||
+                    normalizeUrl(urlEntity.unwound_url) === normalizedCanonical) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    } catch (error) {
+        console.error(`Failed to check existing tweets: ${error.message}`);
+        if (error.response) {
+            console.error(error.response.data);
+        }
+        // Fail safe: if we can't check, don't post (same pattern as Hashnode)
+        return true;
+    }
 }
 
 async function postToTwitter(article, canonicalUrl) {
@@ -455,12 +513,12 @@ async function main() {
             await postToDevto(article, canonicalUrl, publishDate);
             await postToHashnode(article, canonicalUrl, publishDate);
 
-            // Only tweet for newly added articles (not updates) to avoid duplicates
-            const newFiles = (process.env.TWITTER_NEW_FILES || '').split(' ').filter(Boolean);
-            if (newFiles.length === 0 || newFiles.includes(file)) {
-                await postToTwitter(article, canonicalUrl);
+            // Check Twitter for existing tweets (API-based dedup, like Dev.to and Hashnode)
+            const alreadyTweeted = await hasExistingTweet(canonicalUrl);
+            if (alreadyTweeted) {
+                console.log(`Skipping Twitter for already-tweeted article: ${canonicalUrl}`);
             } else {
-                console.log(`Skipping Twitter for updated article: ${file}`);
+                await postToTwitter(article, canonicalUrl);
             }
 
         } catch (error) {
