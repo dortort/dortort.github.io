@@ -1,7 +1,7 @@
 ---
 title: "A Practical Guide to Terraform Dependency Management"
 date: 2025-08-04
-description: "Terraform's version constraints for providers and modules behave differently due to distinct persistence rules. Understanding which operators to use—and where—is essential for balancing stability with upgradeability."
+description: "Terraform version constraints for providers and modules behave differently. Learn which operators to use and where to balance stability with upgradeability."
 tags:
   - Terraform
   - DevOps

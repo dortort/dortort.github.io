@@ -1,7 +1,7 @@
 ---
 title: "Agentic AI is reintroducing ClickOps"
 date: 2026-02-21
-description: "We spent a decade eliminating ClickOps with Infrastructure as Code. Now AI agents with direct write access to production are reintroducing the same risks — non-deterministic mutations, state drift, and broken audit trails — at machine speed."
+description: "AI agents with direct write access to production reintroduce the risks we eliminated with IaC — state drift, broken audit trails, and silent mutations."
 tags:
   - AI
   - Infrastructure as Code

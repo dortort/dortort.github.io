@@ -1,7 +1,7 @@
 ---
 title: "Terraform at Scale: Folders, Workspaces, or Services?"
 date: 2025-03-04
-description: "A sustainable Terraform architecture balances environment parity, isolation, and autonomy. This guide evaluates patterns like folder-per-environment, workspaces, and per-service roots to help you choose the right structure."
+description: "Evaluating Terraform project structures — folder-per-environment, workspaces, and per-service roots — to balance parity, isolation, and autonomy."
 tags:
   - Terraform
   - DevOps

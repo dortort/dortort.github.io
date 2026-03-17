@@ -1,7 +1,7 @@
 ---
 title: "How Serverless Shrinks PCI Scope"
 date: 2025-04-03
-description: "Serverless compute significantly reduces PCI-DSS scope by eliminating infrastructure layers that normally require patching and monitoring. Compliance becomes a configuration problem rather than an operational one."
+description: "Serverless compute reduces PCI-DSS scope by eliminating infrastructure layers that require patching and monitoring. Compliance becomes configuration."
 tags:
   - Serverless
   - AWS

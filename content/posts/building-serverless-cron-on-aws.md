@@ -1,7 +1,7 @@
 ---
 title: "Modernizing Scheduled Tasks: Reliability, Scale, and Zero Maintenance"
 date: 2025-05-06
-description: "Cron on EC2 works, but carries unnecessary operational risk. Modern AWS architectures treat time as an event source using EventBridge, Lambda, SQS, and ECS Fargate for reliable, scalable serverless scheduling."
+description: "Replace fragile EC2 cron with EventBridge, Lambda, SQS, and ECS Fargate for reliable, scalable serverless scheduling on AWS."
 tags:
   - Serverless
   - AWS

@@ -1,7 +1,7 @@
 ---
 title: "Beyond terraform_remote_state: five ways to share data across Terraform configurations"
 date: 2026-03-09
-description: "Most teams start with terraform_remote_state, hit its limits, then layer on intermediary stores. The simplest answer is to stop sharing data entirely and share naming rules instead."
+description: "Five approaches to sharing data across Terraform configurations — from remote state to naming conventions — and why sharing rules beats sharing data."
 aliases:
   - /posts/terraform-workspace-sharing/
 tags:

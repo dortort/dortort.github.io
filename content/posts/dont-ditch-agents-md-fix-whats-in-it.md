@@ -1,7 +1,7 @@
 ---
 title: "Don't Ditch AGENTS.md — Fix What's In It"
 date: 2026-02-24
-description: "Research shows AGENTS.md context files reduce coding agent success rates and increase token cost by over 20%. But the problem isn't AGENTS.md itself — it's context bloat. Treating AGENTS.md as a cache for ambiguity resolution and expensive inferences makes AI coding agents faster and cheaper."
+description: "AGENTS.md files can hurt AI coding agent performance by over 20%. The fix isn't removing them — it's treating them as caches for ambiguity resolution."
 tags:
   - AI
   - Context Engineering
