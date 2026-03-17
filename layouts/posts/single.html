@@ -40,10 +40,10 @@
                                 <span class="separator">|</span>
                                 <span class="post-author">{{ .Site.Data.cv.Name }}</span>
                                 {{ if .Params.tags }}
-                                 <ul class="tag-list">
+                                 <ul class="tag-list tag-list--chips">
                                      {{ range .Params.tags }}
                                     {{ $tagPage := site.GetPage (printf "/tags/%s" (. | urlize)) }}
-                                    <li class="tag"><a href="{{ "/tags/" | relURL }}{{ . | urlize }}/">{{ with $tagPage }}{{ .Title }}{{ else }}{{ . }}{{ end }}</a></li>
+                                    <li class="tag-chip"><a href="{{ "/tags/" | relURL }}{{ . | urlize }}/">{{ with $tagPage }}{{ .Title }}{{ else }}{{ . }}{{ end }}</a></li>
                                      {{ end }}
                                  </ul>
                                  {{ end }}
