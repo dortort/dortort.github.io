@@ -517,6 +517,17 @@ async function main() {
             const alreadyTweeted = await hasExistingTweet(canonicalUrl);
             if (alreadyTweeted) {
                 console.log(`Skipping Twitter for already-tweeted article: ${canonicalUrl}`);
+            } else if (process.env.GITHUB_EVENT_NAME === 'workflow_dispatch') {
+                // On manual dispatch all post files are passed, but fetchRecentTweets
+                // only covers the last 100 tweets. Guard against bulk-tweeting old
+                // posts by restricting to articles published within the last 14 days.
+                const postDate = article.data.date ? new Date(article.data.date) : null;
+                const cutoff = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000);
+                if (postDate && postDate >= cutoff) {
+                    await postToTwitter(article, canonicalUrl);
+                } else {
+                    console.log(`Skipping Twitter on manual dispatch for older article: ${canonicalUrl}`);
+                }
             } else {
                 await postToTwitter(article, canonicalUrl);
             }
