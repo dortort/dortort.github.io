@@ -105,3 +105,13 @@ If none of these apply, Kubernetes likely adds more complexity than value.
 
 For most organizations, proprietary container platforms strike the optimal balance of simplicity, reliability, cost-efficiency, and operational focus. Kubernetes is a powerful and mature system, but its advantages manifest only in specific contexts. The rational approach is straightforward: adopt Kubernetes deliberately and only when its distinctive capabilities solve real problems in your environment.
 
+## References
+
+- [Amazon ECS documentation](https://docs.aws.amazon.com/ecs/)
+- [Google Cloud Run documentation](https://cloud.google.com/run/docs)
+- [Azure Container Apps documentation](https://learn.microsoft.com/en-us/azure/container-apps/)
+- [Kubernetes documentation](https://kubernetes.io/docs/home/)
+- [Amazon EKS documentation](https://docs.aws.amazon.com/eks/)
+- [CNCF Annual Survey 2024](https://www.cncf.io/reports/cncf-annual-survey-2024/)
+- [Kubernetes: What is it?](https://kubernetes.io/docs/concepts/overview/)
+
