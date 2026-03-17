@@ -37,6 +37,8 @@
                                 <time class="post-date">{{ .Date.Format "January 2, 2006" }}</time>
                                 <span class="separator">|</span>
                                 <span class="reading-time">{{ .ReadingTime }} min read</span>
+                                <span class="separator">|</span>
+                                <span class="post-author">{{ .Site.Data.cv.Name }}</span>
                                 {{ if .Params.tags }}
                                  <ul class="tag-list">
                                      {{ range .Params.tags }}
