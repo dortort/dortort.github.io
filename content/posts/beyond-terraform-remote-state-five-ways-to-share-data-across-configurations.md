@@ -166,7 +166,7 @@ output "vpc_id" {
 
 One module, one interface, guaranteed consistency between what's created and what's looked up.
 
-In practice, the module now has two code paths that need to stay in sync. Adding an attribute to the resource means updating both the resource block and the data source. Conditional logic with `count` makes the module harder to read. The boolean `create` flag switches the module's entire behavior, which violates the principle that a module should do one thing well.
+In practice, the module now has two code paths that need to stay in sync. Adding an attribute to the resource means updating both the resource block and the data source. Conditional logic with `count` makes the module harder to read. The boolean `create` flag switches the module's entire behavior, which violates the principle that [a module should do one thing well](/posts/stop-scripting-start-architecting-terraform-oop/).
 
 Testing effort doubles too. You verify creation mode works, lookup mode works, and outputs are compatible in both. A refactor to one path can silently break the other, and you won't find out until someone toggles the flag in production.
 
