@@ -40,7 +40,8 @@
                                 {{ if .Params.tags }}
                                  <ul class="tag-list">
                                      {{ range .Params.tags }}
-                                    <li class="tag"><a href="{{ "/tags/" | relURL }}{{ . | urlize }}/">{{ . }}</a></li>
+                                    {{ $tagPage := site.GetPage (printf "/tags/%s" (. | urlize)) }}
+                                    <li class="tag"><a href="{{ "/tags/" | relURL }}{{ . | urlize }}/">{{ with $tagPage }}{{ .Title }}{{ else }}{{ . }}{{ end }}</a></li>
                                      {{ end }}
                                  </ul>
                                  {{ end }}

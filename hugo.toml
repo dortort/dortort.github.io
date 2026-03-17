@@ -4,7 +4,7 @@ title = 'Francis Eytan Dortort'
 enableRobotsTXT = true
 
 [params]
-  description = "Senior DevSecOps Engineer | Cloud Solutions Architect"
+  description = "Technical blog and portfolio of Francis Eytan Dortort — a Senior DevSecOps Engineer specializing in Terraform, AWS, Kubernetes, and cloud security."
   gtm_id = "GTM-MG75GRFF"
   default_social_image = "/images/og-default.png"
 
@@ -17,6 +17,9 @@ enableRobotsTXT = true
   name = "Blog"
   url = "/posts/"
   weight = 2
+
+[taxonomies]
+  tag = "tags"
 
 [pagination]
   enabled = true
