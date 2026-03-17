@@ -12,26 +12,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {{- end -}}
 
 {{- $title := .Title -}}
+{{- $ogTitle := .Title -}}
 {{- if .IsHome -}}
-  {{- $title = .Site.Title -}}
+  {{- $title = printf "%s | %s" .Site.Title .Site.Params.tagline -}}
+  {{- $ogTitle = $title -}}
 {{- else -}}
-  {{- $title = printf "%s - %s" .Title .Site.Title -}}
+  {{- $ogTitle = printf "%s - %s" .Title .Site.Title -}}
 {{- end -}}
 {{- $summary := .Summary | plainify | truncate 160 -}}
 {{- $description := .Params.description | default .Description | default $summary | default .Site.Params.description -}}
 {{- $socialImage := "" -}}
 {{- if .Params.images -}}
   {{- $socialImage = index .Params.images 0 | absURL -}}
-{{- else if .Site.Params.default_social_image -}}
-  {{- $socialImage = .Site.Params.default_social_image | absURL -}}
+{{- else -}}
+  {{- $ogSlug := "" -}}
+  {{- with .File }}{{ $ogSlug = .ContentBaseName }}{{ end -}}
+  {{- $postOgPath := printf "images/og/%s.png" $ogSlug -}}
+  {{- if and (ne $ogSlug "") (fileExists (printf "static/%s" $postOgPath)) -}}
+    {{- $socialImage = printf "/%s" $postOgPath | absURL -}}
+  {{- else if .Site.Params.default_social_image -}}
+    {{- $socialImage = .Site.Params.default_social_image | absURL -}}
+  {{- end -}}
 {{- end -}}
 <title>{{ $title }}</title>
 
 <meta name="description" content="{{ $description }}">
 <link rel="canonical" href="{{ .Permalink }}">
+{{ with .Params.robots }}<meta name="robots" content="{{ . }}">{{ end }}
 
 <!-- Open Graph -->
-<meta property="og:title" content="{{ $title }}">
+<meta property="og:title" content="{{ $ogTitle }}">
 <meta property="og:description" content="{{ $description }}">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
@@ -39,7 +49,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ .Title }}">
+<meta name="twitter:title" content="{{ $ogTitle }}">
 <meta name="twitter:description" content="{{ $description }}">
 <meta name="twitter:image" content="{{ $socialImage }}">
 
@@ -59,7 +69,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "{{ .Site.Data.cv.Name }}",
-  "url": "{{ .Site.BaseURL }}"
+  "url": "{{ .Site.BaseURL }}",
+  "jobTitle": "Senior DevSecOps Engineer",
+  "sameAs": [
+    "https://github.com/dortort"
+  ],
+  "knowsAbout": ["Terraform", "Kubernetes", "AWS", "DevSecOps", "Cloud Architecture", "CI/CD", "Infrastructure as Code"],
+  "hasCredential": {
+    "@type": "EducationalOccupationalCredential",
+    "credentialCategory": "certification",
+    "name": "CCSP (Certified Cloud Security Professional)"
+  }
 }
 </script>
 {{- end -}}
@@ -69,17 +89,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "{{ .Title }}",
-  "image": {{ if .Params.images }}[{{ range $i, $e := .Params.images }}{{ if $i }}, {{ end }}"{{ $e | absURL }}"{{ end }}]{{ else }}[]{{ end }},
+  "image": {{ if .Params.images }}[{{ range $i, $e := .Params.images }}{{ if $i }}, {{ end }}"{{ $e | absURL }}"{{ end }}]{{ else }}["{{ $socialImage }}"]{{ end }},
   "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
   "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
   "author": {
     "@type": "Person",
-    "name": "{{ .Site.Data.cv.Name }}"
+    "name": "{{ .Site.Data.cv.Name }}",
+    "url": "{{ .Site.BaseURL }}"
   },
   "description": "{{ .Params.description | default .Summary }}"
 }
 </script>
 {{- end -}}
+
+<!-- Favicon -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
 
 <!-- Fonts & Styles -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
