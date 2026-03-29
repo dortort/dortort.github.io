@@ -69,7 +69,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "{{ .Site.Data.cv.Name }}",
+  "alternateName": ["Francis Dortort", "Eytan Dortort"],
   "url": "{{ .Site.BaseURL }}",
+  "description": "{{ .Site.Params.description | plainify }}",
+  "image": "{{ .Site.Params.default_social_image | absURL }}",
   "jobTitle": "Senior DevSecOps Engineer",
   "sameAs": [
     "https://github.com/dortort"
@@ -95,7 +98,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "author": {
     "@type": "Person",
     "name": "{{ .Site.Data.cv.Name }}",
-    "url": "{{ .Site.BaseURL }}"
+    "url": "{{ .Site.BaseURL }}",
+    "sameAs": ["https://github.com/dortort"]
   },
   "description": "{{ .Params.description | default .Summary }}"
 }
