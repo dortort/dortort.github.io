@@ -11,7 +11,7 @@ $ARGUMENTS
 3. **Extract or generate frontmatter fields** from the article content:
    - `title`: Use the H1 heading (`# ...`) from the article. Remove the `#` prefix. If no H1 exists, derive a title from the content. If YAML frontmatter already exists with a title, use that.
    - `date`: Use today's date in `YYYY-MM-DD` format.
-   - `description`: Write a 1-2 sentence summary capturing the article's main argument or thesis. This is used for SEO and social previews, so make it compelling and specific — not generic.
+   - `description`: Write a 1-2 sentence meta description (120-155 characters) capturing the article's main argument or thesis. Include the primary keyword naturally near the beginning. This appears in search engine results and social previews, so make it compelling, specific, and action-oriented — not generic. It should give the reader a clear reason to click.
    - `tags`: Select 3-5 relevant tags. **Strongly prefer reusing existing tags** — list all tags found across `content/posts/` and `content/tags/`, and only select from those. A new tag should be a last resort, used only when the article covers a topic genuinely absent from the existing taxonomy.
 
 4. **Suggest alternative titles.** Before writing the file, use AskUserQuestion to present the title and 3 alternatives. The alternatives should be:
