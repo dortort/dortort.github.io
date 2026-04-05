@@ -12,7 +12,7 @@ $ARGUMENTS
    - `title`: Use the H1 heading (`# ...`) from the article. Remove the `#` prefix. If no H1 exists, derive a title from the content. If YAML frontmatter already exists with a title, use that.
    - `date`: Use today's date in `YYYY-MM-DD` format.
    - `description`: Write a 1-2 sentence summary capturing the article's main argument or thesis. This is used for SEO and social previews, so make it compelling and specific — not generic.
-   - `tags`: Select 3-5 relevant tags. Reuse existing tags from other posts where applicable for consistency (check existing posts). Only introduce a new tag if nothing existing fits.
+   - `tags`: Select 3-5 relevant tags. **Strongly prefer reusing existing tags** — list all tags found across `content/posts/` and `content/tags/`, and only select from those. A new tag should be a last resort, used only when the article covers a topic genuinely absent from the existing taxonomy.
 
 4. **Suggest alternative titles.** Before writing the file, use AskUserQuestion to present the title and 3 alternatives. The alternatives should be:
    - **Option 1**: The original title extracted from the article (or generated in step 3).
