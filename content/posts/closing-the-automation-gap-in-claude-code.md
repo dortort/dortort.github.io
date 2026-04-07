@@ -1,7 +1,7 @@
 ---
 title: "Closing the automation gap in Claude Code"
 date: 2026-04-07
-description: "Claude Code's built-in scheduler requires the Desktop app running and behaves differently from interactive sessions. claude-code-scheduler bridges Claude Code to launchd and crontab for persistent, observable, stateful task automation that runs whether you're at your desk or not."
+description: "claude-code-scheduler bridges Claude Code to launchd and crontab for persistent, observable, stateful task automation — no Desktop app required."
 tags:
   - AI
   - Agentic AI
