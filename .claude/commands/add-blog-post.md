@@ -20,7 +20,7 @@ $ARGUMENTS
    - **Option 3**: An engagement-optimized title — use a compelling hook, curiosity gap, or strong opinion to maximize clicks and shares.
    - **Option 4**: A title that balances both SEO and engagement — includes the target keyword while still being compelling and click-worthy.
 
-5. **Create the post file** at `content/posts/{slug}.md` where `{slug}` is derived from the source filename (e.g., `terraform-workspace-sharing.md`). The file should contain:
+5. **Create the post file** at `content/posts/{slug}.md` where `{slug}` is derived from the chosen title — lowercased, whitespace and special characters replaced with hyphens, and consecutive hyphens collapsed (e.g., "A Practical Guide to Terraform" → `a-practical-guide-to-terraform.md`). The file should contain:
    - The generated YAML frontmatter between `---` fences, using the title chosen in step 4
    - The full article body from the source file, with the H1 heading removed (since the title is now in frontmatter) and any existing frontmatter removed (since it has been regenerated)
 
