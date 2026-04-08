@@ -38,7 +38,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <meta name="description" content="{{ $description }}">
 <link rel="canonical" href="{{ .Permalink }}">
-{{ with .Params.robots }}<meta name="robots" content="{{ . }}">{{ end }}
+{{- if .Params.robots -}}
+<meta name="robots" content="{{ .Params.robots }}">
+{{- else if or (eq .Kind "taxonomy") (eq .Kind "term") -}}
+<meta name="robots" content="noindex, follow">
+{{- end -}}
 
 <!-- Open Graph -->
 <meta property="og:title" content="{{ $ogTitle }}">
