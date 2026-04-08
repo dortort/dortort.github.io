@@ -36,3 +36,6 @@ jobs:
             exit 1
           fi
           echo "Build successful: Hugo site generated correctly"
+
+      - name: SEO lint
+        run: bash scripts/seo-lint.sh public
