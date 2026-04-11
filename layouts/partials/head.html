@@ -14,9 +14,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {{- $title := .Title -}}
 {{- $ogTitle := .Title -}}
 {{- if .IsHome -}}
-  {{- $title = printf "%s | %s" .Site.Title .Site.Params.tagline -}}
+  {{- $title = printf "%s | DevSecOps Blog" .Site.Title -}}
   {{- $ogTitle = $title -}}
 {{- else -}}
+  {{- $title = printf "%s — %s" .Title .Site.Title -}}
   {{- $ogTitle = printf "%s - %s" .Title .Site.Title -}}
 {{- end -}}
 {{- $summary := .Summary | plainify | truncate 160 -}}
