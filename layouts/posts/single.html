@@ -17,8 +17,8 @@
                     <div class="hero-divider"></div>
                     <nav class="hero-nav">
                         <ul class="links">
-                            <li><a href="/"><span>Home</span></a></li>
-                            <li><a href="/posts/" class="nav-active"><span>Blog</span></a></li>
+                            <li><a href="/" class="nav-active"><span>Blog</span></a></li>
+                            <li><a href="/cv/"><span>CV</span></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -28,7 +28,7 @@
         <div class="scroll-container">
             <section class="blog-post">
                 <div class="section-label">
-                    <a href="/posts/" class="back-link">← Back</a>
+                    <a href="/" class="back-link">← Back</a>
                 </div>
                 <div class="section-content">
                     <article class="post-content">
@@ -61,8 +61,10 @@
     <footer class="site-footer">
         <div class="footer-content">
             <nav class="footer-nav" aria-label="Footer navigation">
-                <a href="/">Home</a>
-                <a href="/posts/">Blog</a>
+                <a href="/">Blog</a>
+                <a href="/cv/">CV</a>
+                <a href="https://github.com/dortort">GitHub</a>
+                <a href="mailto:francis@dortort.com">Email</a>
             </nav>
             <p class="footer-copyright">&copy; {{ now.Year }} {{ .Site.Data.cv.Name }}</p>
         </div>
