@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{ partial "head.html" . }}
+</head>
+
+<body>
+    {{ partial "gtm-noscript.html" . }}
+    <a href="#main-content" class="skip-to-content">Skip to content</a>
+
+    <main class="content-wrapper" id="main-content">
+        <header>
+            <div class="header-content">
+                <div class="hero-grid">
+                    <div class="hero-label">CV</div>
+                    <h1 class="name">{{ .Site.Data.cv.Name }}</h1>
+                    <h2 class="title">{{ .Site.Data.cv.Title }}</h2>
+                    <div class="hero-divider"></div>
+                    <nav class="hero-nav">
+                        <ul class="links">
+                            {{ range .Site.Data.cv.Links }}
+                            <li><a href="{{ safeURL .Link }}"><span>{{ .Display }}</span></a></li>
+                            {{ end }}
+                            <li><a href="/Francis_Eytan_Dortort_CV.pdf" download><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 4px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span>Download CV</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <div class="scroll-container">
+            <section class="background">
+                <div class="section-label">01 — Intro</div>
+                <div class="section-content">
+                    <h2>Background</h2>
+                    <div class="text-block">
+                        <p>{{ .Site.Data.cv.Background }}</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="skills">
+                <div class="section-label">02 — Expertise</div>
+                <div class="section-content">
+                    <h2>Skills</h2>
+                    <div class="skills-grid">
+                        {{ range .Site.Data.cv.Skills }}
+                        <div class="skill-category">
+                            <h3 class="skill-category-title">{{ .Category }}</h3>
+                            <ul class="tag-list">
+                                {{ range .Items }}
+                                <li class="tag">{{ . }}</li>
+                                {{ end }}
+                            </ul>
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+            </section>
+
+            <section class="experience">
+                <div class="section-label">03 — History</div>
+                <div class="section-content">
+                    <h2>Experience</h2>
+                    <div class="timeline">
+                        {{ range .Site.Data.cv.Experience }}
+                        <article class="timeline-item">
+                            <div class="timeline-left">
+                                <span class="duration">{{ .Duration }}</span>
+                                <span class="company">{{ .Company }}</span>
+                            </div>
+                            <div class="timeline-right">
+                                <h3>{{ .Position }}</h3>
+                                <ul>
+                                    {{ range .Responsibilities }}
+                                    <li>{{ . }}</li>
+                                    {{ end }}
+                                </ul>
+                            </div>
+                        </article>
+                        {{ end }}
+                    </div>
+                </div>
+            </section>
+
+            <section class="credentials">
+                <div class="section-label">04 — Credentials</div>
+                <div class="section-content">
+                    <h2>Credentials</h2>
+                    <div class="credentials-grid">
+                        <div class="credentials-subsection">
+                            <h3>Languages</h3>
+                            <ul class="minimal-list">
+                                {{ range .Site.Data.cv.Languages }}
+                                <li>{{ . }}</li>
+                                {{ end }}
+                            </ul>
+                        </div>
+                        <div class="credentials-subsection">
+                            <h3>Certifications</h3>
+                            <ul class="minimal-list">
+                                {{ range .Site.Data.cv.Certifications }}
+                                <li>{{ . }}</li>
+                                {{ end }}
+                            </ul>
+                        </div>
+                        <div class="credentials-subsection">
+                            <h3>Education</h3>
+                            <ul class="education-list">
+                                {{ range .Site.Data.cv.Academics }}
+                                <li>
+                                    <span class="year">{{ .Year }}</span>
+                                    <div class="edu-details">
+                                        <strong>{{ .College }}</strong>
+                                        <span>{{ .Degree }}</span>
+                                    </div>
+                                </li>
+                                {{ end }}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="latest-posts">
+                <div class="section-label">05 — Writing</div>
+                <div class="section-content">
+                    <h2>Latest Posts</h2>
+                    <div class="posts-container">
+                        {{ range first 3 (where .Site.RegularPages "Section" "posts") }}
+                        <article class="blog-post-preview">
+                            <div class="post-meta">
+                                <time class="post-date">{{ .Date.Format "January 2, 2006" }}</time>
+                                <span class="separator">|</span>
+                                <span class="reading-time">{{ .ReadingTime }} min read</span>
+                            </div>
+                            <h3 class="post-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+                            {{ with .Params.description }}
+                            <p class="post-excerpt">{{ . }}</p>
+                            {{ end }}
+                            <a href="{{ .Permalink }}" class="read-more">Read more</a>
+                        </article>
+                        {{ end }}
+                    </div>
+                    <div class="latest-posts-footer">
+                        <a href="/" class="read-more">View all posts →</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="/">Blog</a>
+                <a href="/cv/">CV</a>
+                <a href="https://github.com/dortort">GitHub</a>
+                <a href="mailto:francis@dortort.com">Email</a>
+            </nav>
+            <p class="footer-copyright">&copy; {{ now.Year }} {{ .Site.Data.cv.Name }}</p>
+        </div>
+    </footer>
+</body>
+
+</html>
