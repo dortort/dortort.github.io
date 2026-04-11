@@ -68,6 +68,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "description": "{{ .Site.Params.description | plainify }}"
 }
 </script>
+{{- end -}}
+{{- if eq .RelPermalink "/cv/" -}}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
