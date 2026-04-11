@@ -1,76 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    {{ partial "head.html" . }}
+    <meta charset="UTF-8">
+    <link rel="canonical" href="{{ "/" | absURL }}">
+    <meta http-equiv="refresh" content="0; url={{ "/" | absURL }}">
+    <title>Redirecting…</title>
 </head>
-
 <body>
-    {{ partial "gtm-noscript.html" . }}
-    <a href="#main-content" class="skip-to-content">Skip to content</a>
-    <main class="content-wrapper" id="main-content">
-        <header class="header-blog">
-            <div class="header-content">
-                <div class="hero-grid">
-                    <div class="hero-label">Thoughts & Insights</div>
-                    <h1 class="name">Blog</h1>
-                    <div class="hero-divider"></div>
-                    <nav class="hero-nav">
-                        <ul class="links">
-                            <li><a href="/"><span>Home</span></a></li>
-                            <li><a href="/posts/" class="nav-active"><span>Blog</span></a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-
-        <div class="scroll-container">
-            <section class="blog-list">
-                <div class="section-label">Latest</div>
-                <div class="section-content">
-                    <div class="posts-container">
-                        {{ range .Pages }}
-                        <article class="blog-post-preview">
-                            <div class="post-meta">
-                                <div class="post-meta__byline">
-                                    <time class="post-date">{{ .Date.Format "January 2, 2006" }}</time>
-                                    <span class="separator">|</span>
-                                    <span class="reading-time">{{ .ReadingTime }} min read</span>
-                                </div>
-                                {{ if .Params.tags }}
-                                <ul class="tag-list tag-list--chips">
-                                    {{ range .Params.tags }}
-                                    {{ $tagPage := site.GetPage (printf "/tags/%s" (. | urlize)) }}
-                                    <li class="tag-chip"><a href="{{ "/tags/" | relURL }}{{ . | urlize }}/">{{ with $tagPage }}{{ .Title }}{{ else }}{{ . }}{{ end }}</a></li>
-                                    {{ end }}
-                                </ul>
-                                {{ end }}
-                            </div>
-                            <h3 class="post-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-                            {{ if .Params.description }}
-                            <p class="post-excerpt">{{ .Params.description }}</p>
-                            {{ else }}
-                            <p class="post-excerpt">{{ .Summary | truncate 200 }}</p>
-                            {{ end }}
-                            <a href="{{ .Permalink }}" class="read-more">Read more</a>
-                        </article>
-                        {{ end }}
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <footer class="site-footer">
-        <div class="footer-content">
-            <nav class="footer-nav" aria-label="Footer navigation">
-                <a href="/">Home</a>
-                <a href="/posts/">Blog</a>
-            </nav>
-            <p class="footer-copyright">&copy; {{ now.Year }} {{ .Site.Data.cv.Name }}</p>
-        </div>
-    </footer>
+    <p>Redirecting to <a href="{{ "/" | absURL }}">the blog</a>…</p>
 </body>
-
 </html>
