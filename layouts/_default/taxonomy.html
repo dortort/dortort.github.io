@@ -17,8 +17,8 @@
                     <div class="hero-divider"></div>
                     <nav class="hero-nav">
                         <ul class="links">
-                            <li><a href="/"><span>Home</span></a></li>
-                            <li><a href="/posts/"><span>Blog</span></a></li>
+                            <li><a href="/"><span>Blog</span></a></li>
+                            <li><a href="/cv/"><span>CV</span></a></li>
                             <li><a href="/{{ .Data.Plural }}/"><span>{{ .Data.Plural | humanize }}</span></a></li>
                         </ul>
                     </nav>
@@ -55,9 +55,10 @@
     <footer class="site-footer">
         <div class="footer-content">
             <nav class="footer-nav" aria-label="Footer navigation">
-                <a href="/">Home</a>
-                <a href="/posts/">Blog</a>
-                <a href="/{{ .Data.Plural }}/">{{ .Data.Plural | humanize }}</a>
+                <a href="/">Blog</a>
+                <a href="/cv/">CV</a>
+                <a href="https://github.com/dortort">GitHub</a>
+                <a href="mailto:francis@dortort.com">Email</a>
             </nav>
             <p class="footer-copyright">&copy; {{ now.Year }} {{ .Site.Data.cv.Name }}</p>
         </div>
