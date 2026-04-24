@@ -60,6 +60,29 @@
                     </div>
                 </div>
             </section>
+
+            <section class="projects">
+                <div class="section-label">Open Source</div>
+                <div class="section-content">
+                    <div class="projects-grid">
+                        {{ range .Site.Data.projects }}
+                        <a href="{{ .url }}" class="project-card" target="_blank" rel="noopener noreferrer">
+                            <div class="project-card__header">
+                                <h3 class="project-card__name">{{ .name }}</h3>
+                                <span class="project-card__tech">{{ .tech }}</span>
+                            </div>
+                            <p class="project-card__description">{{ .description }}</p>
+                            <ul class="project-card__features">
+                                {{ range .features }}
+                                <li>{{ . }}</li>
+                                {{ end }}
+                            </ul>
+                            <span class="read-more">View on GitHub</span>
+                        </a>
+                        {{ end }}
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
 
