@@ -948,6 +948,93 @@ section:nth-child(even) {
     }
 }
 
+/* OPEN SOURCE PROJECTS */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    background-color: rgba(112, 128, 144, 0.03);
+    border: 1px solid rgba(112, 128, 144, 0.1);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.project-card:hover {
+    background-color: rgba(112, 128, 144, 0.06);
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    color: inherit;
+}
+
+.project-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.project-card__name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin: 0;
+    transition: color 0.2s ease;
+}
+
+.project-card:hover .project-card__name {
+    color: var(--accent);
+}
+
+.project-card__tech {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border: 1px solid rgba(197, 179, 88, 0.4);
+    white-space: nowrap;
+}
+
+.project-card__description {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--secondary);
+    line-height: 1.6;
+    margin: 0 0 20px 0;
+}
+
+.project-card__features {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    color: var(--text-body);
+    line-height: 1.6;
+    padding-left: 18px;
+    margin: 0 0 20px 0;
+    flex-grow: 1;
+}
+
+.project-card__features li {
+    margin-bottom: 8px;
+}
+
+.project-card__features li:last-child {
+    margin-bottom: 0;
+}
+
+.project-card .read-more {
+    align-self: flex-start;
+}
+
 /* SITE FOOTER */
 .site-footer {
     background-color: var(--primary);
@@ -1054,6 +1141,10 @@ section:nth-child(even) {
     .related-articles-grid {
         grid-template-columns: 1fr;
     }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1097,9 +1188,13 @@ section:nth-child(even) {
     .related-article-card {
         padding: 20px;
     }
-    
+
     .related-article-title {
         font-size: 1.1rem;
+    }
+
+    .project-card {
+        padding: 20px;
     }
 
     .footer-content {
