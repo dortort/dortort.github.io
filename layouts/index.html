@@ -66,9 +66,9 @@
                 <div class="section-content">
                     <div class="projects-grid">
                         {{ range .Site.Data.projects }}
-                        <a href="{{ .url }}" class="project-card" target="_blank" rel="noopener noreferrer">
+                        <a href="{{ .url }}" class="project-card" target="_blank" rel="noopener noreferrer" aria-label="{{ .name }} — View on GitHub">
                             <div class="project-card__header">
-                                <h3 class="project-card__name">{{ .name }}</h3>
+                                <div class="project-card__name">{{ .name }}</div>
                                 <span class="project-card__tech">{{ .tech }}</span>
                             </div>
                             <p class="project-card__description">{{ .description }}</p>
