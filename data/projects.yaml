@@ -28,7 +28,7 @@
 - name: claude-code-scheduler
   url: https://github.com/dortort/claude-code-scheduler
   description: Schedule recurring and one-time AI tasks with Claude Code using native OS schedulers.
-  domain: Developer Tools
+  domain: AI Automation
   features:
     - Natural language scheduling with cron expression support
     - Isolated execution using git worktrees to prevent working copy interference
