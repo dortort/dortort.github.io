@@ -1,0 +1,35 @@
+- name: dgossgen
+  url: https://github.com/dortort/dgossgen
+  description: Automatically generates dgoss test suites from Dockerfiles through static analysis, eliminating manual YAML boilerplate.
+  tech: Rust
+  features:
+    - Static analysis of multi-stage Dockerfiles with variable resolution
+    - Dynamic probe mode that builds and runs containers to collect evidence
+    - Confidence scoring with provenance comments explaining assertion origins
+
+- name: ai-tool-guard
+  url: https://github.com/dortort/ai-tool-guard
+  description: Policy enforcement middleware for AI SDK tool calls — guards, approvals, rate limiting, and observability.
+  tech: TypeScript
+  features:
+    - Rule-based allow/deny policies with argument validation via Zod schemas
+    - Output filtering for secrets stripping and prompt-injection detection
+    - OpenTelemetry integration for automatic instrumentation
+
+- name: betterleaks-action
+  url: https://github.com/dortort/betterleaks-action
+  description: GitHub Action that integrates Betterleaks secrets detection into CI/CD pipelines.
+  tech: TypeScript
+  features:
+    - Smart scanning that auto-selects between git history and directory scans
+    - Cross-platform support for Linux, macOS, and Windows (x64 and ARM64)
+    - SARIF integration for GitHub Code Scanning
+
+- name: claude-code-scheduler
+  url: https://github.com/dortort/claude-code-scheduler
+  description: Schedule recurring and one-time AI tasks with Claude Code using native OS schedulers.
+  tech: TypeScript
+  features:
+    - Natural language scheduling with cron expression support
+    - Isolated execution using git worktrees to prevent working copy interference
+    - Built-in security with environment variable blocklists and sensitive file detection
