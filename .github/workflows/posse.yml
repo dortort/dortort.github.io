@@ -12,22 +12,22 @@ jobs:
   cross-post:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
       - name: Get changed files
         id: changed-files
         if: github.event_name == 'push'
-        uses: tj-actions/changed-files@v44
+        uses: tj-actions/changed-files@v47
         with:
           files: content/posts/**.md
 
       - name: Set up Node.js
         if: steps.changed-files.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'yarn'
 
       - name: Install dependencies
