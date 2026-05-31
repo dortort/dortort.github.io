@@ -3,7 +3,7 @@
 // Skips alias/redirect pages and special layouts.
 // Exit codes: 0 = pass (warnings OK), 1 = errors found
 
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import matter from 'gray-matter';
 
@@ -66,8 +66,9 @@ for (const { rel, html, filePath } of pages) {
 
 // 2. Post frontmatter descriptions
 console.log('\n--- Checking post frontmatter descriptions ---');
-const postFiles = findFiles('content/posts', '.md')
-  .filter(f => !f.endsWith('_index.md'));
+const postFiles = readdirSync('content/posts')
+  .filter(f => f.endsWith('.md') && f !== '_index.md')
+  .map(f => join('content/posts', f));
 for (const filePath of postFiles) {
   const { data } = matter(readFileSync(filePath, 'utf8'));
   if (!data.description) {
@@ -99,7 +100,17 @@ for (const { rel, html, filePath } of pages) {
   }
 }
 
-// 5. Description length (skip tags)
+// 5. Missing OG images
+console.log('\n--- Checking OG images ---');
+for (const filePath of postFiles) {
+  const slug = filePath.split('/').pop().replace('.md', '');
+  const ogPath = join('static', 'images', 'og', `${slug}.png`);
+  if (!existsSync(ogPath)) {
+    warn(`Missing OG image: ${ogPath} (for ${relative('.', filePath)})`);
+  }
+}
+
+// 6. Description length (skip tags)
 console.log('\n--- Checking description lengths ---');
 for (const { rel, html, filePath } of pages) {
   if (isExcluded(filePath, html) || isTagPage(filePath)) continue;
