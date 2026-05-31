@@ -16,11 +16,22 @@ jobs:
           submodules: true
           fetch-depth: 0
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate OG images
+        run: npm run og
+
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: "0.110.0"
-          # extended: true
 
       - name: Build
         run: hugo --minify
@@ -36,15 +47,6 @@ jobs:
             exit 1
           fi
           echo "Build successful: Hugo site generated correctly"
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
 
       - name: SEO lint
         run: node scripts/seo-lint.mjs public
