@@ -106,7 +106,7 @@ for (const filePath of postFiles) {
   const slug = filePath.split('/').pop().replace('.md', '');
   const ogPath = join('static', 'images', 'og', `${slug}.png`);
   if (!existsSync(ogPath)) {
-    warn(`Missing OG image: ${ogPath} (for ${relative('.', filePath)})`);
+    error(`Missing OG image: ${ogPath} (for ${relative('.', filePath)})`);
   }
 }
 
