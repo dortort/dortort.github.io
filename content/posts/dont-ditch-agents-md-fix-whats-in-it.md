@@ -11,13 +11,26 @@ aliases:
   - /posts/agents-md-ambiguity-resolver-cost-cache/
 ---
 
-A recent study evaluated whether repository-level context files actually help coding agents solve tasks. The findings are counterintuitive: both LLM-generated and developer-authored context files tend to reduce success rates while increasing cost.
+A recent study — ["Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?"](https://arxiv.org/abs/2602.11988) (arXiv:2602.11988) — evaluated whether repository-level context files actually help coding agents solve tasks. The findings are counterintuitive: both LLM-generated and developer-authored context files tend to reduce success rates while increasing cost.
 
-The paper — ["Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?"](https://arxiv.org/abs/2602.11988) — tested `AGENTS.md` files across two benchmarks: [SWE-bench Lite](https://arxiv.org/abs/2602.11988) and a custom dataset called AGENTbench, covering 138 real tasks across 12 repositories. On SWE-bench Lite with GPT-4o, the no-context baseline resolved 33.5% of tasks. Adding LLM-generated context dropped that to 32%. Developer-written context files performed worst at 29.6%. Across all configurations, context files increased token cost by [over 20%](https://arxiv.org/abs/2602.11988).
+## What the paper found
+
+The researchers tested `AGENTS.md` files across two benchmarks: [SWE-bench Lite](https://www.swebench.com/) and a custom dataset called AGENTbench, covering 138 real tasks across 12 repositories. They compared three conditions — no context file, LLM-generated context, and developer-written context — using GPT-4o and Claude 3.5 Sonnet as the underlying models.
+
+The results were consistent across both models and benchmarks:
+
+- **Baseline (no context file)**: 33.5% task success rate on SWE-bench Lite with GPT-4o
+- **LLM-generated context**: 32.0% — a slight decrease
+- **Developer-written context**: 29.6% — the worst performance
+- **Token cost**: increased by over 20% across all context file configurations
+
+The authors concluded that context files, as typically written, introduce more noise than signal. Agents spend tokens processing instructions that are either redundant with information already in the repository or irrelevant to the specific task at hand.
+
+One exception was telling. When the researchers removed documentation from the repository before running agents, context files became more helpful. Context files filled an information gap that the codebase could no longer fill on its own.
+
+## The problem isn't AGENTS.md — it's what's in it
 
 The key finding was not that agents ignore these files. Agents follow them. That compliance is the problem: agents dutifully process every instruction, whether it helps with the current task or not.
-
-One exception is telling. When the researchers removed documentation from the repository before running agents, context files became more helpful. Context files filled an information gap that the codebase could no longer fill on its own.
 
 This points to a specific failure mode and a specific fix.
 
