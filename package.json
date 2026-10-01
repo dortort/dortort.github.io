@@ -10,6 +10,6 @@
     "axios": "^1.13.2",
     "gray-matter": "^4.0.3",
     "hugo": "^0.0.3",
-    "puppeteer": "^24.38.0"
+    "puppeteer": "^25.11.0"
   }
 }
