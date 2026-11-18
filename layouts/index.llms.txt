@@ -1,4 +1,4 @@
-{{- $cv := site.Data.cv -}}
+{{- $cv := hugo.Data.cv -}}
 {{- $posts := (where site.RegularPages "Section" "posts").ByDate.Reverse -}}
 # {{ site.Title }}
 
@@ -21,7 +21,7 @@
 {{- end }}
 
 ## Open Source Projects
-{{ range site.Data.projects }}
+{{ range hugo.Data.projects }}
 - [{{ .name }}]({{ .url }}) ({{ .domain }}): {{ .description }}
 {{- end }}
 
