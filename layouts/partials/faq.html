@@ -1,0 +1,9 @@
+{{- with .Params.faq -}}
+<div class="post-faq" role="region" aria-labelledby="faq">
+    <h2 id="faq">Frequently asked questions</h2>
+    {{- range . }}
+    <h3>{{ .question | markdownify }}</h3>
+    {{ $.RenderString (dict "display" "block") .answer }}
+    {{- end }}
+</div>
+{{- end -}}
