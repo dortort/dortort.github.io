@@ -9,6 +9,15 @@ enableRobotsTXT = true
   gtm_id = "GTM-MG75GRFF"
   default_social_image = "/images/og-default.png"
 
+[outputs]
+  home = ["HTML", "RSS", "llms"]
+
+[outputFormats.llms]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+  notAlternative = true
+
 [[menu.main]]
   name = "Blog"
   url = "/"
