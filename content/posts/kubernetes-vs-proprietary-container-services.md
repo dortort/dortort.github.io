@@ -9,6 +9,27 @@ tags:
   - Containers
 aliases:
   - /kubernetes-vs-proprietary-container-services-a-technical-and-pragmatic-comparison
+faq:
+  - question: "When should you choose Kubernetes over ECS, Cloud Run, or Azure Container Apps?"
+    answer: >-
+      Only when you have a concrete need that a proprietary service cannot meet: running
+      across multiple clouds, on-prem, or hybrid environments; advanced orchestration such
+      as custom scheduling, network policies, or a service mesh; an internal developer
+      platform at scale; stateful or specialized workloads like Kafka or GPU training; or
+      regulatory and commercial constraints against single-cloud abstractions.
+  - question: "Does managed Kubernetes remove the operational overhead?"
+    answer: >-
+      No. A managed control plane removes only part of the work. You still own node groups,
+      cluster upgrades, networking, ingress, autoscaling, and policy enforcement. The
+      dominant cost of Kubernetes is engineering time rather than compute, which is why
+      proprietary container services usually have a lower total cost of ownership.
+  - question: "Which workloads run best on proprietary container services?"
+    answer: >-
+      Most of them: REST APIs, backend services, stateless workers, batch jobs, and
+      scheduled tasks. These workloads do not need Kubernetes' advanced scheduling,
+      extensibility, or portability, so ECS/Fargate, Cloud Run, and Azure Container Apps run
+      them with less operational burden and native integration with cloud IAM, networking,
+      and logging.
 ---
 
 **TL;DR**
