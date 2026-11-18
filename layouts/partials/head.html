@@ -11,14 +11,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 {{- end -}}
 
-{{- $title := .Title -}}
-{{- $ogTitle := .Title -}}
+{{- $baseTitle := .Params.seo_title | default .Params.seotitle | default .Title -}}
+{{- $title := $baseTitle -}}
+{{- $ogTitle := $baseTitle -}}
 {{- if .IsHome -}}
   {{- $title = printf "%s | DevSecOps Blog" .Site.Title -}}
   {{- $ogTitle = $title -}}
 {{- else -}}
-  {{- $title = printf "%s — %s" .Title .Site.Title -}}
-  {{- $ogTitle = printf "%s - %s" .Title .Site.Title -}}
+  {{- $suffixed := printf "%s — %s" $baseTitle .Site.Title -}}
+  {{- if le (strings.RuneCount $suffixed) 60 -}}
+    {{- $title = $suffixed -}}
+    {{- $ogTitle = printf "%s - %s" $baseTitle .Site.Title -}}
+  {{- end -}}
 {{- end -}}
 {{- $summary := .Summary | plainify | truncate 160 -}}
 {{- $description := .Params.description | default .Description | default $summary | default .Site.Params.description -}}
