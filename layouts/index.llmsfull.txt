@@ -1,0 +1,82 @@
+{{- $cv := site.Data.cv -}}
+{{- $posts := (where site.RegularPages "Section" "posts").ByDate.Reverse -}}
+{{- $cvPage := site.GetPage "/cv" -}}
+# {{ site.Title }}
+
+> {{ site.Params.description }}
+
+This file is the complete Markdown corpus of {{ site.BaseURL }}: the author bio, open-source projects, and the full text of all {{ len $posts }} articles, newest first. Each article starts with an H1 title followed by its canonical URL, publication date, and tags. A shorter index is available at {{ "llms.txt" | absURL }}.
+
+## About {{ $cv.Name }}
+
+{{ $cv.Name }} is a {{ replace $cv.Title " | " " and " }}. {{ trim (replaceRE `\s+` " " $cv.Background) " " }}
+
+- Certifications: {{ delimit $cv.Certifications ", " }}
+- Languages: {{ delimit $cv.Languages ", " }}
+{{- with $cvPage }}
+- CV: {{ .Permalink }}
+{{- end }}
+{{- range $cv.Links }}
+{{- if hasPrefix .Link "mailto:" }}
+- Email: {{ .Display }}
+{{- else if hasPrefix .Link "https:" }}
+- {{ .Display }}: {{ .Link }}
+{{- end }}
+{{- end }}
+
+### Skills
+{{ range $cv.Skills }}
+- {{ .Category }}: {{ delimit .Items ", " }}
+{{- end }}
+
+### Experience
+{{ range $cv.Experience }}
+- {{ .Position }}, {{ .Company }} ({{ .Duration }})
+{{- range .Responsibilities }}
+  - {{ trim (replaceRE `\s+` " " .) " " }}
+{{- end }}
+{{- end }}
+
+### Education
+{{ range $cv.Academics }}
+- {{ .Degree }}, {{ .College }} ({{ .Year }})
+{{- end }}
+
+## Open Source Projects
+{{ range site.Data.projects }}
+### {{ .name }}
+
+- Repository: {{ .url }}
+- Domain: {{ .domain }}
+
+{{ .description }}
+{{ range .features }}
+- {{ . }}
+{{- end }}
+{{ end }}
+## Articles
+{{ range $posts }}
+- [{{ .Title }}]({{ .Permalink }}) ({{ .Date.Format "2006-01-02" }})
+{{- end }}
+{{ range $posts }}
+---
+
+# {{ .Title }}
+
+- Canonical URL: {{ .Permalink }}
+- Published: {{ .Date.Format "2006-01-02" }}
+{{- if ne (.Lastmod.Format "2006-01-02") (.Date.Format "2006-01-02") }}
+- Updated: {{ .Lastmod.Format "2006-01-02" }}
+{{- end }}
+- Author: {{ $cv.Name }}
+{{- with .GetTerms "tags" }}
+- Tags: {{ range $i, $t := . }}{{ if $i }}, {{ end }}{{ $t.LinkTitle }}{{ end }}
+{{- end }}
+{{- with .Description }}
+- Description: {{ . }}
+{{- end }}
+
+{{ $body := replaceRE `(?m)^\{[.#][^}\n]*\}[ \t]*\n?` "" .RawContent -}}
+{{ $body = replaceRE `\]\(/([^/])` (printf "](%s${1}" site.BaseURL) $body -}}
+{{ trim $body "\n " }}
+{{ end -}}

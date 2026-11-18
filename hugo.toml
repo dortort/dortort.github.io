@@ -10,11 +10,17 @@ enableRobotsTXT = true
   default_social_image = "/images/og-default.png"
 
 [outputs]
-  home = ["HTML", "RSS", "llms"]
+  home = ["HTML", "RSS", "llms", "llmsfull"]
 
 [outputFormats.llms]
   mediaType = "text/plain"
   baseName = "llms"
+  isPlainText = true
+  notAlternative = true
+
+[outputFormats.llmsfull]
+  mediaType = "text/plain"
+  baseName = "llms-full"
   isPlainText = true
   notAlternative = true
 
