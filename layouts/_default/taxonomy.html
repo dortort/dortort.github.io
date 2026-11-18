@@ -30,7 +30,7 @@
             <section class="blog-list">
                 <div class="section-label">Latest</div>
                 <div class="section-content">
-                    {{ with .Params.description }}<p class="taxonomy-description">{{ . }}</p>{{ end }}
+                    {{ with .Description }}<p class="taxonomy-description">{{ . }}</p>{{ end }}
                     <div class="posts-container">
                         {{ range .Pages }}
                         <article class="blog-post-preview">
@@ -38,8 +38,8 @@
                                 <time class="post-date">{{ .Date.Format "January 2, 2006" }}</time>
                             </div>
                             <h3 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-                            {{ if .Params.description }}
-                            <p class="post-excerpt">{{ .Params.description }}</p>
+                            {{ if .Description }}
+                            <p class="post-excerpt">{{ .Description }}</p>
                             {{ else }}
                             <p class="post-excerpt">{{ .Summary | plainify | truncate 200 }}</p>
                             {{ end }}

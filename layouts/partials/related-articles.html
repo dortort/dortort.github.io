@@ -39,8 +39,8 @@
             <a href="{{ .page.Permalink }}" class="related-article-card">
                 <time class="related-article-date">{{ .page.Date.Format "January 2, 2006" }}</time>
                 <h3 class="related-article-title">{{ .page.Title }}</h3>
-                {{- if .page.Params.description -}}
-                <p class="related-article-description">{{ .page.Params.description | truncate 120 }}</p>
+                {{- if .page.Description -}}
+                <p class="related-article-description">{{ .page.Description | truncate 120 }}</p>
                 {{- end -}}
                 <span class="read-more">Read Article →</span>
             </a>

@@ -25,7 +25,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   {{- end -}}
 {{- end -}}
 {{- $summary := .Summary | plainify | truncate 160 -}}
-{{- $description := .Params.description | default .Description | default $summary | default .Site.Params.description -}}
+{{- $description := .Description | default $summary | default .Site.Params.description -}}
 {{- $socialImage := "" -}}
 {{- if .Params.images -}}
   {{- $socialImage = index .Params.images 0 | absURL -}}

@@ -49,8 +49,8 @@
                                 {{ end }}
                             </div>
                             <h3 class="post-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-                            {{ if .Params.description }}
-                            <p class="post-excerpt">{{ .Params.description }}</p>
+                            {{ if .Description }}
+                            <p class="post-excerpt">{{ .Description }}</p>
                             {{ else }}
                             <p class="post-excerpt">{{ .Summary | truncate 200 }}</p>
                             {{ end }}
