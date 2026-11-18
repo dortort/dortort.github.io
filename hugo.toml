@@ -1,5 +1,5 @@
 baseURL = 'https://dortort.com/'
-languageCode = 'en-us'
+locale = 'en-us'
 title = 'Francis Eytan Dortort'
 enableRobotsTXT = true
 
