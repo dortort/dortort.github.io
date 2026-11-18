@@ -79,7 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "{{ .Site.Data.cv.Name }}",
+  "name": "{{ hugo.Data.cv.Name }}",
   "alternateName": ["Francis Dortort", "Eytan Dortort"],
   "url": "{{ .Site.BaseURL }}",
   "description": "{{ .Site.Params.description | plainify }}",
@@ -98,7 +98,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </script>
 {{- end -}}
 {{- if .IsPage -}}
-{{- $author := dict "@type" "Person" "name" .Site.Data.cv.Name "url" .Site.BaseURL "sameAs" (slice "https://github.com/dortort") -}}
+{{- $author := dict "@type" "Person" "name" hugo.Data.cv.Name "url" .Site.BaseURL "sameAs" (slice "https://github.com/dortort") -}}
 {{- $images := slice -}}
 {{- range .Params.images -}}
   {{- $images = $images | append (. | absURL) -}}

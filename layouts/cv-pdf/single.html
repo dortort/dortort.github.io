@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="robots" content="noindex, nofollow">
-    <title>{{ .Site.Data.cv.Name }} - CV</title>
+    <title>{{ hugo.Data.cv.Name }} - CV</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -288,10 +288,10 @@
     <div class="cv-pdf-content">
         <!-- Header -->
         <div class="pdf-header">
-            <div class="pdf-name">{{ .Site.Data.cv.Name }}</div>
-            <div class="pdf-title">{{ .Site.Data.cv.Title }}</div>
+            <div class="pdf-name">{{ hugo.Data.cv.Name }}</div>
+            <div class="pdf-title">{{ hugo.Data.cv.Title }}</div>
             <div class="pdf-contact">
-                {{ range $i, $link := .Site.Data.cv.Links }}
+                {{ range $i, $link := hugo.Data.cv.Links }}
                 {{ if $i }}<span class="sep">|</span>{{ end }}
                 <a href="{{ safeURL $link.Link }}">{{ $link.Display }}</a>
                 {{ end }}
@@ -300,7 +300,7 @@
 
         <!-- Background -->
         <div class="pdf-background">
-            {{ .Site.Data.cv.Background }}
+            {{ hugo.Data.cv.Background }}
         </div>
 
         <!-- Two-column body -->
@@ -309,7 +309,7 @@
             <div class="pdf-left">
                 <div>
                     <div class="pdf-section-title">Skills</div>
-                    {{ range .Site.Data.cv.Skills }}
+                    {{ range hugo.Data.cv.Skills }}
                     <div class="pdf-skill-category">
                         <div class="pdf-skill-category-title">{{ .Category }}</div>
                         <ul class="pdf-tags">
@@ -324,7 +324,7 @@
                 <div>
                     <div class="pdf-section-title">Languages</div>
                     <ul class="pdf-footer-list">
-                        {{ range .Site.Data.cv.Languages }}
+                        {{ range hugo.Data.cv.Languages }}
                         <li>{{ . }}</li>
                         {{ end }}
                     </ul>
@@ -333,7 +333,7 @@
                 <div>
                     <div class="pdf-section-title">Certifications</div>
                     <ul class="pdf-footer-list">
-                        {{ range .Site.Data.cv.Certifications }}
+                        {{ range hugo.Data.cv.Certifications }}
                         <li>{{ . }}</li>
                         {{ end }}
                     </ul>
@@ -341,7 +341,7 @@
 
                 <div>
                     <div class="pdf-section-title">Education</div>
-                    {{ range .Site.Data.cv.Academics }}
+                    {{ range hugo.Data.cv.Academics }}
                     <div>
                         <span class="pdf-edu-college">{{ .College }}</span>
                         — <span>{{ .Degree }}</span>
@@ -355,7 +355,7 @@
             <div class="pdf-right">
                 <div>
                     <div class="pdf-section-title">Experience</div>
-                    {{ range .Site.Data.cv.Experience }}
+                    {{ range hugo.Data.cv.Experience }}
                     <div class="pdf-job">
                         <div class="pdf-job-header">
                             <div class="pdf-job-title">{{ .Position }}</div>

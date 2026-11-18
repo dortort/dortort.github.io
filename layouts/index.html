@@ -12,7 +12,7 @@
         <header class="header-blog">
             <div class="header-content">
                 <div class="hero-grid">
-                    <h1 class="name">{{ .Site.Data.cv.Name }}</h1>
+                    <h1 class="name">{{ hugo.Data.cv.Name }}</h1>
                     <h2 class="title">Thoughts & Insights</h2>
                     <div class="hero-divider"></div>
                     <nav class="hero-nav">
@@ -65,7 +65,7 @@
                 <div class="section-label">Open Source</div>
                 <div class="section-content">
                     <div class="projects-grid">
-                        {{ range .Site.Data.projects }}
+                        {{ range hugo.Data.projects }}
                         <a href="{{ .url }}" class="project-card" target="_blank" rel="noopener noreferrer" aria-label="{{ .name }} — View on GitHub">
                             <div class="project-card__header">
                                 <div class="project-card__name">{{ .name }}</div>
@@ -94,7 +94,7 @@
                 <a href="https://github.com/dortort">GitHub</a>
                 <a href="mailto:francis@dortort.com">Email</a>
             </nav>
-            <p class="footer-copyright">&copy; {{ now.Year }} {{ .Site.Data.cv.Name }}</p>
+            <p class="footer-copyright">&copy; {{ now.Year }} {{ hugo.Data.cv.Name }}</p>
         </div>
     </footer>
 </body>
