@@ -6,6 +6,26 @@ tags:
   - Terraform
   - DevOps
   - Infrastructure as Code
+faq:
+  - question: "Why doesn't GitFlow work for Terraform?"
+    answer: >-
+      Terraform has a third dimension that application code lacks: state. Git can merge
+      configuration files, but it cannot merge live infrastructure. Long-lived feature or
+      environment branches let code drift away from state, which causes state stomping in
+      shared environments and leaves orphaned "phantom" resources behind when branches are
+      deleted without a `terraform destroy`.
+  - question: "How do you promote Terraform changes between environments with trunk-based development?"
+    answer: >-
+      Promote the artifact, not the branch. Every environment runs the same commit from
+      `main`, and the pipeline changes only the backend configuration and the variable file,
+      such as `dev.tfvars` or `prod.tfvars`. Changes apply to Dev first and reach Prod only
+      after an approval gate, so the code tested in Dev is exactly the code that runs in Prod.
+  - question: "When should Terraform code use semantic versioning?"
+    answer: >-
+      For shared modules that other teams consume. Develop the module with trunk-based
+      development, tag stable releases such as `v1.2.0`, and have consumers pin that tag in
+      the module source instead of tracking a branch. Root configurations stay on trunk; only
+      library modules need version tags.
 ---
 
 **TL;DR**

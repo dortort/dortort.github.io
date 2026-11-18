@@ -7,6 +7,26 @@ tags:
   - Agentic AI
   - Architecture
   - Developer Experience
+faq:
+  - question: "Why do AI coding agents work better in a monorepo?"
+    answer: >-
+      Agents generate better code when they can see the whole system: type definitions,
+      call sites, tests, and the dependency graph. A monorepo exposes all of it in one
+      workspace, so an agent can change a shared interface and update every consumer in a
+      single atomic commit instead of guessing at contracts defined in repositories it
+      cannot see.
+  - question: "Don't monorepos have scaling problems?"
+    answer: >-
+      Scaling a monorepo is a tooling investment, not an architectural limit. Git
+      sparse-checkout and Scalar shrink the working set, remote build execution reduces
+      dependence on local machines, and graph-aware build systems like Bazel, Nx, and
+      Turborepo rebuild and retest only what changed.
+  - question: "When is multi-repo still the right choice?"
+    answer: >-
+      When a structural constraint requires separate repositories: legal or compliance
+      separation, open-source projects with their own contribution and licensing workflows,
+      components owned by vendors or third parties, security mandates enforced at the
+      repository level, or projects that share no dependencies, interfaces, or teams.
 ---
 
 The monorepo vs multi-repo debate ran for over a decade without a clear winner. That wasn't because engineers couldn't agree — it was because both models offered genuine advantages under different constraints. A 50-person startup with three services and a 10,000-person company with hundreds of microservices faced different problems. The right repository structure depended on team size, deployment cadence, ownership models, and tooling maturity.

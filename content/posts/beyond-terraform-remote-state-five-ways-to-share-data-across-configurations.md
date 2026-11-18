@@ -9,6 +9,25 @@ tags:
   - Infrastructure as Code
   - DevOps
   - AWS
+faq:
+  - question: "Why does HashiCorp recommend against `terraform_remote_state`?"
+    answer: >-
+      Although it only exposes output values, `terraform_remote_state` requires read access to
+      the producer's entire state snapshot, which often contains database passwords, private
+      keys, and API tokens. It also hardcodes the producer's backend details (bucket, key, and
+      region) into every consumer, so changing the storage layout breaks all of them.
+  - question: "What is the best way to share data between Terraform configurations?"
+    answer: >-
+      Share naming rules instead of data. A namer module computes deterministic resource names
+      from shared inputs, so any configuration can derive a resource's name and look it up with
+      a provider data source. For most cases, this removes the need for state access, external
+      stores, and cross-configuration IAM policies.
+  - question: "When should you use SSM Parameter Store or `tfe_outputs` instead?"
+    answer: >-
+      Use SSM Parameter Store, or Consul KV if you already run Consul, for computed values that
+      cannot be derived from a name or that non-Terraform tools also need to read. Use
+      `tfe_outputs` on Terraform Cloud or HCP Terraform: it reads another workspace's outputs
+      without exposing its full state, but still couples workspaces by name.
 ---
 
 Every team that splits Terraform into multiple root configurations hits the same wall: configuration A creates a VPC, and configuration B needs the VPC ID. The question isn't whether you need cross-configuration data sharing. It's which approach scales without becoming a maintenance problem.
