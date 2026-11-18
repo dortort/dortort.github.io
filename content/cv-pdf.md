@@ -2,7 +2,7 @@
 title: "CV PDF"
 type: "cv-pdf"
 layout: "single"
-_build:
+build:
   list: never
   publishResources: false
 ---
