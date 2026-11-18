@@ -24,7 +24,7 @@ This repository contains the source code for my personal website and blog, built
 
 ### Prerequisites
 
-- Node.js & Yarn (for dependency management)
+- Node.js and npm (CI uses Node 22)
 - [Hugo](https://gohugo.io/installation/), installed separately (e.g. `brew install hugo`). CI pins 0.170.1, and the standard edition is enough.
 
 ### Setup
@@ -37,7 +37,7 @@ This repository contains the source code for my personal website and blog, built
 
 2.  Install dependencies:
     ```bash
-    yarn install
+    npm ci
     ```
 
 ### Running locally
