@@ -52,7 +52,7 @@
                             {{ if .Description }}
                             <p class="post-excerpt">{{ .Description }}</p>
                             {{ else }}
-                            <p class="post-excerpt">{{ .Summary | truncate 200 }}</p>
+                            <p class="post-excerpt">{{ .Summary | plainify | truncate 200 }}</p>
                             {{ end }}
                             <a href="{{ .Permalink }}" class="read-more">Read more</a>
                         </article>
