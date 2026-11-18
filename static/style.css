@@ -682,6 +682,17 @@ section:nth-child(even) {
     background-color: rgba(112, 128, 144, 0.02);
 }
 
+/* Post FAQ */
+.post-faq {
+    margin-top: 60px;
+    border-top: 1px solid rgba(112, 128, 144, 0.2);
+}
+
+.post-faq h3 {
+    color: var(--primary);
+    margin: 40px 0 10px;
+}
+
 /* Custom Table Helpers */
 .no-wrap-col-1 td:nth-child(1),
 .no-wrap-col-1 th:nth-child(1) {

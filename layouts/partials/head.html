@@ -123,6 +123,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   {{- $article = merge $article (dict "keywords" .) -}}
 {{- end -}}
 <script type="application/ld+json">{{ $article | jsonify | safeJS }}</script>
+{{- with .Params.faq -}}
+{{- $questions := slice -}}
+{{- range . -}}
+  {{- $answer := dict "@type" "Answer" "text" (trim (.answer | markdownify | plainify | htmlUnescape) " \n") -}}
+  {{- $questions = $questions | append (dict "@type" "Question" "name" (trim (.question | markdownify | plainify | htmlUnescape) " \n") "acceptedAnswer" $answer) -}}
+{{- end -}}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $questions | jsonify | safeJS }}</script>
+{{- end -}}
 {{- end -}}
 
 <!-- Security Headers (meta-tag based, compatible with GitHub Pages) -->
