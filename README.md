@@ -25,7 +25,7 @@ This repository contains the source code for my personal website and blog, built
 ### Prerequisites
 
 - Node.js & Yarn (for dependency management)
-- Hugo (extended version recommended, though the project includes a local dependency)
+- [Hugo](https://gohugo.io/installation/), installed separately (e.g. `brew install hugo`). CI pins 0.170.1, and the standard edition is enough.
 
 ### Setup
 
@@ -45,12 +45,6 @@ This repository contains the source code for my personal website and blog, built
 Start the Hugo development server:
 
 ```bash
-yarn run hugo server
-```
-
-Or if you have Hugo installed globally:
-
-```bash
 hugo server
 ```
 
@@ -61,10 +55,10 @@ Navigate to `http://localhost:1313/` to view the site.
 To build the static site for production:
 
 ```bash
-yarn run hugo
+hugo --minify
 ```
 
-The generated files will be in the `public/` directory.
+The generated files will be in the `public/` directory. `npm run build` also generates the OG images beforehand and the CV PDF afterwards.
 
 ## CV PDF Generation
 
