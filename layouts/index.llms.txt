@@ -22,7 +22,7 @@
 
 ## Open Source Projects
 {{ range hugo.Data.projects }}
-- [{{ .name }}]({{ .url }}) ({{ .domain }}): {{ .description }}
+- [{{ .name }}]({{ .url }}): {{ .domain }} — {{ .description }}
 {{- end }}
 
 ## Optional
