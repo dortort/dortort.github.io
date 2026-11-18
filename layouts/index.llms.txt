@@ -1,0 +1,30 @@
+{{- $cv := site.Data.cv -}}
+{{- $posts := (where site.RegularPages "Section" "posts").ByDate.Reverse -}}
+# {{ site.Title }}
+
+> {{ site.Params.description }}
+
+{{ $cv.Name }} is a {{ replace $cv.Title " | " " and " }}. {{ trim (replaceRE `\s+` " " $cv.Background) " " }}
+
+- Certifications: {{ delimit $cv.Certifications ", " }}
+- Languages: {{ delimit $cv.Languages ", " }}
+{{- with site.GetPage "/cv" }}
+- CV: {{ .Permalink }}
+{{- end }}
+{{- range $cv.Links }}{{ if eq .Display "GitHub" }}
+- GitHub: {{ .Link }}
+{{- end }}{{ end }}
+
+## Articles
+{{ range $posts }}
+- [{{ .Title }}]({{ .Permalink }}): {{ .Description | default (.Summary | plainify | htmlUnescape | truncate 160) }}
+{{- end }}
+
+## Open Source Projects
+{{ range site.Data.projects }}
+- [{{ .name }}]({{ .url }}) ({{ .domain }}): {{ .description }}
+{{- end }}
+
+## Optional
+
+- [Full content corpus]({{ "llms-full.txt" | absURL }}): Complete Markdown text of every article, plus the author bio and open-source project details, in a single file
