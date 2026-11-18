@@ -46,6 +46,12 @@ jobs:
             echo "Build failed: index.html not found"
             exit 1
           fi
+          for f in llms.txt llms-full.txt; do
+            if [ ! -s "public/$f" ]; then
+              echo "Build failed: $f not found or empty"
+              exit 1
+            fi
+          done
           echo "Build successful: Hugo site generated correctly"
 
       - name: SEO lint
