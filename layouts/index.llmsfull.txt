@@ -1,4 +1,4 @@
-{{- $cv := site.Data.cv -}}
+{{- $cv := hugo.Data.cv -}}
 {{- $posts := (where site.RegularPages "Section" "posts").ByDate.Reverse -}}
 {{- $cvPage := site.GetPage "/cv" -}}
 # {{ site.Title }}
@@ -43,7 +43,7 @@ This file is the complete Markdown corpus of {{ site.BaseURL }}: the author bio,
 {{- end }}
 
 ## Open Source Projects
-{{ range site.Data.projects }}
+{{ range hugo.Data.projects }}
 ### {{ .name }}
 
 - Repository: {{ .url }}
