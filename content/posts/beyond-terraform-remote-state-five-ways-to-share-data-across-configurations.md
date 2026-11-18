@@ -1,5 +1,6 @@
 ---
 title: "Beyond terraform_remote_state: five ways to share data across Terraform configurations"
+seo_title: "Terraform Remote State Alternatives: 5 Ways to Share Data"
 date: 2026-03-09
 description: "Five approaches to sharing data across Terraform configurations — from remote state to naming conventions — and why sharing rules beats sharing data."
 aliases:

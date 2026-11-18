@@ -1,5 +1,6 @@
 ---
 title: "Modernizing Scheduled Tasks: Reliability, Scale, and Zero Maintenance"
+seo_title: "Serverless Cron on AWS: Reliable Scheduled Tasks at Scale"
 date: 2025-05-06
 description: "Replace fragile EC2 cron with EventBridge, Lambda, SQS, and ECS Fargate for reliable, scalable serverless scheduling on AWS."
 tags:

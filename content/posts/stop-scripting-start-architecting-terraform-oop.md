@@ -1,5 +1,6 @@
 ---
 title: "Stop Scripting, Start Architecting: The OOP Approach to Terraform"
+seo_title: "Terraform OOP: Stop Scripting, Start Architecting"
 date: 2025-07-02
 description: "How to treat Terraform modules as classes and module instances as objects to build scalable, maintainable infrastructure architectures using OOP principles."
 tags:

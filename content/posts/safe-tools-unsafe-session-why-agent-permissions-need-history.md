@@ -1,5 +1,6 @@
 ---
 title: "Safe Tools, Unsafe Session: Why Agent Permissions Need History"
+seo_title: "Taint Tracking for AI Agents: Why Permissions Need History"
 date: 2026-11-05
 description: "Taint tracking for AI agent tool calls: per-tool allow/deny rules miss the lethal trifecta, so TaintGuard gates Claude Code by what the session has read."
 tags:
