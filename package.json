@@ -9,6 +9,6 @@
   "devDependencies": {
     "axios": "^1.21.1",
     "gray-matter": "^4.0.3",
-    "puppeteer": "^25.16.0"
+    "puppeteer": "^25.17.0"
   }
 }
